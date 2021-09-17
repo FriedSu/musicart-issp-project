@@ -7,6 +7,20 @@
     <title>Musicart: Login</title>
 </head>
 <body>
-    <h1>Hello there!</h1>
+    <div class = "title">
+        <h1>Login</h1>
+    </div>
+    <form action="/auth/login" method="POST">
+        <div class="form-group">
+            <label for="email"><b>Email</b></label>
+            <input type="email" placeholder="Enter Email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" id="password" name="password" required>
+        </div>
+        <button type="submit">Login</button>
+        <button onClick="location.href = '/auth/register';" id="myButton">Register</button>
+    </form>
 </body>
 </html>

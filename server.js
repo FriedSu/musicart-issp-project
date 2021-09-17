@@ -3,7 +3,7 @@ const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
 const mongoose = require('mongoose');
-const port = process.env.port || 5000;
+const port = process.env.port || 8000;
 
 const app = express();
 app.set("view engine", "ejs");
