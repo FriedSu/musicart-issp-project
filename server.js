@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
+const mongoose = require('mongoose');
 const port = process.env.port || 5000;
 
 const app = express();
@@ -38,8 +39,14 @@ app.use((req, res, next) => {
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
 
-// database deatils go here
+// connect to mongodb
 
-app.listen(port, () => {
-    console.log(`Server start on port ${port}`)
-})
+const databaseURL = 'mongodb+srv://Admin:111122!Aadmin@musicart.uumip.mongodb.net/MusicartDB?retryWrites=true&w=majority';
+mongoose.connect(databaseURL, { useNewURLParser: true, useUnifiedTopology: true})
+    .then((result) => console.log('connected to db'))
+    .then(app.listen(port, () => {
+        console.log(`Server started on port ${port}`);
+    }))
+    .catch((err) => console.log(err));
+
+
