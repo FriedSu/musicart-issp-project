@@ -1,220 +1,332 @@
-var redirect_uri = "https://makeratplay.github.io/SpotifyWebAPI/"; // change this your value
-//var redirect_uri = "http://127.0.0.1:5500/index.html";
- 
+const APIController = (function() {
+    
+    const clientId = '475065ad09b14f60a13da67ff08de3f0';
+    const clientSecret = 'c86ce757d0094f08883821a2d57444bd';
 
-var client_id = ""; 
-var client_secret = "";
+    // private methods
+    const _getToken = async () => {
 
-var access_token = null;
-var refresh_token = null;
-var currentPlaylist = "";
-var radioButtons = [];
+        const result = await fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/x-www-form-urlencoded', 
+                'Authorization' : 'Basic ' + btoa(clientId + ':' + clientSecret)
+            },
+            body: 'grant_type=client_credentials'
+        });
 
-const AUTHORIZE = "https://accounts.spotify.com/authorize"
-const TOKEN = "https://accounts.spotify.com/api/token";
-const PLAYLISTS = "https://api.spotify.com/v1/me/playlists";
-const PLAYER = "https://api.spotify.com/v1/me/player";
-const TRACKS = "https://api.spotify.com/v1/playlists/{{PlaylistId}}/tracks";
-const SHUFFLE = "https://api.spotify.com/v1/me/player/shuffle";
-
-function onPageLoad(){
-    client_id = localStorage.getItem("client_id");
-    client_secret = localStorage.getItem("client_secret");
-    if ( window.location.search.length > 0 ){
-        handleRedirect();
+        const data = await result.json();
+        return data.access_token;
     }
-    else{
-        access_token = localStorage.getItem("access_token");
-        if ( access_token == null ){
-            // we don't have an access token so present token section
-            document.getElementById("tokenSection").style.display = 'block';  
+    
+    const _getGenres = async (token) => {
+
+        const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+        });
+
+        const data = await result.json();
+        return data.categories.items;
+    }
+
+    const _getPlaylistByGenre = async (token, genreId) => {
+
+        const limit = 10;
+        
+        const result = await fetch(`https://api.spotify.com/v1/browse/categories/${genreId}/playlists?limit=${limit}`, {
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+        });
+
+        const data = await result.json();
+        return data.playlists.items;
+    }
+
+    const _getTracks = async (token, tracksEndPoint) => {
+
+        const limit = 10;
+
+        const result = await fetch(`${tracksEndPoint}?limit=${limit}`, {
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+        });
+
+        const data = await result.json();
+        return data.items;
+    }
+
+    const _getTrack = async (token, trackEndPoint) => {
+
+        const result = await fetch(`${trackEndPoint}`, {
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+        });
+
+        const data = await result.json();
+        return data;
+    }
+    // TODO
+    const _getArtists = async (token, str) => {
+
+        const result = await fetch(`https://api.spotify.com/v1/search?query=${str}&offset=0&limit=20&type=artist`, {
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+        });
+
+        const data = await result.json();
+        return data;
+    }
+
+    const _getArtist = async (token, trackEndPoint) => {
+
+        const result = await fetch(`${trackEndPoint}`, {
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+        });
+
+        const data = await result.json();
+        return data;
+    }
+
+    return {
+        getToken() {
+            return _getToken();
+        },
+        getGenres(token) {
+            return _getGenres(token);
+        },
+        getPlaylistByGenre(token, genreId) {
+            return _getPlaylistByGenre(token, genreId);
+        },
+        getTracks(token, tracksEndPoint) {
+            return _getTracks(token, tracksEndPoint);
+        },
+        getTrack(token, trackEndPoint) {
+            return _getTrack(token, trackEndPoint);
+        },
+        getArtists(token, str) {
+            return _getArtists(token, str);
+        },
+        getArtist(token, trackEndPoint) {
+            return _getArtist(token, trackEndPoint);
         }
-        else {
-            // we have an access token so present device section
-            document.getElementById("deviceSection").style.display = 'block';  
-            refreshDevices();
-            refreshPlaylists();
-            currentlyPlaying();
+    }
+})();
+
+
+// UI Module
+const UIController = (function() {
+
+    //object to hold references to html selectors
+    const DOMElements = {
+        selectGenre: '#select_genre',
+        selectPlaylist: '#select_playlist',
+        buttonSubmit: '#btn_submit',
+        divSongDetail: '#song-detail',
+        hfToken: '#hidden_token',
+        divSonglist: '.song-list',
+        // TODO
+        searchArtist: '#search_artist',
+        buttonSubmitArtist: '#btn_submit_artist',
+        divArtistlist: '.artist-list',
+    }
+
+    //public methods
+    return {
+
+        //method to get input fields
+        inputField() {
+            return {
+                genre: document.querySelector(DOMElements.selectGenre),
+                playlist: document.querySelector(DOMElements.selectPlaylist),
+                tracks: document.querySelector(DOMElements.divSonglist),
+                submit: document.querySelector(DOMElements.buttonSubmit),
+                songDetail: document.querySelector(DOMElements.divSongDetail),
+                // TODO
+                artists: document.querySelector(DOMElements.divArtistlist),
+                artist: document.querySelector(DOMElements.searchArtist),
+                submitArtist: document.querySelector(DOMElements.buttonSubmitArtist)
+            }
+        },
+
+        // need methods to create select list option
+        createGenre(text, value) {
+            const html = `<option value="${value}">${text}</option>`;
+            document.querySelector(DOMElements.selectGenre).insertAdjacentHTML('beforeend', html);
+        }, 
+
+        createPlaylist(text, value) {
+            const html = `<option value="${value}">${text}</option>`;
+            document.querySelector(DOMElements.selectPlaylist).insertAdjacentHTML('beforeend', html);
+        },
+
+        // need method to create a track list group item 
+        createTrack(id, name) {
+            const html = `<a href="#" class="list-group-item list-group-item-action list-group-item-light" id="${id}">${name}</a>`;
+            document.querySelector(DOMElements.divSonglist).insertAdjacentHTML('beforeend', html);
+        },
+
+        // TODO
+        createArtist(id, name) {
+            const html = `<a href="#" class="list-group-item list-group-item-action list-group-item-light" id="${id}">${name}</a>`;
+            document.querySelector(DOMElements.divArtistlist).insertAdjacentHTML('beforeend', html);
+        },
+
+        // need method to create the song detail
+        createTrackDetail(img, title, artist) {
+
+            const detailDiv = document.querySelector(DOMElements.divSongDetail);
+            // any time user clicks a new song, we need to clear out the song detail div
+            detailDiv.innerHTML = '';
+
+            const html = 
+            `
+            <div class="row col-sm-12 px-0">
+                <img src="${img}" alt="">        
+            </div>
+            <div class="row col-sm-12 px-0">
+                <label for="Genre" class="form-label col-sm-12">${title}:</label>
+            </div>
+            <div class="row col-sm-12 px-0">
+                <label for="artist" class="form-label col-sm-12">By ${artist}:</label>
+            </div> 
+            `;
+
+            detailDiv.insertAdjacentHTML('beforeend', html)
+        },
+
+        resetTrackDetail() {
+            this.inputField().songDetail.innerHTML = '';
+        },
+
+        // TODO
+        resetArtists() {
+            this.inputField().artists.innerHTML = '';
+        },
+
+        resetTracks() {
+            this.inputField().tracks.innerHTML = '';
+            this.resetTrackDetail();
+        },
+
+        resetPlaylist() {
+            this.inputField().playlist.innerHTML = '';
+            this.resetTracks();
+        },
+        
+        storeToken(value) {
+            document.querySelector(DOMElements.hfToken).value = value;
+        },
+
+        getStoredToken() {
+            return {
+                token: document.querySelector(DOMElements.hfToken).value
+            }
         }
     }
-    refreshRadioButtons();
-}
 
-function handleRedirect(){
-    let code = getCode();
-    fetchAccessToken( code );
-    window.history.pushState("", "", redirect_uri); // remove param from url
-}
+})();
 
-function getCode(){
-    let code = null;
-    const queryString = window.location.search;
-    if ( queryString.length > 0 ){
-        const urlParams = new URLSearchParams(queryString);
-        code = urlParams.get('code')
+const APPController = (function(UICtrl, APICtrl) {
+
+    // get input field object ref
+    const DOMInputs = UICtrl.inputField();
+
+    // get genres on page load
+    const loadGenres = async () => {
+        //get the token
+        const token = await APICtrl.getToken();           
+        //store the token onto the page
+        UICtrl.storeToken(token);
+        //get the genres
+        const genres = await APICtrl.getGenres(token);
+        //populate our genres select element
+        genres.forEach(element => UICtrl.createGenre(element.name, element.id));
     }
-    return code;
-}
 
-function requestAuthorization(){
-    client_id = document.getElementById("clientId").value;
-    client_secret = document.getElementById("clientSecret").value;
-    localStorage.setItem("client_id", client_id);
-    localStorage.setItem("client_secret", client_secret); // In a real app you should not expose your client_secret to the user
+    // create genre change event listener
+    DOMInputs.genre.addEventListener('change', async () => {
+        //reset the playlist
+        UICtrl.resetPlaylist();
+        //get the token that's stored on the page
+        const token = UICtrl.getStoredToken().token;        
+        // get the genre select field
+        const genreSelect = UICtrl.inputField().genre;       
+        // get the genre id associated with the selected genre
+        const genreId = genreSelect.options[genreSelect.selectedIndex].value;             
+        // ge the playlist based on a genre
+        const playlist = await APICtrl.getPlaylistByGenre(token, genreId);       
+        // create a playlist list item for every playlist returned
+        playlist.forEach(p => UICtrl.createPlaylist(p.name, p.tracks.href));
 
-    let url = AUTHORIZE;
-    url += "?client_id=" + client_id;
-    url += "&response_type=code";
-    url += "&redirect_uri=" + encodeURI(redirect_uri);
-    url += "&show_dialog=true";
-    url += "&scope=user-read-private user-read-email user-modify-playback-state user-read-playback-position user-library-read streaming user-read-playback-state user-read-recently-played playlist-read-private";
-    window.location.href = url; // Show Spotify's authorization screen
-}
+    });
+     
 
-function fetchAccessToken( code ){
-    let body = "grant_type=authorization_code";
-    body += "&code=" + code; 
-    body += "&redirect_uri=" + encodeURI(redirect_uri);
-    body += "&client_id=" + client_id;
-    body += "&client_secret=" + client_secret;
-    callAuthorizationApi(body);
-}
+    // create submit button click event listener
+    DOMInputs.submit.addEventListener('click', async (e) => {
+        // prevent page reset
+        e.preventDefault();
+        // clear tracks
+        UICtrl.resetTracks();
+        UICtrl.resetArtists();
+        //get the token
+        const token = UICtrl.getStoredToken().token;        
+        // get the playlist field
+        const playlistSelect = UICtrl.inputField().playlist;
+        // get track endpoint based on the selected playlist
+        const tracksEndPoint = playlistSelect.options[playlistSelect.selectedIndex].value;
+        // get the list of tracks
+        const tracks = await APICtrl.getTracks(token, tracksEndPoint);
+        // create a track list item
+        tracks.forEach(el => UICtrl.createTrack(el.track.href, el.track.name))
+        
+    });
 
-function refreshAccessToken(){
-    refresh_token = localStorage.getItem("refresh_token");
-    let body = "grant_type=refresh_token";
-    body += "&refresh_token=" + refresh_token;
-    body += "&client_id=" + client_id;
-    callAuthorizationApi(body);
-}
+    // create submit button click event listener
+    // TODO
+    DOMInputs.submitArtist.addEventListener('click', async (e) => {
+        // prevent page reset
+        e.preventDefault();
+        UICtrl.resetArtists();
+        UICtrl.resetTracks();
+        //get the token
+        const token = UICtrl.getStoredToken().token;
+        const input = UICtrl.inputField().artist.value;
+        const artistsGet = await APICtrl.getArtists(token, input);
+        console.log(artistsGet);
+        // create a artist list item
+        artistsGet.artists.items.forEach(el => UICtrl.createArtist(el.href, el.name))
 
-function callAuthorizationApi(body){
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", TOKEN, true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.setRequestHeader('Authorization', 'Basic ' + btoa(client_id + ":" + client_secret));
-    xhr.send(body);
-    xhr.onload = handleAuthorizationResponse;
-}
+    });
 
-function handleAuthorizationResponse(){
-    if ( this.status == 200 ){
-        var data = JSON.parse(this.responseText);
-        console.log(data);
-        var data = JSON.parse(this.responseText);
-        if ( data.access_token != undefined ){
-            access_token = data.access_token;
-            localStorage.setItem("access_token", access_token);
+    // create song selection click event listener
+    DOMInputs.tracks.addEventListener('click', async (e) => {
+        // prevent page reset
+        e.preventDefault();
+        UICtrl.resetTrackDetail();
+        // get the token
+        const token = UICtrl.getStoredToken().token;
+        // get the track endpoint
+        const trackEndpoint = e.target.id;
+        //get the track object
+        const track = await APICtrl.getTrack(token, trackEndpoint);
+        // load the track details
+        UICtrl.createTrackDetail(track.album.images[2].url, track.name, track.artists[0].name);
+    });
+
+    return {
+        init() {
+            console.log('App is starting');
+            loadGenres();
         }
-        if ( data.refresh_token  != undefined ){
-            refresh_token = data.refresh_token;
-            localStorage.setItem("refresh_token", refresh_token);
-        }
-        onPageLoad();
     }
-    else {
-        console.log(this.responseText);
-        alert(this.responseText);
-    }
-}
+
+})(UIController, APIController);
+
+// will need to call a method to load the genres on page load
+APPController.init();
 
 
-function callApi(method, url, body, callback){
-    let xhr = new XMLHttpRequest();
-    xhr.open(method, url, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
-    xhr.send(body);
-    xhr.onload = callback;
-}
 
-function refreshPlaylists(){
-    callApi( "GET", PLAYLISTS, null, handlePlaylistsResponse );
-}
-
-function handlePlaylistsResponse(){
-    if ( this.status == 200 ){
-        var data = JSON.parse(this.responseText);
-        console.log(data);
-        removeAllItems( "playlists" );
-        data.items.forEach(item => addPlaylist(item));
-        document.getElementById('playlists').value=currentPlaylist;
-    }
-    else if ( this.status == 401 ){
-        refreshAccessToken()
-    }
-    else {
-        console.log(this.responseText);
-        alert(this.responseText);
-    }
-}
-
-function addPlaylist(item){
-    let node = document.createElement("option");
-    node.value = item.id;
-    node.innerHTML = item.name + " (" + item.tracks.total + ")";
-    document.getElementById("playlists").appendChild(node); 
-}
-
-function removeAllItems( elementId ){
-    let node = document.getElementById(elementId);
-    while (node.firstChild) {
-        node.removeChild(node.firstChild);
-    }
-}
-
-function transfer(){
-    let body = {};
-    body.device_ids = [];
-    body.device_ids.push(deviceId())
-    callApi( "PUT", PLAYER, JSON.stringify(body), handleApiResponse );
-}
-
-function handleApiResponse(){
-    if ( this.status == 200){
-        console.log(this.responseText);
-        setTimeout(currentlyPlaying, 2000);
-    }
-    else if ( this.status == 204 ){
-        setTimeout(currentlyPlaying, 2000);
-    }
-    else if ( this.status == 401 ){
-        refreshAccessToken()
-    }
-    else {
-        console.log(this.responseText);
-        alert(this.responseText);
-    }    
-}
-
-function fetchTracks(){
-    let playlist_id = document.getElementById("playlists").value;
-    if ( playlist_id.length > 0 ){
-        url = TRACKS.replace("{{PlaylistId}}", playlist_id);
-        callApi( "GET", url, null, handleTracksResponse );
-    }
-}
-
-function handleTracksResponse(){
-    if ( this.status == 200 ){
-        var data = JSON.parse(this.responseText);
-        console.log(data);
-        removeAllItems( "tracks" );
-        data.items.forEach( (item, index) => addTrack(item, index));
-    }
-    else if ( this.status == 401 ){
-        refreshAccessToken()
-    }
-    else {
-        console.log(this.responseText);
-        alert(this.responseText);
-    }
-}
-
-function addTrack(item, index){
-    let node = document.createElement("option");
-    node.value = index;
-    node.innerHTML = item.track.name + " (" + item.track.artists[0].name + ")";
-    document.getElementById("tracks").appendChild(node); 
-}
 
