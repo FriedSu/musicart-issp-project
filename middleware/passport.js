@@ -21,7 +21,7 @@ const localLogin = new LocalStrategy({
     // Find User
     User.findOne({ email: email })
     .then(user => {
-        if (user) {
+        if (user.password === password) {
             return done(null, user);
         } else {
             return done(null, false, {message: "User not found, please try again!"})
