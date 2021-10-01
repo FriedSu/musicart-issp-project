@@ -8,4 +8,10 @@ router.get("/home", ensureAuthenticated, (req, res) => {
     });
 });
 
+router.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect("/auth/login");
+});
+
+
 module.exports = router;
