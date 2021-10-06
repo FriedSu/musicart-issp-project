@@ -10,6 +10,8 @@
     <h1>
         Welcome!
     </h1>
-    
+    <% if (user.role === "Admin") { %>
+        <button onClick="location.href = '/admin';" id= "adminButton">Admin</button>
+  <% } %>
 </body>
 </html>
