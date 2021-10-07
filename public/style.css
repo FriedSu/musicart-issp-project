@@ -35,3 +35,27 @@ button:hover {
     background-color: whitesmoke;
     
 }
+
+.profile {
+    text-align: center;
+    max-width: 200px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.profileImage {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    display: block;
+}
+
+.profileName {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* #editProfileButton {
+    color: ;
+} */

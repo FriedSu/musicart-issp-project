@@ -25,6 +25,7 @@ app.use(
 
 const authRoute = require("./routes/authRoute");
 const indexRoute = require("./routes/indexRoute");
+const profileRoute = require("./routes/profileRoute");
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -38,6 +39,7 @@ app.use((req, res, next) => {
 
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
+app.use("/edit-profile", profileRoute);
 
 // connect to mongodb
 
