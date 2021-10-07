@@ -11,7 +11,7 @@ The goal of this website is to help new artists gain more publicity and traction
 - Admin User Control
 - Add Songs to Spotify's Playlist
 
-## APIs used:
+## APIs Used:
 > Spotify API
 
 > Passport API
