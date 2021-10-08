@@ -8,9 +8,12 @@
 </head>
 
 <body>
-   <% data.music_info.forEach(result => { %>
-        <li> <%= result[1].song_name %> </li> <input type="radio" name="<%=result[0]%>">
-    <% }) %>
+    <div>
+        <% data.music_info.forEach(result => { %>
+            <li> <%= result[1].song_name %> </li> <input type="radio" name="<%=result[0]%>">
+        <% }) %>
+    </div>
+   
 
     <button>Checkout</button>
 </body>
