@@ -18,10 +18,28 @@
 </html>
 
 <script>
-    const input = document.querySelector("input")
-    input.
-
+    const input = document.querySelectorAll("input")
     const button = document.querySelector("button")
+    const songsById = []
+    let arr = Array.prototype.slice.call( input )
+
+    button.addEventListener("click", () => {
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].checked) {
+                let songId = arr[i].name
+                songsById.push({ id: int(songId) })
+            }
+        }
+    })
+
+    // input.addEventListener("click", () => {
+    //     for (let i = 0; i < input.length; i++) {
+    //         if (input[i].checked) {
+    //             this.checked = false;
+    //         }
+    //     }
+    // })
+
     button.addEventListener("click", () => {
     fetch('/create-checkout-session', {
         method: 'POST',
@@ -29,11 +47,11 @@
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            // items: [
-            //     { id: 1 },
-            //     { id: 2 }
-            // ]
-            items: songsById
+            items: [
+                { id: 1 },
+                { id: 2 }
+            ]
+            // items: songsById
         })
     }).then(res => {
         if (res.ok) return res.json()
