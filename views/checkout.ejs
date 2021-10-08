@@ -8,25 +8,32 @@
 </head>
 
 <body>
+   <% data.music_info.forEach(result => { %>
+        <li> <%= result[1].song_name %> </li> <input type="radio" name="<%=result[0]%>">
+    <% }) %>
+
     <button>Checkout</button>
-    hello
 </body>
 
 </html>
 
 <script>
+    const input = document.querySelector("input")
+    input.
+
     const button = document.querySelector("button")
-button.addEventListener("click", () => {
+    button.addEventListener("click", () => {
     fetch('/create-checkout-session', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            items: [
-                { id: 1, quantity: 1 },
-                { id: 2, quantity: 1 }
-            ]
+            // items: [
+            //     { id: 1 },
+            //     { id: 2 }
+            // ]
+            items: songsById
         })
     }).then(res => {
         if (res.ok) return res.json()

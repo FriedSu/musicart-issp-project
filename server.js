@@ -10,12 +10,14 @@ const { ensureAuthenticated } = require("./middleware/check_auth");
 require("dotenv").config()
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
+//change this after spotify api is done
+const user_music_items = [
+    [0,{ artist_name: "Ryan", song_name: "Hello world" }],
+    [1,{ artist_name: "Sydney", song_name: "Hello again" }],
+    [2,{ artist_name: "Adrian", song_name: "Hello hello" }]
+]
 
-const test_music_items = new Map([
-    [1,{ artist_name: "Ryan", song_name: "Hello world", price_in_cents: 100 }],
-    [2,{ artist_name: "Sydney", song_name: "Hello again", price_in_cents: 100 }],
-    [3,{ artist_name: "Adrian", song_name: "Hello hello", price_in_cents: 100 }]
-])
+const test_music_items = new Map(user_music_items)
 
 
 const app = express();
@@ -52,7 +54,9 @@ app.use((req, res, next) => {
 
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
-app.get("/checkout", ensureAuthenticated, (req, res) => res.render("checkout"))
+app.get("/checkout", (req, res) => {
+    res.render("checkout", { data: {music_info: user_music_items}})
+    })
 app.get("/payment_success", (req, res) => res.render('payment_success'))
 app.get("/payment_cancel", (req, res) => res.render('payment_cancel'))
 
@@ -69,9 +73,9 @@ app.post('/create-checkout-session', async (req, res) => {
                         product_data: {
                             name: `${music_item.artist_name}: ${music_item.song_name}`
                         },
-                        unit_amount: music_item.price_in_cents
+                        unit_amount: process.env.PRICE
                     },
-                    quantity: item.quantity
+                    quantity: 1
                 }
             }),
             success_url: `${process.env.SERVER_URL}/payment_success`,
