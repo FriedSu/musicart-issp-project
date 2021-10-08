@@ -15,11 +15,11 @@ const user_music_items = [
     [0,{ artist_name: "Ryan", song_name: "Hello world" }],
     [1,{ artist_name: "Sydney", song_name: "Hello again" }],
     [2,{ artist_name: "Adrian", song_name: "Hello hello" }],
-    [3,{ artist_name: "Peter", song_name: "Hi Hi" }],
-    [4,{ artist_name: "Joshua", song_name: "Hey Hey" }],
+    [3,{ artist_name: "Peter", song_name: "Hello Hi" }],
+    [4,{ artist_name: "Joshua", song_name: "Hell yea" }],
     [5,{ artist_name: "Oliver", song_name: "Hello there" }],
-    [6,{ artist_name: "Gautam", song_name: "Hey man" }],
-    [7,{ artist_name: "William", song_name: "Howdy" }],
+    [6,{ artist_name: "Gautam", song_name: "Hell" }],
+    [7,{ artist_name: "William", song_name: "Hello 12345" }],
 ]
 
 const test_music_items = new Map(user_music_items)
