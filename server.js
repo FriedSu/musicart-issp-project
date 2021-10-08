@@ -14,7 +14,12 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 const user_music_items = [
     [0,{ artist_name: "Ryan", song_name: "Hello world" }],
     [1,{ artist_name: "Sydney", song_name: "Hello again" }],
-    [2,{ artist_name: "Adrian", song_name: "Hello hello" }]
+    [2,{ artist_name: "Adrian", song_name: "Hello hello" }],
+    [3,{ artist_name: "Peter", song_name: "Hi Hi" }],
+    [4,{ artist_name: "Joshua", song_name: "Hey Hey" }],
+    [5,{ artist_name: "Oliver", song_name: "Hello there" }],
+    [6,{ artist_name: "Gautam", song_name: "Hey man" }],
+    [7,{ artist_name: "William", song_name: "Howdy" }],
 ]
 
 const test_music_items = new Map(user_music_items)
@@ -62,6 +67,7 @@ app.get("/payment_cancel", (req, res) => res.render('payment_cancel'))
 
 app.post('/create-checkout-session', async (req, res) => {
     try {
+        // console.log(req.body.items2)
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             mode: 'payment',
