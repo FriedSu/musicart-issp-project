@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "/styl.css">
+    <link rel = "stylesheet" href = "/style.css">
     <title>Admin Page</title>
 </head>
 <body>
     <h1>Users</h1>
-    <% for (i in user) { %>
-        <div class="users">
-            <div><%=user[i].name%></div> <button id = "session">End Session</button>
-        </div>
-    <% } %>
+    <form action="/admin" method="POST">
+        <% for (i in user) { %>
+            <label for="name"><%=user[i].name%></label>
+            <input type="checkbox" id= "<%=user[i]%>" name="<%=user[i]%>" value="<%user[i]%>">
+        <% } %>
+        <button type="submit">View Profile</button>
+    </form>
 </body>
 </html>
