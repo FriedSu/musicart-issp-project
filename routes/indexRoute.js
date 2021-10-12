@@ -18,16 +18,26 @@ router.get("/admin", ensureAuthenticated,(req, res) => {
     })
 });
 router.post("/admin", (req, res) => {
-    profile = req.body[0]
-    console.log(`user info: ${profile}`)
-    res.redirect("/admin/userprofile")
+    // let profile = JSON.parse(req.body.user)
+    let profile = req.body.user
+    console.log(profile);
+    // for (i in profile) {
+    //     let usr = profile[i]
+    //     console.log(usr)
+    //     console.log(typeof(usr));
+    // }
+    User.findOne( { _id: profile})
+        .then(usr => {
 
-    router.get("/admin/userProfile", ensureAuthenticated,(req, res) => {
-       
-        res.render("admin_user_profile", {
-            user: profile
+            res.redirect("/admin/userprofile")
+            router.get("/admin/userProfile", ensureAuthenticated,(req, res) => {
+               
+                res.render("admin_user_profile", {
+                    user: usr
+                })
+            });
         })
-    });
+
 })
 
 
