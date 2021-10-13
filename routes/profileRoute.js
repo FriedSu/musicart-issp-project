@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated } = require("../middleware/check_auth");
+const User = require("../models/userModel").User;
 
 router.get("/home", (req, res) => {
     res.render("edit-profile", {
@@ -20,13 +21,42 @@ router.get("/change-name", (req, res) => {
     });
 });
 
-// this is where we will do the database handling ..
-// router.post("/change-password", (req, res) => {
 
-// };
+router.post("/change-password", (req, res) => {
+    const query  = User.where({ email: req.user.email });
+    query.findOne(function (err, user) {
+        if (err) {
+            console.log(err);
+        } else {
+            user.password = req.body.confirmPassword
+            user.save()
+                .then((user) => {
+                    res.redirect("/auth/login");
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        };
+    });
+});
 
-// router.post("/change-name", (req, res) => {
-    
-// };
+
+router.post("/change-name", (req, res) => {
+    const query  = User.where({ email: req.user.email });
+    query.findOne(function (err, user) {
+        if (err) {
+            console.log(err);
+        } else {
+            user.name = req.body.name
+            user.save()
+                .then((user) => {
+                    res.redirect("/auth/login");
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        };
+    });
+});
 
 module.exports = router;
