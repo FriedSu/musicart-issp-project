@@ -26,6 +26,7 @@ router.post("/admin", (req, res) => {
     //     console.log(usr)
     //     console.log(typeof(usr));
     // }
+    
     User.findOne( { _id: profile})
         .then(usr => {
 
