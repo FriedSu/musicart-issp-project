@@ -93,6 +93,16 @@ app.post('/create-checkout-session', async (req, res) => {
     }
 })
 
+
+
+// testing,,, ignore this
+
+// app.post('/testing', (req, res) => {
+//     console.log(req.body.userID)
+// })
+
+
+
 // connect to mongodb
 
 const databaseURL = 'mongodb+srv://Admin:111122!Aadmin@musicart.uumip.mongodb.net/MusicartDB?retryWrites=true&w=majority';
