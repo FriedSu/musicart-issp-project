@@ -16,40 +16,26 @@
    
 
     <button>Checkout</button>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <button name="testing">testig stuff ignore this</button>
+
 </body>
 
 </html>
+
+<!-- <script src="/views/script.js"></script> -->
 
 <script>
     const input = document.querySelectorAll("input")
     const button = document.querySelector("button")
     const songsById = []
-    // let input = Array.prototype.slice.call( input )
 
     button.addEventListener("click", () => {
         for (let i = 0; i < input.length; i++) {
             if (input[i].checked) {
-                // let songId = Array.from(input[i].name)
-                // songsById.push({ id: parseInt(songId[0]) })
                 let songId = input[i].name
                 songsById.push({ id: parseInt(songId) })
             }
         }
     })
-
-    // input.addEventListener("click", () => {
-    //     for (let i = 0; i < input.length; i++) {
-    //         if (input[i].checked) {
-    //             this.checked = false;
-    //         }
-    //     }
-    // })
 
     button.addEventListener("click", () => {
     fetch('/create-checkout-session', {
@@ -58,10 +44,6 @@
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            // items: [
-            //     { id: 1 },
-            //     { id: 2 }
-            // ]
             items: songsById
         })
     }).then(res => {
@@ -74,26 +56,5 @@
         console.error(e.error)
     })
 })
-
-
-
-//testing stuff,,,,, ignore this
-// const request = require('request');
-
-// testButton = document.querySelector('button[name="teting"]')
-
-// testButton.addEventListener("click", () => {
-//     request.post({
-//   headers: {'content-type' : 'application/text'},
-//   url:     'http://localhost:8000/testing',
-//   body:    JSON.stringify({userID: "admin"})
-//     }, function(error, response, body){
-//     console.log(body);
-//     });
-// })
-
-
-
-
 
 </script>
