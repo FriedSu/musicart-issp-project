@@ -8,7 +8,7 @@ const User = require("../models/userModel").User;
 router.get("/login", forwardAuthenticated, (req, res) => res.render("login"));
 router.get("/register", (req, res) => res.render("register"))
 
-router.post(
+router.post( 
     "/login",
     passport.authenticate("local", {
         successRedirect: "/home",

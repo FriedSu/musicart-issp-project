@@ -8,7 +8,7 @@ form {
     background-color: #FFFAF1;
     box-shadow: 2px 5px #f5f5f5;
     padding: 16px;
-    width: 300px;
+    width: 350px;
     display: inline-block;
 }
 
@@ -16,9 +16,9 @@ input{
     background-color: #FFF8DC;
     color: #C19A6B;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 8px 8px;
     display: inline-block;
-    width: 250px;
+    /* width: 300px; */
     height: 20px;
     border-radius: 25px;
     font-size: 14px;
@@ -40,4 +40,5 @@ button:hover {
 .user {
     background: rgba(0, 0, 0, 0.5);
     color: white;
+    display: inline-block;
 }
