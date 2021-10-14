@@ -24,15 +24,29 @@
             <div id="panel">
                 <h1>Payment Successful</h1>
 
-                <pre class="json" id="session">
-                </pre>
+                <pre class="json" id="session-data"></pre>
+                
+                
                 <a href="" class="button" style="background-color:#2e70fd">Print (WIP)</a>
                 <a href="/home" class="button" style="background-color:#2e70fd">Close</a>
                 <!-- <button onClick="location.href = '/home';" id="myButton">Return</button> -->
             </div>
         </div>
     </div>
+    <script>
+        const sessionData = document.getElementById('session-data');
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id')
 
+        fetch('/checkout-session?id=' + id)
+        .then((response) => response.json())
+        .then((session) => {
+            sessionData.innerText = JSON.stringify(session, null, 2)
+        })
+        .catch((error) => {
+            console.error('Error', error)
+        })
+    </script>
 </body>
 
 </html>

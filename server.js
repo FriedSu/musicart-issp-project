@@ -64,6 +64,11 @@ app.get("/checkout", (req, res) => {
     })
 app.get("/payment_success", (req, res) => res.render('payment_success'))
 app.get("/payment_cancel", (req, res) => res.render('payment_cancel'))
+app.get('checkout-session', async (req, res) => {
+    const session = await stripe.checkout.sessions.retrieve(req.query.id)
+        res.json({session});
+    
+})
 
 app.post('/create-checkout-session', async (req, res) => {
     try {
@@ -84,10 +89,11 @@ app.post('/create-checkout-session', async (req, res) => {
                     quantity: 1
                 }
             }),
-            success_url: `${process.env.SERVER_URL}/payment_success`,
+            success_url: `${process.env.SERVER_URL}/payment_success?id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${process.env.SERVER_URL}/payment_cancel`
         })
-        res.json({ url: session.url})
+        res.json({ url: session.url,
+                    id : session.id })
     } catch (e) {
         res.status(500).json({ error: e.message })
     }
