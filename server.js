@@ -59,16 +59,16 @@ app.use((req, res, next) => {
 
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
+
 app.get("/checkout", (req, res) => {
     res.render("checkout", { data: {music_info: user_music_items}})
-    })
-app.get("/payment_success", (req, res) => res.render('payment_success'))
-app.get("/payment_cancel", (req, res) => res.render('payment_cancel'))
-app.get('checkout-session', async (req, res) => {
+    });
+app.get("/payment_success", (req, res) => res.render('payment_success'));
+app.get("/payment_cancel", (req, res) => res.render('payment_cancel'));
+app.get('/checkout-session', async (req, res) => {
     const session = await stripe.checkout.sessions.retrieve(req.query.id)
         res.json({session});
-    
-})
+    });
 
 app.post('/create-checkout-session', async (req, res) => {
     try {
@@ -97,7 +97,7 @@ app.post('/create-checkout-session', async (req, res) => {
     } catch (e) {
         res.status(500).json({ error: e.message })
     }
-})
+});
 
 
 
