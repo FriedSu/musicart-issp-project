@@ -5,42 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Musicart: Checkout</title>
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
-   <% data.music_info.forEach(result => { %>
-        <li> <%= result[1].song_name %> </li> <input type="radio" name="<%=result[0]%>">
-    <% }) %>
+    <div>
+        <% data.music_info.forEach(result => { %>
+            <li> <%= result[1].song_name %> </li> <input type="checkbox" name="<%=result[0]%>">
+        <% }) %>
+    </div>
+   
 
     <button>Checkout</button>
+
 </body>
 
 </html>
+
+<!-- <script src="/views/script.js"></script> -->
 
 <script>
     const input = document.querySelectorAll("input")
     const button = document.querySelector("button")
     const songsById = []
-    // let input = Array.prototype.slice.call( input )
 
     button.addEventListener("click", () => {
         for (let i = 0; i < input.length; i++) {
             if (input[i].checked) {
-                // let songId = Array.from(input[i].name)
-                // songsById.push({ id: parseInt(songId[0]) })
                 let songId = input[i].name
                 songsById.push({ id: parseInt(songId) })
             }
         }
     })
-
-    // input.addEventListener("click", () => {
-    //     for (let i = 0; i < input.length; i++) {
-    //         if (input[i].checked) {
-    //             this.checked = false;
-    //         }
-    //     }
-    // })
 
     button.addEventListener("click", () => {
     fetch('/create-checkout-session', {
@@ -49,10 +45,6 @@
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            // items: [
-            //     { id: 1 },
-            //     { id: 2 }
-            // ]
             items: songsById
         })
     }).then(res => {
@@ -63,6 +55,7 @@
         window.location = url
     }).catch(e => {
         console.error(e.error)
+        })
     })
-})
+
 </script>
