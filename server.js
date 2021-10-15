@@ -38,6 +38,59 @@ app.use((req, res, next) => {
 
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
+<<<<<<< Updated upstream
+=======
+app.get("/checkout", (req, res) => {
+    res.render("checkout", { data: {music_info: user_music_items}})
+    })
+app.get("/payment_success", (req, res) => res.render('payment_success'))
+app.get("/payment_cancel", (req, res) => res.render('payment_cancel', {data:{music_info:user_music_items}}))
+
+app.get('/checkout-session', async (req, res) => {
+    const session = await stripe.checkout.sessions.retrieve(req.query.id, {
+        expand: ['line_items.data']
+    });
+    res.json(session);
+})
+
+app.post('/create-checkout-session', async (req, res) => {
+    try {
+        // console.log(req.body.items2)
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            mode: 'payment',
+            line_items: req.body.items.map(item => {
+                const music_item = test_music_items.get(item.id)
+                return {
+                    price_data: {
+                        currency: 'cad',
+                        product_data: {
+                            name: `${music_item.artist_name}: ${music_item.song_name}`
+                        },
+                        unit_amount: process.env.PRICE
+                    },
+                    quantity: 1
+                }
+            }),
+            success_url: `${process.env.SERVER_URL}/payment_success`,
+            cancel_url: `${process.env.SERVER_URL}/payment_cancel?id={CHECKOUT_SESSION_ID}`
+        })
+        res.json({ url: session.url})
+    } catch (e) {
+        res.status(500).json({ error: e.message })
+    }
+})
+
+
+
+// testing,,, ignore this
+
+// app.post('/testing', (req, res) => {
+//     console.log(req.body.userID)
+// })
+
+
+>>>>>>> Stashed changes
 
 // connect to mongodb
 
