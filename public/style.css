@@ -35,3 +35,26 @@ button:hover {
     background-color: whitesmoke;
     
 }
+<<<<<<< Updated upstream
+=======
+
+ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    background-color:white;
+}
+
+li {
+    float:left;
+}
+
+li a {
+    display:block;
+    color:white;
+    text-align:center;
+    padding:16px;
+    text-decoration:none;
+}
+>>>>>>> Stashed changes
