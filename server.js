@@ -38,8 +38,6 @@ app.use((req, res, next) => {
 
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
-<<<<<<< Updated upstream
-=======
 app.get("/checkout", (req, res) => {
     res.render("checkout", { data: {music_info: user_music_items}})
     })
@@ -90,7 +88,6 @@ app.post('/create-checkout-session', async (req, res) => {
 // })
 
 
->>>>>>> Stashed changes
 
 // connect to mongodb
 
