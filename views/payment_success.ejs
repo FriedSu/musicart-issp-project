@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Musicart: Checkout</title>
+
+    <style>
+        #session-data {
+            margin: auto;
+            margin-bottom: 30px;
+            border: 2px solid rgba(255, 0, 0, 0);
+            align-content: center;
+            border-radius: 15px;
+            padding: 50px;
+            
+            text-align: left;
+            background-color: rgb(235, 234, 232);
+            width: max-content;
+        }
+    </style>
 
     <link rel="stylesheet" href="/buttons.css">
     <link rel="stylesheet" href="/style.css">
@@ -19,21 +32,28 @@
 
     <pre class="json" id="session"></pre> -->
 
-    <div id="main">
-        <div id="container">
-            <div id="panel">
-                <h1>Payment Successful</h1>
+    <h1>Payment Successful</h1>
 
-                <pre class="json" id="session-data"></pre>
-                
-                
-                <a href="" class="button" style="background-color:#2e70fd">Print (WIP)</a>
-                <a href="/home" class="button" style="background-color:#2e70fd">Close</a>
-                <!-- <button onClick="location.href = '/home';" id="myButton">Return</button> -->
-            </div>
-        </div>
+    <p id="output_test">
+    </p>
+    
+    <div>
+        <pre class="json" id="session-data"></pre>
     </div>
+    
+    <a href="" class="button" style="background-color:#2e70fd">Print (WIP)</a>
+    <a href="/home" class="button" style="background-color:#2e70fd">Close</a>
+    <!-- <button onClick="location.href = '/home';" id="myButton">Return</button> -->
+
     <script>
+        // const sessionData = document.getElementById('session-data');
+        // const params = new URLSearchParams(window.location.search);
+        // window.onload = function(){
+        //     // var name = prompt("What's your name?");
+        //     var lengthOfName = "bird is the word"
+
+        //     document.getElementById('output_test').innerHTML = lengthOfName;
+        // };
         const sessionData = document.getElementById('session-data');
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id')
@@ -41,7 +61,8 @@
         fetch('/checkout-session?id=' + id)
         .then((response) => response.json())
         .then((session) => {
-            sessionData.innerText = JSON.stringify(session, null, 2)
+            sessionData.innerHTML = JSON.stringify(session, null, 2);
+            // sessionData.innerText = JSON.stringify(session, null, 2);
         })
         .catch((error) => {
             console.error('Error', error)
