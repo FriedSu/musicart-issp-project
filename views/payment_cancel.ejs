@@ -39,6 +39,10 @@
     fetch('/checkout-session?id='+id)
     .then((response)=>response.json())
     .then((session)=>{
+        var output=JSON.stringify(session,null,2);
+        var obj=JSON.parse(output);
+        document.getElementById('genre').innerHTML=obj.session.line_items.description;
+        document.getElementById('language').innerHTML=obj.session.language;
         sessionData.innerText=JSON.stringify(session.line_items.data, null, 2);
     })
     .catch((error)=>{
