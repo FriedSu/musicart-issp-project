@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musicart: Checkout</title>
+
+    <style>
+        .panel {
+            margin: auto;
+            margin-bottom: 30px;
+            border: 2px solid rgba(255, 0, 0, 0);
+            align-content: center;
+            border-radius: 15px;
+            padding: 12px;
+            
+            text-align: left;
+            background-color: rgb(235, 234, 232);
+            width: max-content;
+        }
+    </style>
+
+    <link rel="stylesheet" href="/buttons.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <!-- <h1>Payment Success thank you for shopping here c:</h1>
+
+    <button>Click me</button>
+
+    <pre class="json" id="session"></pre> -->
+
+    <h1>Payment Successful</h1>
+
+    <div class="panel">
+        <p>
+            Email: <a id="email_output"></a>
+            <br>
+            Total Payment: <a id="payment_amount"></a>
+        </p>
+    </div>
+    
+    
+    <div>
+        <pre class="json" id="session-data"></pre>
+    </div>
+    
+    <a href="" class="button" style="background-color:#2e70fd">Print (WIP)</a>
+    <a href="/home" class="button" style="background-color:#2e70fd">Close</a>
+    <!-- <button onClick="location.href = '/home';" id="myButton">Return</button> -->
+
+    <script>
+        const sessionData = document.getElementById('session-data');
+        const params = new URLSearchParams(window.location.search);
+        window.onload = function(){
+            // var name = prompt("What's your name?");
+            var lengthOfName = session.
+
+            document.getElementById('output_test').innerHTML = lengthOfName;
+        };
+        // const sessionData = document.getElementById('session-data');
+        // const params = new URLSearchParams(window.location.search);
+        const id = params.get('id')
+
+        fetch('/checkout-session?id=' + id)
+        .then((response) => response.json())
+        .then((session) => {
+            // sessionData.innerHTML = JSON.stringify(session, null, 2);
+
+            var output = ''
+
+            output = JSON.stringify(session, null, 2);
+
+            var obj = JSON.parse(output)
+
+            document.getElementById('email_output').innerHTML = obj.session.customer_details.email;
+            var payment = Number(obj.session.amount_total) / 100;
+            document.getElementById('payment_amount').innerHTML = `$${payment.toFixed(2)}`
+            
+
+            // sessionData.innerText = JSON.stringify(session, null, 2);
+        })
+        .catch((error) => {
+            console.error('Error', error)
+        })
+    </script>
+</body>
+
+</html>

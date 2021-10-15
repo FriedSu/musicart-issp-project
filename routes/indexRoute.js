@@ -5,7 +5,7 @@ const { ensureAuthenticated } = require("../middleware/check_auth");
 
 router.get("/home", ensureAuthenticated, (req, res) => {
     res.render("home", {
-        user: req.user,
+        user: req.user
     });
 });
 router.get("/admin", ensureAuthenticated,(req, res) => {
