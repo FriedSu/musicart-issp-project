@@ -5,11 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="/buttons.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <h1>
         Welcome!
+        
     </h1>
+    <% if (user.role === "Admin") { %>
+        <button onClick="location.href = '/admin';" id= "adminButton">Admin</button>
+  <% } %>
+    <a href="checkout" class="button" style="background-color:#2e70fd">Order</a>
     
 </body>
 </html>
