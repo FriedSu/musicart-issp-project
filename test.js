@@ -1,7 +1,7 @@
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
 const express = require('express');
-const token = "BQAS9lcBFiDu6W4iErQl6ZWFfIQbc-hPkAJ28mb_TlBBVUAdHp_Zks8EBD8HrwUsd7BC8Q5SQ4xXnkzVbq6bSkGO9OoCL1YbSeAa7ovVR7_r79KUqrxyhOUZjQEcd8tuTqd1RE3XcJLBCfALbo25RUQDyodoyPVfe741mCdRTzDZIWfW3C7817gjjZ7AS5McGPZqrUOmZTbRWPQWLbvmW94UCrjfevhwp6zWzEnLKeQNlWZ88KYi3tyVBTznxkih5l_rGY3tK4LiGWdPWGFR2bYio5ba0n1uF2g1CdJv8ku47beR6p3x";
+const token = "BQAI7KLik9fB2NpBADUrFezU0UcDi0F5FNas_B48PLqquLC-SlBT21axe975FFCYoTkwIwu4HQvVXMLyjMyvzxME_IYF4LtofSKqW3EVrqGxFR-qAwLfCLiydFvZWMGiHldp2iHJV_QHECXZQq7b0DY6jVfMp2WnZPHtUsu_zMzH9Aq7a53cQkpL1BM_88UskbXJfYdIE5yt6KFDiiR6r4DBjYL0fiM4EwiGK6bhESv822sl1VkrST0GVvEEFIJYkwf4ak_5OAHYV8tYArfqfX1QiNMLPPTL_6aGMASswYylFCznfQ_x";
 const bodyParser = require('body-parser')
 const spotifyApi = new SpotifyWebApi();
 
@@ -89,14 +89,18 @@ function addtoPlaylist(playlistId, trackId){
 // 3SpBlxme9WbeQdI9kx7KAV
 // addtoPlaylist('5ip8XW3DeB2ozaKDVxEmGN','spotify:track:1301WleyT98MSxVHPZCA6M')
 
-app.get('/search', function(req, res) {
+app.get('/', function(req, res) {
   res.render('index');
-  // console.log(req.body);
+  var track_name = req.query.search_track;
+  
+  console.log('text is ' + track_name);
+  searchTracks(track_name)
 });
 
-app.post('/search', function(req, res) {
-  console.log(req.body.searech_track);
-});
+// app.post('/', function(req, res) {
+//   res.render('index');
+//   console.log(req.body.searech_track);
+// });
 
 
 
