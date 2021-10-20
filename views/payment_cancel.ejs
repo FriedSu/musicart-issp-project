@@ -17,7 +17,14 @@
         <h2>
             Transaction cancelled, please try again.
         </h2>
+<<<<<<< Updated upstream
         <button onclick="location.href = '/home';" id="button1">Return to home page</button>
+=======
+    <div>
+        Cancelled order: <a id='description'></a>
+    </div>
+        <button onclick="location.href = '/home';" style="background-color: black;">Return to home page</button>
+>>>>>>> Stashed changes
     </div>
     <div class="">
         <pre class="json" id="session-data"></pre>
@@ -25,7 +32,11 @@
         <!--Placeholder items until I can figure out how to get spotify data-->
         <ul style="margin: auto;width: 60%;">
             <%data.music_info.forEach(result=>{%>
+<<<<<<< Updated upstream
                 <li><%=result[1].song_name%><a href="" style="background-color:#2e70fd;">Add to cart</a></li>
+=======
+                <li><%=result[1].song_name%><a href="" style="background-color:#2e70fd;border:2px solid black;">Add to cart</a></li>
+>>>>>>> Stashed changes
             <%})%>
         </ul>
     </div>
@@ -41,7 +52,12 @@
     .then((session)=>{
         var output=JSON.stringify(session,null,2);
         var obj=JSON.parse(output);
+<<<<<<< Updated upstream
         document.getElementById('genre').innerHTML=obj.session.line_items.description;
+=======
+        document.getElementById('description').innerHTML=obj.session.line_items;
+        document.getElementById('genre').innerHTML=obj.session.genre;
+>>>>>>> Stashed changes
         document.getElementById('language').innerHTML=obj.session.language;
         sessionData.innerText=JSON.stringify(session.line_items.data, null, 2);
     })
