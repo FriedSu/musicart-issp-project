@@ -49,3 +49,23 @@ button:hover {
     background: rgba(0, 0, 0, 0.5);
     color: white;
 }
+
+ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    background-color:white;
+}
+
+li {
+    float:left;
+}
+
+li a {
+    display:block;
+    color:white;
+    text-align:center;
+    padding:16px;
+    text-decoration:none;
+}
