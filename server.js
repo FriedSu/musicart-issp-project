@@ -64,7 +64,7 @@ app.get("/checkout", (req, res) => {
     res.render("checkout", { data: {music_info: user_music_items}})
     });
 app.get("/payment_success", (req, res) => res.render('payment_success'));
-app.get("/payment_cancel", (req, res) => res.render('payment_cancel'));
+app.get("/payment_cancel", (req, res) => res.render('payment_cancel', {data:{music_info:user_music_items}}))
 app.get('/checkout-session', async (req, res) => {
     const session = await stripe.checkout.sessions.retrieve(req.query.id, {
         });
@@ -91,7 +91,7 @@ app.post('/create-checkout-session', async (req, res) => {
                 }
             }),
             success_url: `${process.env.SERVER_URL}/payment_success?id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${process.env.SERVER_URL}/payment_cancel`
+            cancel_url: `${process.env.SERVER_URL}/payment_cancel?id={CHECKOUT_SESSION_ID}`
         })
         res.json({ url: session.url,
                     id : session.id })
