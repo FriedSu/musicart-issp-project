@@ -1,7 +1,7 @@
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
 const express = require('express');
-const token = "BQAI7KLik9fB2NpBADUrFezU0UcDi0F5FNas_B48PLqquLC-SlBT21axe975FFCYoTkwIwu4HQvVXMLyjMyvzxME_IYF4LtofSKqW3EVrqGxFR-qAwLfCLiydFvZWMGiHldp2iHJV_QHECXZQq7b0DY6jVfMp2WnZPHtUsu_zMzH9Aq7a53cQkpL1BM_88UskbXJfYdIE5yt6KFDiiR6r4DBjYL0fiM4EwiGK6bhESv822sl1VkrST0GVvEEFIJYkwf4ak_5OAHYV8tYArfqfX1QiNMLPPTL_6aGMASswYylFCznfQ_x";
+const token = "BQDdT-761s69OLZY_UsCkfntpQPXCb08d8Z275sFnoRMfOiCY1iGKzJYS_ZGdD0lec18smnxE7OQWr79XEGDIcqMggwir07JjG9FxYlXMBuZ_cUFuv5Z70NLyvHVJOuveMYIEPwc7hBQJtq_4gDS10HqH5arbuQcn3iihenaxYNU0UbstpAe1bvMHbWUZAkwRa4eNM_V0YGI61jidGGMx6FCfVKbZh3ImHv09ZlM6vPvm0TPfChYRnZ48OpivDhiONW-aWAcot7ZaugidOkohZUlAdbw4MZIexrDFvpC1DEQP8Et_qmg";
 const bodyParser = require('body-parser')
 const spotifyApi = new SpotifyWebApi();
 
