@@ -66,8 +66,7 @@ app.get("/checkout", (req, res) => {
 app.get("/payment_success", (req, res) => res.render('payment_success'));
 app.get("/payment_cancel", (req, res) => res.render('payment_cancel', {data:{music_info:user_music_items}}))
 app.get('/checkout-session', async (req, res) => {
-    const session = await stripe.checkout.sessions.retrieve(req.query.id, {
-        });
+    const session = await stripe.checkout.sessions.retrieve(req.query.id)
         res.json({session});
     });
 
