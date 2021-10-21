@@ -2,6 +2,8 @@ const express = require("express");
 const passport = require("../middleware/passport");
 const router = express.Router();
 const { forwardAuthenticated } = require("../middleware/check_auth");
+const bcrypt = require("bcryptjs");
+
 const User = require("../models/userModel").User;
 
 //Routes for authentication 
