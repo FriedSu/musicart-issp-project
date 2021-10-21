@@ -26,17 +26,17 @@ router.post("/admin", (req, res) => {
     //     console.log(usr)
     //     console.log(typeof(usr));
     // }
-    
+
     User.findOne( { _id: profile})
         .then(usr => {
 
-            res.redirect("/admin/userprofile")
             router.get("/admin/userProfile", ensureAuthenticated,(req, res) => {
                
                 res.render("admin_user_profile", {
                     user: usr
                 })
             });
+            res.redirect("/admin/userprofile")
         })
 
 })
