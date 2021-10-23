@@ -11,8 +11,10 @@
 <body>
     <div>
         <% data.music_info.forEach(result => { %>
-            <li> <%= result[1].song_name %> </li> <input type="checkbox" name="<%=result[0]%>">
+            <li> <%= result[1].artist_name %>, <%= result[1].song_name %> </li> <input type="checkbox" name="<%=result[0]%>">
         <% }) %>
+
+        <p><%= data.music_info %></p>
     </div>
    
 
@@ -31,7 +33,7 @@
         for (let i = 0; i < input.length; i++) {
             if (input[i].checked) {
                 let songId = input[i].name
-                songsById.push({ id: parseInt(songId) })
+                songsById.push({ id: songId })
             }
         }
     })
