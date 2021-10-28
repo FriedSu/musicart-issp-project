@@ -10,6 +10,7 @@ const { ensureAuthenticated } = require("./middleware/check_auth");
 require("dotenv").config()
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
+const Purchase = require("./models/PurchaseModel").Purchase;
 
 //change this after spotify api is done
 let user_music_items = [
@@ -105,42 +106,29 @@ app.post('/create-checkout-session', async (req, res) => {
 
 app.post('/webhook', express.json({type: 'application/json'}), (request, response) => {
   const event = request.body;
+  let time = Date.now()
 
   // Handle the event
   switch (event.type) {
     case 'payment_intent.succeeded':
       const paymentIntent = event.data.object;
-      console.log(`id: ${paymentIntent.id}`)
-      console.log(`PaymentIntent for ${paymentIntent.amount} was successful!`);
-      console.log(`customer: ${paymentIntent.customer}`)
-      // Then define and call a method to handle the successful payment intent.
-      // handlePaymentIntentSucceeded(paymentIntent);
-      break;
-    case 'payment_method.attached':
-      const paymentMethod = event.data.object;
-      // Then define and call a method to handle the successful attachment of a PaymentMethod.
-      // handlePaymentMethodAttached(paymentMethod);
+      const purchase = new Purchase({
+        id: paymentIntent.id, 
+        email: paymentIntent.receipt_email,
+        amount_received: paymentIntent.amount_received,
+        currency: paymentIntent.currency,
+        timestamp: time 
+        });
+      purchase.save()
+
       break;
     default:
-      // Unexpected event type
       console.log(`Unhandled event type ${event.type}.`);
-  // if(event.type == 'checkout-session.completed') {
-  //   let session = event.data.object
-  //   console.log('id: ',session.id)
-  //   console.log(session.customer)
-  // }
-
   }
 
   // Return a 200 response to acknowledge receipt of the event
   response.send();
 });
-
-// app.post('/postMongo', (req, res) => {
-//   paymentId = req.body.item
-//   // console.log(paymentId)
-//   fetch
-// })
 
 // connect to mongodb
 
@@ -156,7 +144,7 @@ mongoose.connect(databaseURL, { useNewURLParser: true, useUnifiedTopology: true}
 // Search
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
-const token = "BQCxYwAteX6hOtxDvcQtkVeb8oDyzOpXoRV7Ot1qxSyWapbAjdAwcSYK7VT6n5gWbLH627Z1nKRPLJOt8isxZ5vBsHTqCc5miKKSFUTjLSu_Dl1mokBJhFbQwB86CYL9HhAPZG55I8ldZIPUbAHcwfTeLiAIlJowZmSCy06TfTv7Dzmspq__Kaj5CpDChy5UVCc3Fq8-6wNMNuVtsOeJCYI4Oyhk7hGIaEhhNbQ16g1MiY-KCL4FD6CSUN6LrMTZP5ZHecPy7pc5w4lqWHhRo07jAXA";
+const token = "BQDv8zPzl4IrCjHeIe38khSw8efaGh4xvzRXsuxbKpxF7L5WW_FAdemfipCoEuOevZk0dmkTsy_z1OoFA9HHO5BjZp6EWpYgjDwpQ7Rxa-1TX8zdIqQXQPeiiYhI6rUGHsxrgpVb0zyg7WTgAGYdu8Xq0amH-zNhTxP2ng0uC8dOidmWcmeAe_fjx3vUQlI_VrJikIolm54zIjyPSPsNMt3VKDb0-F5a9r5OtmExZt6tVByfVH1dYn2yTB4WCKBYz-uRj1pTtUgPCpNvPEV-f1x42CA";
 const bodyParser = require('body-parser')
 const spotifyApi = new SpotifyWebApi();
 
