@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "/admin_style.css">
+    <title>Admin Page</title>
+</head>
+<body>
+    <h1>Users</h1>
+    <form action="/admin" method="POST">
+        <% for (i in user) { %>
+            <% let usr = user[i] %>
+            <ul>
+
+                <input type="checkbox" id= "<%=usr._id%>" name="user" value="<%=usr._id%>">
+                <label for="name"><%=usr.name%></label>
+            </ul>
+        <% } %>
+        <button type="submit">View Profile</button>
+    </form>
+</body>
+</html>
