@@ -103,6 +103,45 @@ app.post('/create-checkout-session', async (req, res) => {
     }
 });
 
+app.post('/webhook', express.json({type: 'application/json'}), (request, response) => {
+  const event = request.body;
+
+  // Handle the event
+  switch (event.type) {
+    case 'payment_intent.succeeded':
+      const paymentIntent = event.data.object;
+      console.log(`id: ${paymentIntent.id}`)
+      console.log(`PaymentIntent for ${paymentIntent.amount} was successful!`);
+      console.log(`customer: ${paymentIntent.customer}`)
+      // Then define and call a method to handle the successful payment intent.
+      // handlePaymentIntentSucceeded(paymentIntent);
+      break;
+    case 'payment_method.attached':
+      const paymentMethod = event.data.object;
+      // Then define and call a method to handle the successful attachment of a PaymentMethod.
+      // handlePaymentMethodAttached(paymentMethod);
+      break;
+    default:
+      // Unexpected event type
+      console.log(`Unhandled event type ${event.type}.`);
+  // if(event.type == 'checkout-session.completed') {
+  //   let session = event.data.object
+  //   console.log('id: ',session.id)
+  //   console.log(session.customer)
+  // }
+
+  }
+
+  // Return a 200 response to acknowledge receipt of the event
+  response.send();
+});
+
+// app.post('/postMongo', (req, res) => {
+//   paymentId = req.body.item
+//   // console.log(paymentId)
+//   fetch
+// })
+
 // connect to mongodb
 
 const databaseURL = 'mongodb+srv://Admin:111122!Aadmin@musicart.uumip.mongodb.net/MusicartDB?retryWrites=true&w=majority';
@@ -117,7 +156,7 @@ mongoose.connect(databaseURL, { useNewURLParser: true, useUnifiedTopology: true}
 // Search
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
-const token = "BQB3FfEuKlhIJ9NoCRR-GEB9zR9OM9FircxtJmYPjUaOPNfXEN7Zc7AvTM515OjLG1HtNRvYAEQdZ6XTJu7QPwDf4Lesgduuo73MCZRCuPb5HDo7Va2e84xhPgzWtvyJmjeDLDqvEQZRIH_Q7ZMFF5Oe4yQJUh26qqnrBaB-MPfcCb6cVR0mQgpcxPsfR2WZIxnm9UZf6s9H5QYPsWQh1Cero8mUF_5aktWmc2nmp4MACrFDRqC8uFPsFJFitlyqDe2Vv3v1PG3JFzEZdX8LSCFxS7Y";
+const token = "BQCxYwAteX6hOtxDvcQtkVeb8oDyzOpXoRV7Ot1qxSyWapbAjdAwcSYK7VT6n5gWbLH627Z1nKRPLJOt8isxZ5vBsHTqCc5miKKSFUTjLSu_Dl1mokBJhFbQwB86CYL9HhAPZG55I8ldZIPUbAHcwfTeLiAIlJowZmSCy06TfTv7Dzmspq__Kaj5CpDChy5UVCc3Fq8-6wNMNuVtsOeJCYI4Oyhk7hGIaEhhNbQ16g1MiY-KCL4FD6CSUN6LrMTZP5ZHecPy7pc5w4lqWHhRo07jAXA";
 const bodyParser = require('body-parser')
 const spotifyApi = new SpotifyWebApi();
 
