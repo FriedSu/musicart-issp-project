@@ -13,9 +13,10 @@
   <div class="jumbotron">
     <h1>Search for Track</h1>
     <form action="/search_result" method="GET">
+    <!-- <from> -->
       <label for="track_name">Enter Track Name: </label>
       <input id="search_track" type="text" name="search_track">
-      <input type="submit" value="OK">
+      <input id='button' type="submit" value="OK">
     </form>
     
   </div>
@@ -24,5 +25,34 @@
 </body>
 
 <script>
+
+    // button.addEventListener("click", () => {
+    //     for (let i = 0; i < input.length; i++) {
+    //         if (input[i].checked) {
+    //             let songId = input[i].name
+    //             songsById.push({ id: songId })
+    //         }
+    //     }
+    // })
+
+    // button.addEventListener("click", () => {
+    // fetch('/search_result', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         items: input
+    //     })
+    // }).then(res => {
+    //     if (res.ok) return res.json()
+    //     return res.json().then(json => Promise.reject(json))
+    // }).then(({ url }) => {
+    //     // console.log(url)
+    //     window.location = url
+    // }).catch(e => {
+    //     console.error(e.error)
+    //     })
+    // })
 </script>
 </html>

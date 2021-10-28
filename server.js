@@ -10,6 +10,7 @@ const { ensureAuthenticated } = require("./middleware/check_auth");
 require("dotenv").config()
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
+
 //change this after spotify api is done
 let user_music_items = [
     // [0,{ artist_name: "Ryan", song_name: "Hello world" }],
@@ -62,6 +63,7 @@ app.use("/auth", authRoute);
 
 app.get("/checkout", (req, res) => {
     res.render("checkout", { data: {music_info: user_music_items}})
+    user_music_items = []
     });
 app.get("/payment_success", (req, res) => res.render('payment_success'));
 app.get("/payment_cancel", (req, res) => res.render('payment_cancel', {data:{music_info:user_music_items}}))
@@ -115,7 +117,7 @@ mongoose.connect(databaseURL, { useNewURLParser: true, useUnifiedTopology: true}
 // Search
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
-const token = "BQD_xNrpfCku9JS-TCpKcYxMnD_zzq6OJnBENhlVtqe3Pwn1ldmJd-tl7u1mlmbvSLoUfu5bslf80K-bsu0vxtGYoR8nAdqTOS93V9vnnVxMg1xNbzZZukPPwZ66jZNBwcYsEAUzGl9suBPws2yTbVEvyWJeGKSplEgMrynuN5YKRwmDebqQWRyK86r4YjNAdY2rCsvaT6VrR2k-jlP1BkPgNbUbI9Q-8ODaruroNulFME6A3Z2yxgSTatDc_C0zYgaoAaGgqL9_JfCxnxpu4s5qSP0";
+const token = "BQB3FfEuKlhIJ9NoCRR-GEB9zR9OM9FircxtJmYPjUaOPNfXEN7Zc7AvTM515OjLG1HtNRvYAEQdZ6XTJu7QPwDf4Lesgduuo73MCZRCuPb5HDo7Va2e84xhPgzWtvyJmjeDLDqvEQZRIH_Q7ZMFF5Oe4yQJUh26qqnrBaB-MPfcCb6cVR0mQgpcxPsfR2WZIxnm9UZf6s9H5QYPsWQh1Cero8mUF_5aktWmc2nmp4MACrFDRqC8uFPsFJFitlyqDe2Vv3v1PG3JFzEZdX8LSCFxS7Y";
 const bodyParser = require('body-parser')
 const spotifyApi = new SpotifyWebApi();
 
@@ -178,18 +180,17 @@ async function searchTracks(trackName){
     limit: 10,
     fields: 'items'
   })
-//   console.log('The playlist contains these tracks', data.body.tracks.items);
+
   let results = data.body.tracks.items
 
   results.forEach(result => {
-    //   let user_music_items
-    let music = [result.album.id, {artist_name: result.artists[0].name, song_name: result.album.name}]
-    user_music_items.push(music)
-    test_music_items = new Map(user_music_items)
-    console.log(results)
+    if(result.name.toUpperCase().includes(trackName.toUpperCase())){
+      let music = [result.id, {artist_name: result.artists[0].name, song_name: result.name}]
+      user_music_items.push(music)
+      test_music_items = new Map(user_music_items)
+    }
   });
-
-  
+  // console.log(results)
 }
 
 function addtoPlaylist(playlistId, trackId){
@@ -202,18 +203,24 @@ function addtoPlaylist(playlistId, trackId){
 
 app.get('/search', function(req, res) {
   res.render('search');
-//   let track_name = req.query.search_track;
+  // let track_name = req.query.search_track;
   
-//   console.log('text is ' + track_name);
-//   searchTracks(track_name)
-//   res.redirect('checkout')
-  
+  // // console.log('text is ' + track_name);
+  // searchTracks(track_name)
+  // res.json(process.env.SERVER_URL)
 });
 
-app.get('/search_result', (req, res) => {
-    let track_name = req.query.search_track;
-  
-    searchTracks(track_name)
+// app.get('/search_result', (req, res) => {
+//     let track_name = req.query.search_track;
+//     console.log(track_name)
+//     searchTracks(track_name) 
+// })
 
-    // res.redirect('checkout', { data: {music_info: user_music_items}})   
+app.get('/search_result', (req, res) => {
+  let track_name = req.query.search_track
+  // console.log(track_name)
+  searchTracks(track_name)
+  redirect = `${process.env.SERVER_URL}/checkout`
+  // res.json({url: redirect})
+  // res.redirect('checkout', { data: {music_info: user_music_items}})
 })
