@@ -69,7 +69,7 @@ app.get("/checkout", (req, res) => {
 app.get("/payment_success", (req, res) => res.render('payment_success'));
 app.get("/payment_cancel", (req, res) => res.render('payment_cancel', {data:{music_info:user_music_items}}))
 app.get('/checkout-session', async (req, res) => {
-    const session = await stripe.checkout.sessions.retrieve(req.query.id)
+    const session = await stripe.checkout.sessions.retrieve(req.query.id, {expand:['line_items']});
         res.json({session});
     });
 
@@ -144,7 +144,7 @@ mongoose.connect(databaseURL, { useNewURLParser: true, useUnifiedTopology: true}
 // Search
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
-const token = "BQDv8zPzl4IrCjHeIe38khSw8efaGh4xvzRXsuxbKpxF7L5WW_FAdemfipCoEuOevZk0dmkTsy_z1OoFA9HHO5BjZp6EWpYgjDwpQ7Rxa-1TX8zdIqQXQPeiiYhI6rUGHsxrgpVb0zyg7WTgAGYdu8Xq0amH-zNhTxP2ng0uC8dOidmWcmeAe_fjx3vUQlI_VrJikIolm54zIjyPSPsNMt3VKDb0-F5a9r5OtmExZt6tVByfVH1dYn2yTB4WCKBYz-uRj1pTtUgPCpNvPEV-f1x42CA";
+const token = "BQDDBMsQ_D5ifSiQGuaaV-2d2jLvMRGtYJvsXOGZKLBTbrPjdVtbZLT6zBngh4Mgfd-_4MPISCW9NREJjr8rj3BhWgwVpwtYmqgK1aHOgvLSI1FYzdz83WBgeYwfNxDZaKwNEWyctYguHYmW3vcnS_ZesaSxlxvgKOPCudpJad04p1d22wZy4hbeyVAf6wTQCHV6TW6fGAaA7UNGm5f8WM-AkCNKIYxS4V2djZWYYB7NPyyyafOG1RWQeunuSxfOoBeqXRUctfWoNXPf3jwQxdjVCsM";
 const bodyParser = require('body-parser')
 const spotifyApi = new SpotifyWebApi();
 
