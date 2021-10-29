@@ -8,13 +8,25 @@
     <link rel = "stylesheet" href="/style.css">
 </head>
 <body>
-    <h1>
+    <h1 class="title">
         Welcome!
     </h1>
-    <div class="profile">
-        <img src="musicart_logo.png" alt="Default Profile Image" class="profileImage">
-        <div class="profileName"><%= user.name %></div>
-        <a href="/edit-profile/home" id="editProfileButton">Edit Profile</a>
+    <div class="sidebar">
+        <header>Your Profile</header>
+        <div class="profile">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Logo_musicart_group_logo_cmyk.png/1200px-Logo_musicart_group_logo_cmyk.png" alt="Default Profile Image" class="profileImage">
+            <div class="profileName"><%= user.name %></div>
+            <a href="/edit-profile/home" id="editProfileButton">Edit Profile</a>
+        </div>
+        <ul>
+            <li><a href="/home"><i class="test-one"></i>Home</a></li>
+            <li><a href=""><i class="test-three"></i>Buy Spotify Plays</a></li>
+            <li><a href=""><i class="test-four"></i>Connect Artist Profile</a></li>
+            <li><a href="https://www.musicart.pl/"><i class="test-five"></i>Musicart</a></li>
+            <li><a href=""><i class="test-six"></i>Help</a></li>
+            <li><a href=""><i class="test-seven"></i>Settings</a></li>
+            <li><a href=""><i class="test-eight"></i></a></li>
+        </ul>
     </div>
 </body>
 </html>
