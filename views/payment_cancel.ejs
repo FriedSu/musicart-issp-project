@@ -47,10 +47,13 @@
     fetch('/checkout-session?id='+id)
     .then((response)=>response.json())
     .then((session)=>{
-        var output=JSON.stringify(session,null,2);
+        var output=''
+        output=JSON.stringify(session,null,2);
         var obj=JSON.parse(output);
+        document.getElementById('sessiontest').innerHTML=obj.session;
         document.getElementById('description').innerHTML=obj.session.line_items.data.description;
-        document.getElementById('price').innerHTML=obj.session.amount_total;
+        var total=Number(obj.session.amount_total)/100;
+        document.getElementById('price').innerHTML=`$${total.toFixed(2)}`
         document.getElementById('genre').innerHTML=obj.session.genre;
         document.getElementById('language').innerHTML=obj.session.language;
         sessionData.innerText=JSON.stringify(session.line_items.data, null, 2);
