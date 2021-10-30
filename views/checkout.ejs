@@ -16,7 +16,9 @@
         
             <p>Released on: <%= result[1].release_date %> </p> 
             <input type="checkbox" name="<%=result[0]%>">
-            <img src="<%= result[1].song_image %>" width="200",height="200"> 
+            
+            <a href= "<%= result[1].song_url %>"> <img src="<%= result[1].song_image %>" width="200",height="200"> 
+            </a>
        
                 
         <% }) %>

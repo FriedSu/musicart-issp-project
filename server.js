@@ -144,7 +144,7 @@ mongoose.connect(databaseURL, { useNewURLParser: true, useUnifiedTopology: true}
 // Search
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
-const token = "BQDDBMsQ_D5ifSiQGuaaV-2d2jLvMRGtYJvsXOGZKLBTbrPjdVtbZLT6zBngh4Mgfd-_4MPISCW9NREJjr8rj3BhWgwVpwtYmqgK1aHOgvLSI1FYzdz83WBgeYwfNxDZaKwNEWyctYguHYmW3vcnS_ZesaSxlxvgKOPCudpJad04p1d22wZy4hbeyVAf6wTQCHV6TW6fGAaA7UNGm5f8WM-AkCNKIYxS4V2djZWYYB7NPyyyafOG1RWQeunuSxfOoBeqXRUctfWoNXPf3jwQxdjVCsM";
+const token = "BQC3kK4Fmj4b4wc033aOaKj-7NBY5eHeb13m6rfpOWFmCzvn_b8bx9C2RDGvkxkBqY6NQwvQ0uRjMC9vYoDLa4DQAQ4qvdadS6ShIvL04Edkx-N4yCe0fRXGMYnMQbFrnyw__zuorU8iOFSa_841VM0vMpApW9zybJH-SIzK15xOrlMB1Gx-I_sN3XOsjqB0sTPJT4b1W2LWoF0_lltBZfsEZ-GoRfhPdtFE_U2M-FoWrMey96WVpztMSL9kPk9TR9M3vhMa5sh7PoKae9KOPHByfmPtBg";
 const bodyParser = require('body-parser')
 const spotifyApi = new SpotifyWebApi();
 
@@ -211,12 +211,14 @@ async function searchTracks(trackName){
 
   results.forEach(result => {
     if(result.name.toUpperCase().includes(trackName.toUpperCase())){
-      let music = [result.id, {song_image: result.album.images[1].url,artist_name: result.artists[0].name, song_name: result.name,song_type: result.album.album_type, release_date: result.album.release_date}]
+      let music = [result.id, {song_image: result.album.images[1].url,artist_name: result.artists[0].name, 
+        song_name: result.name,song_type: result.album.album_type, release_date: result.album.release_date,
+                   song_url: result.external_urls.spotify}]
       user_music_items.push(music)
       test_music_items = new Map(user_music_items)
     }
   });
-  //console.log(results)
+  console.log(results)
 }
 
 function addtoPlaylist(playlistId, trackId){
