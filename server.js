@@ -199,7 +199,6 @@ async function getPlaylistTracks(playlistId, playlistName) {
   console.log("---------------+++++++++++++++++++++++++")
   return tracks;
 }
-
 async function searchTracks(trackName){
 
   const data = await spotifyApi.searchTracks(trackName, {
@@ -212,12 +211,12 @@ async function searchTracks(trackName){
 
   results.forEach(result => {
     if(result.name.toUpperCase().includes(trackName.toUpperCase())){
-      let music = [result.id, {artist_name: result.artists[0].name, song_name: result.name}]
+      let music = [result.id, {song_image: result.album.images[1].url,artist_name: result.artists[0].name, song_name: result.name,song_type: result.album.album_type, release_date: result.album.release_date}]
       user_music_items.push(music)
       test_music_items = new Map(user_music_items)
     }
   });
-  // console.log(results)
+  //console.log(results)
 }
 
 function addtoPlaylist(playlistId, trackId){
