@@ -17,19 +17,23 @@
         <h2>
             Transaction cancelled, please try again.
         </h2>
-    <div>
-        Cancelled order: <a id='description'></a>
+        <h3>
+            Cancelled order
+        </h3>
+    <div class="block">
+        Items: <a id='description'></a><br>
+        Total: <a id='price'></a>
     </div>
-        <button onclick="location.href = '/home';" style="background-color: black;">Return to home page</button>
+        <button onclick="location.href = '/home';" style="background-color: blue;">Return to home page</button>
     </div>
-    <div class="">
+    <div class="recc">
         <pre class="json" id="session-data"></pre>
         <h3>You might like</h3>
         <!--Placeholder items until I can figure out how to get spotify data-->
-        <ul style="margin: auto;width: 60%;">
-            <%data.music_info.forEach(result=>{%>
-                <li><%=result[1].song_name%><a href="" style="background-color:#2e70fd;border:2px solid black;">Add to cart</a></li>
-            <%})%>
+        <ul style="margin: auto;width: auto;">
+            <li>track1<button class="reccbutton" onclick="location.href = '';">Add to cart</button></li>
+            <li>track2<button class="reccbutton" onclick="location.href = '';">Add to cart</button></li>
+            <li>track3<button class="reccbutton" onclick="location.href = '';">Add to cart</button></li>
         </ul>
     </div>
 </body>
@@ -39,12 +43,17 @@
     var sessionData=document.getElementById('session-data');
     var params=new URLSearchParams(window.location.search);
     var id=params.get('id');
+    var placeholder=["track1", "track2", "track3"];
     fetch('/checkout-session?id='+id)
     .then((response)=>response.json())
     .then((session)=>{
-        var output=JSON.stringify(session,null,2);
+        var output=''
+        output=JSON.stringify(session,null,2);
         var obj=JSON.parse(output);
-        document.getElementById('description').innerHTML=obj.session.line_items;
+        document.getElementById('sessiontest').innerHTML=obj.session;
+        document.getElementById('description').innerHTML=obj.session.line_items.data.description;
+        var total=Number(obj.session.amount_total)/100;
+        document.getElementById('price').innerHTML=`$${total.toFixed(2)}`
         document.getElementById('genre').innerHTML=obj.session.genre;
         document.getElementById('language').innerHTML=obj.session.language;
         sessionData.innerText=JSON.stringify(session.line_items.data, null, 2);

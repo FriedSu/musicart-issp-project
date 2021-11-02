@@ -29,6 +29,7 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
+    "spotify-web-api-node": "^5.0.2",
     "stripe": "^8.176.0"
   },
   "devDependencies": {
