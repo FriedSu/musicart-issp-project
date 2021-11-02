@@ -94,7 +94,14 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
         }
     }
     
-    console.log(secret); 
+    let db  = (JSON.parse(secret));
+    // connect to mongodb
+    mongoose.connect(db.secret, { useNewURLParser: true, useUnifiedTopology: true})
+    .then((result) => console.log('connected to db'))
+    .then(app.listen(port, () => {
+        console.log(`Server started on port ${port}`);
+    }))
+    .catch((err) => console.log(err));
 });
 
 
@@ -183,14 +190,6 @@ app.post('/create-checkout-session', async (req, res) => {
 
 
 
-// connect to mongodb
 
-const databaseURL = 'mongodb+srv://Admin:111122!Aadmin@musicart.uumip.mongodb.net/MusicartDB?retryWrites=true&w=majority';
-mongoose.connect(databaseURL, { useNewURLParser: true, useUnifiedTopology: true})
-    .then((result) => console.log('connected to db'))
-    .then(app.listen(port, () => {
-        console.log(`Server started on port ${port}`);
-    }))
-    .catch((err) => console.log(err));
 
 
