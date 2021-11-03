@@ -30,7 +30,7 @@ router.post("/admin", (req, res) => {
     User.findOne( { _id: profile})
         .then(usr => {
 
-            router.get("/admin/userProfile", ensureAuthenticated,(req, res) => {
+            router.get(`/admin/userProfile`, ensureAuthenticated,(req, res) => {
                
                 res.render("admin_user_profile", {
                     user: usr
@@ -39,6 +39,11 @@ router.post("/admin", (req, res) => {
             res.redirect("/admin/userprofile")
         })
 
+})
+router.get("/profile", ensureAuthenticated, (req, res) => {
+    res.render("usrProfile", {
+        user: user
+    })
 })
 
 
