@@ -140,6 +140,7 @@ app.use((req, res, next) => {
 
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
+app.use("/edit-profile", profileRoute);
 
 app.get("/checkout", (req, res) => {
     res.render("checkout", { data: {music_info: user_music_items}})
