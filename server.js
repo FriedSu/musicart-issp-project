@@ -112,6 +112,10 @@ app.post('/create-checkout-session', async (req, res) => {
     }
 });
 
+
+// Save purchase data into MonogDB
+// INSTRUCTION: 
+//    - type "stripe listen --forward-to localhost:8000/webhook" IN DIFFERENT TERMINAL
 app.post('/webhook', express.json({type: 'application/json'}), (request, response) => {
   const event = request.body;
   let time = Date.now()
@@ -152,7 +156,7 @@ mongoose.connect(databaseURL, { useNewURLParser: true, useUnifiedTopology: true}
 // Search
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
-const token = "BQDYlMBRNN4IzVkVs8aRxAfVIvKODNqUBWEBC8ynRajqA001m1ssYlP6wnDnDuMXf7btO3UQHOass0se8KcC7MUM5MlxvvNlsO27MOK2hNGPu8Byhl7wxskSErstwcFzjSFW1eWRk1Wi5xEn_26NIJTgTcTJ_kn5EtTsmLOcyCd4BiPa2qC2sw6hEQUOq68qwfQeVvSdlCzvlI0DslTR0QWlGOk78qvCmsCj5bDC-1jzAK2xVZMrsGSVmoULjVJVfBIoEZCM_bwKJtUT5J391ZzBqT8";
+const token = "BQCf4vXzt-IYBCAYh4Cl7tnkBN00XT42Xdr5RKcETjPr8HOx4xOKsioRCFe5caP4DAWQ1En6jxtfhM1DD5VnUWuAoH9hDYnMvL6I0WzdEpOcWNBFwZfjfmEIus9lJiDN_7go_FXdObvcTtN6JD9FrnHpHNWfXcKjGc-2XyDiOKzhx6N6TJxsgOfozfHp1IU40MZPRoh-iXZ_HQzGzYSvsO5sLUQPBEsNJUDVsvN7lYRvecounS7YCaVKeC5Mw7JWj9uoS-qw3Th1UJUk5ToCxEGKOfw";
 const bodyParser = require('body-parser')
 const spotifyApi = new SpotifyWebApi();
 
