@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema ({
+const purchaseSchema = new Schema ({
     id: {
         type: String,
         required: true,
@@ -20,7 +20,7 @@ const userSchema = new Schema ({
     }
 }, { timestamps: true });
 
-const Purchase = mongoose.model('Purchase', userSchema)
+const Purchase = mongoose.model('Purchase', purchaseSchema)
 
 module.exports = {
     Purchase,
