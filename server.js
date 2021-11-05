@@ -24,88 +24,8 @@ let user_music_items = [
     // [7,{ artist_name: "William", song_name: "Hello 12345" }],
 ]
 
-const test_music_items = new Map(user_music_items)
-
-exports.handler = async (event) => {
-    // TODO implement
-    const response = {
-        statusCode: 200,
-        body: JSON.stringify('Hello from Lambda!'),
-    };
-    return response;
-};
-exports.handler = async (event) => {
-    // TODO implement
-    const response = {
-        statusCode: 200,
-        body: JSON.stringify('Hello from Lambda!'),
-    };
-    return response;
-};
-// Use this code snippet in your app.
-// If you need more information about configurations or implementing the sample code, visit the AWS docs:
-// https://aws.amazon.com/developers/getting-started/nodejs/
-
-// Load the AWS SDK
-var AWS = require('aws-sdk'),
-    region = "us-east-1",
-    secretName = "DB2",
-    secret,
-    decodedBinarySecret;
-
-// Create a Secrets Manager client
-var client = new AWS.SecretsManager({
-    region: region
-});
-
-// In this sample we only handle the specific exceptions for the 'GetSecretValue' API.
-// See https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
-// We rethrow the exception by default.
-
-client.getSecretValue({SecretId: secretName}, function(err, data) {
-    if (err) {
-        if (err.code === 'DecryptionFailureException')
-            // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-        else if (err.code === 'InternalServiceErrorException')
-            // An error occurred on the server side.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-        else if (err.code === 'InvalidParameterException')
-            // You provided an invalid value for a parameter.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-        else if (err.code === 'InvalidRequestException')
-            // You provided a parameter value that is not valid for the current state of the resource.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-        else if (err.code === 'ResourceNotFoundException')
-            // We can't find the resource that you asked for.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-    }
-    else {
-        // Decrypts secret using the associated KMS CMK.
-        // Depending on whether the secret is a string or binary, one of these fields will be populated.
-        if ('SecretString' in data) {
-            secret = data.SecretString;
-        } else {
-            let buff = new Buffer(data.SecretBinary, 'base64');
-            decodedBinarySecret = buff.toString('ascii');
-        }
-    }
-    
-    let db  = (JSON.parse(secret));
-    // connect to mongodb
-    mongoose.connect(db.secret, { useNewURLParser: true, useUnifiedTopology: true})
-    .then((result) => console.log('connected to db'))
-    .then(app.listen(port, () => {
-        console.log(`Server started on port ${port}`);
-    }))
-    .catch((err) => console.log(err));
-});
-
+// let test_music_items = new Map(user_music_items)
+let test_music_items = null
 
 const app = express();
 app.set("view engine", "ejs");
@@ -128,7 +48,6 @@ app.use(
 const authRoute = require("./routes/authRoute");
 const indexRoute = require("./routes/indexRoute");
 const checkoutRoute = require("./routes/checkoutRoute");
-const { SecretsManager } = require('aws-sdk');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -219,7 +138,15 @@ app.post('/webhook', express.json({type: 'application/json'}), (request, respons
   response.send();
 });
 
+// connect to mongodb
 
+const databaseURL = 'mongodb+srv://Admin:111122!Aadmin@musicart.uumip.mongodb.net/MusicartDB?retryWrites=true&w=majority';
+mongoose.connect(databaseURL, { useNewURLParser: true, useUnifiedTopology: true})
+    .then((result) => console.log('connected to db'))
+    .then(app.listen(port, () => {
+        console.log(`Server started on port ${port}`);
+    }))
+    .catch((err) => console.log(err));
 
 
 // Search
