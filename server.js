@@ -77,6 +77,13 @@ app.get('/checkout-session', async (req, res) => {
 // Stripe checkout session
 app.post('/create-checkout-session', async (req, res) => {
     try {
+      const taxRates = await stripe.taxRates.create({
+        display_name: 'Sales Tax',
+        inclusive: false,
+        percentage: 7.25,
+        country: 'PL',
+      });
+      console.log(taxRates)
         // console.log(req.body.items2)
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -91,7 +98,8 @@ app.post('/create-checkout-session', async (req, res) => {
                         },
                         unit_amount: process.env.PRICE
                     },
-                    quantity: 1
+                    quantity: 1,
+                    tax_rates: [taxRates.id]
                 }
             }),
             success_url: `${process.env.SERVER_URL}/payment_success?id={CHECKOUT_SESSION_ID}`,
@@ -144,7 +152,7 @@ mongoose.connect(databaseURL, { useNewURLParser: true, useUnifiedTopology: true}
 // Search
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
-const token = "BQDDBMsQ_D5ifSiQGuaaV-2d2jLvMRGtYJvsXOGZKLBTbrPjdVtbZLT6zBngh4Mgfd-_4MPISCW9NREJjr8rj3BhWgwVpwtYmqgK1aHOgvLSI1FYzdz83WBgeYwfNxDZaKwNEWyctYguHYmW3vcnS_ZesaSxlxvgKOPCudpJad04p1d22wZy4hbeyVAf6wTQCHV6TW6fGAaA7UNGm5f8WM-AkCNKIYxS4V2djZWYYB7NPyyyafOG1RWQeunuSxfOoBeqXRUctfWoNXPf3jwQxdjVCsM";
+const token = "BQDYlMBRNN4IzVkVs8aRxAfVIvKODNqUBWEBC8ynRajqA001m1ssYlP6wnDnDuMXf7btO3UQHOass0se8KcC7MUM5MlxvvNlsO27MOK2hNGPu8Byhl7wxskSErstwcFzjSFW1eWRk1Wi5xEn_26NIJTgTcTJ_kn5EtTsmLOcyCd4BiPa2qC2sw6hEQUOq68qwfQeVvSdlCzvlI0DslTR0QWlGOk78qvCmsCj5bDC-1jzAK2xVZMrsGSVmoULjVJVfBIoEZCM_bwKJtUT5J391ZzBqT8";
 const bodyParser = require('body-parser')
 const spotifyApi = new SpotifyWebApi();
 
@@ -247,7 +255,7 @@ app.get('/search_result', (req, res) => {
   let track_name = req.query.search_track
   // console.log(track_name)
   searchTracks(track_name)
-  redirect = `${process.env.SERVER_URL}/checkout`
+  // redirect = `${process.env.SERVER_URL}/checkout`
   // res.json({url: redirect})
-  // res.redirect('checkout', { data: {music_info: user_music_items}})
+  res.redirect('checkout')
 })
