@@ -21,6 +21,12 @@ router.get("/change-name", (req, res) => {
     });
 });
 
+router.get("/change-picture", (req, res) => {
+    res.render("change-picture", {
+        user: req.user,
+    });
+});
+
 
 router.post("/change-password", (req, res) => {
     const query  = User.where({ email: req.user.email });
@@ -48,6 +54,24 @@ router.post("/change-name", (req, res) => {
             console.log(err);
         } else {
             user.name = req.body.name
+            user.save()
+                .then((user) => {
+                    res.redirect("/auth/login");
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        };
+    });
+});
+
+router.post("/change-picture", (req, res) => {
+    const query  = User.where({ email: req.user.email });
+    query.findOne(function (err, user) {
+        if (err) {
+            console.log(err);
+        } else {
+            user.profilePicture = req.body.picture
             user.save()
                 .then((user) => {
                     res.redirect("/auth/login");

@@ -19,6 +19,10 @@ const userSchema = new Schema ({
     role: {
         type: String,
         default: 'User',
+    },
+    profilePicture: {
+        type: String,
+        default: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Logo_musicart_group_logo_cmyk.png/1200px-Logo_musicart_group_logo_cmyk.png',
     }
 }, { timestamps: true });
 
