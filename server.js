@@ -80,10 +80,10 @@ app.post('/create-checkout-session', async (req, res) => {
       const taxRates = await stripe.taxRates.create({
         display_name: 'Sales Tax',
         inclusive: false,
-        percentage: 7.25,
+        percentage: 23,
         country: 'PL',
       });
-      console.log(taxRates)
+      // console.log(taxRates)
         // console.log(req.body.items2)
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
