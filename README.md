@@ -12,7 +12,8 @@ The goal of this website is to help artists gain more exposure to Spotify's list
 - Search Bar with Filter
 - Stripe Payment
 - Admin User Control
-- Add Songs to Spotify's Playlist
+- Add Songs to a Playlist
+- Check Spotify User's Profile
 
 ## APIs Used:
 > Spotify API
