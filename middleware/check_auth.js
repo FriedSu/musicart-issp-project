@@ -11,5 +11,11 @@ module.exports = {
             return next();
         }
         res.redirect("/home")
+    },
+    who: function (req, res, next) {
+        if (req.isAuthenticated()) {
+            return `/edit-profile/${req.user.name}change-password`;
+        }
+
     }
  }

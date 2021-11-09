@@ -8,8 +8,8 @@
     <title>Admin Page</title>
 </head>
 <body>
-    <h1>Users</h1>
-    <form action="/admin" method="POST">
+    <!-- <h1>Users</h1> -->
+    <!-- <form action="/admin" method="POST">
         <% for (i in user) { %>
             <% let usr = user[i] %>
             <ul>
@@ -18,7 +18,36 @@
                 <label for="name"><%=usr.name%></label>
             </ul>
         <% } %>
-        <button type="submit">View Profile</button>
-    </form>
+        <button type="submit">View Profile</button> -->
+    <!-- </form> -->
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names">
+        <ul id="usr">
+            <% for (i in user) { %>
+                <li><a href="/edit-profile/change-password/<%=user[i].name%>"><%=user[i].name%></a>
+            <% } %>
+        </ul>
 </body>
 </html>
+<script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, ul, li, a, i, txtValue;
+      input = document.getElementById('myInput');
+      filter = input.value.toUpperCase();
+      ul = document.getElementById("usr");
+      li = ul.getElementsByTagName('li');
+      ul.style.display = "block";
+
+    
+      // Loop through all list items, and hide those who don't match the search query
+      for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+        } else {
+          li[i].style.display = "none";
+        }
+      }
+    }
+    </script>

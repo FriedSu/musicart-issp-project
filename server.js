@@ -12,17 +12,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 const Purchase = require("./models/PurchaseModel").Purchase;
 
-//change this after spotify api is done
-let user_music_items = [
-    // [0,{ artist_name: "Ryan", song_name: "Hello world" }],
-    // [1,{ artist_name: "Sydney", song_name: "Hello again" }],
-    // [2,{ artist_name: "Adrian", song_name: "Hello hello" }],
-    // [3,{ artist_name: "Peter", song_name: "Hello Hi" }],
-    // [4,{ artist_name: "Joshua", song_name: "Hell yea" }],
-    // [5,{ artist_name: "Oliver", song_name: "Hello there" }],
-    // [6,{ artist_name: "Gautam", song_name: "Hell" }],
-    // [7,{ artist_name: "William", song_name: "Hello 12345" }],
-]
+let user_music_items = []
 
 // let test_music_items = new Map(user_music_items)
 let test_music_items = null
@@ -48,6 +38,9 @@ app.use(
 const authRoute = require("./routes/authRoute");
 const indexRoute = require("./routes/indexRoute");
 const checkoutRoute = require("./routes/checkoutRoute");
+const profileRoute = require("./routes/profileRoute");
+const adminRoute = require("./routes/adminRoute"); 
+const { SecretsManager } = require('aws-sdk');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -61,6 +54,9 @@ app.use((req, res, next) => {
 
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
+app.use("/edit-profile", profileRoute);
+// app.use("/admin", adminRoute);
+
 
 app.get("/checkout", (req, res) => {
     res.render("checkout", { data: {music_info: user_music_items}})
@@ -77,6 +73,13 @@ app.get('/checkout-session', async (req, res) => {
 // Stripe checkout session
 app.post('/create-checkout-session', async (req, res) => {
     try {
+      const taxRates = await stripe.taxRates.create({
+        display_name: 'Sales Tax',
+        inclusive: false,
+        percentage: 23,
+        country: 'PL',
+      });
+      // console.log(taxRates)
         // console.log(req.body.items2)
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -91,7 +94,8 @@ app.post('/create-checkout-session', async (req, res) => {
                         },
                         unit_amount: process.env.PRICE
                     },
-                    quantity: 1
+                    quantity: 1,
+                    tax_rates: [taxRates.id]
                 }
             }),
             success_url: `${process.env.SERVER_URL}/payment_success?id={CHECKOUT_SESSION_ID}`,
@@ -104,6 +108,10 @@ app.post('/create-checkout-session', async (req, res) => {
     }
 });
 
+
+// Save purchase data into MonogDB
+// INSTRUCTION: 
+//    - type "stripe listen --forward-to localhost:8000/webhook" IN DIFFERENT TERMINAL
 app.post('/webhook', express.json({type: 'application/json'}), (request, response) => {
   const event = request.body;
   let time = Date.now()
@@ -144,7 +152,9 @@ mongoose.connect(databaseURL, { useNewURLParser: true, useUnifiedTopology: true}
 // Search
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
-const token = "BQC3kK4Fmj4b4wc033aOaKj-7NBY5eHeb13m6rfpOWFmCzvn_b8bx9C2RDGvkxkBqY6NQwvQ0uRjMC9vYoDLa4DQAQ4qvdadS6ShIvL04Edkx-N4yCe0fRXGMYnMQbFrnyw__zuorU8iOFSa_841VM0vMpApW9zybJH-SIzK15xOrlMB1Gx-I_sN3XOsjqB0sTPJT4b1W2LWoF0_lltBZfsEZ-GoRfhPdtFE_U2M-FoWrMey96WVpztMSL9kPk9TR9M3vhMa5sh7PoKae9KOPHByfmPtBg";
+
+const token = "BQCf4vXzt-IYBCAYh4Cl7tnkBN00XT42Xdr5RKcETjPr8HOx4xOKsioRCFe5caP4DAWQ1En6jxtfhM1DD5VnUWuAoH9hDYnMvL6I0WzdEpOcWNBFwZfjfmEIus9lJiDN_7go_FXdObvcTtN6JD9FrnHpHNWfXcKjGc-2XyDiOKzhx6N6TJxsgOfozfHp1IU40MZPRoh-iXZ_HQzGzYSvsO5sLUQPBEsNJUDVsvN7lYRvecounS7YCaVKeC5Mw7JWj9uoS-qw3Th1UJUk5ToCxEGKOfw";
+
 const bodyParser = require('body-parser')
 const spotifyApi = new SpotifyWebApi();
 
@@ -248,7 +258,7 @@ app.get('/search_result', (req, res) => {
   let track_name = req.query.search_track
   // console.log(track_name)
   searchTracks(track_name)
-  redirect = `${process.env.SERVER_URL}/checkout`
+  // redirect = `${process.env.SERVER_URL}/checkout`
   // res.json({url: redirect})
-  // res.redirect('checkout', { data: {music_info: user_music_items}})
+  res.redirect('checkout')
 })
