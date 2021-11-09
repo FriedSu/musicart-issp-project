@@ -40,6 +40,17 @@ router.post("/admin", (req, res) => {
         })
 
 })
+router.get("/profile", ensureAuthenticated, (req, res) => {
+    res.render("usrProfile", {
+        user: user
+    })
+})
+
+
+router.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect("/auth/login");
+});
 
 
 module.exports = router;

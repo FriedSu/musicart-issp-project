@@ -38,6 +38,9 @@ app.use(
 const authRoute = require("./routes/authRoute");
 const indexRoute = require("./routes/indexRoute");
 const checkoutRoute = require("./routes/checkoutRoute");
+const profileRoute = require("./routes/profileRoute");
+const adminRoute = require("./routes/adminRoute"); 
+const { SecretsManager } = require('aws-sdk');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -51,6 +54,9 @@ app.use((req, res, next) => {
 
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
+app.use("/edit-profile", profileRoute);
+// app.use("/admin", adminRoute);
+
 
 app.get("/checkout", (req, res) => {
     res.render("checkout", { data: {music_info: user_music_items}})
