@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser'); // Parses cookies attached to the c
 // for Spotify Developers Dashboard
 var client_id = '14083681199249c58ac759e607afbb0d'; // client id
 var client_secret = '49ada9ab1ae64a71be82a0e26dd5b17d'; // secret
-var redirect_uri = 'http://localhost:8888/callback'; // redirect uri
+var redirect_uri = 'http://localhost:8080/callback'; // redirect uri
 
 // random string function
 var generateRandomString = function(length) {
