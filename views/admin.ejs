@@ -23,7 +23,7 @@
     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names">
         <ul id="usr">
             <% for (i in user) { %>
-                <li><a href="#"><%=user[i].name%></a>
+                <li><a href="/edit-profile/change-password/<%=user[i].name%>"><%=user[i].name%></a>
             <% } %>
         </ul>
 </body>
