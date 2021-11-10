@@ -143,7 +143,7 @@ app.use((req, res, next) => {
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
 app.use("/edit-profile", profileRoute);
-// app.use("/admin", adminRoute);
+app.use("/admin", adminRoute);
 
 
 app.get("/checkout", (req, res) => {
