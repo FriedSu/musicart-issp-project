@@ -4,7 +4,7 @@ This Musicart website allows the user to type in songs in an advanced search bar
 
 The website will contain a payment page where the user can buy a certain amount of play. The amount of plays will dictate the amount of songs which can be added to a playlist. 
 
-The goal of this website is to help artists gain more exposure to Spotify's listener and potentially gain new fans.
+The goal of this website is to help artists gain more exposure to Spotify's listeners and potentially gain new fans.
 
 ## Features:
 - Register Accounts
@@ -12,7 +12,8 @@ The goal of this website is to help artists gain more exposure to Spotify's list
 - Search Bar with Filter
 - Stripe Payment
 - Admin User Control
-- Add Songs to Spotify's Playlist
+- Add Songs to a Playlist
+- Check Spotify User's Profile
 
 ## APIs Used:
 > Spotify API
