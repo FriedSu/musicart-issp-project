@@ -21,7 +21,9 @@
     <div class="sidebar">
         <header>Your Profile</header>
         <div class="profile">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Logo_musicart_group_logo_cmyk.png/1200px-Logo_musicart_group_logo_cmyk.png" alt="Default Profile Image" class="profileImage">
+            <a href="/edit-profile/change-picture">
+                <img src="<%= user.profilePicture %>" alt="Profile Image Not Showing (please enter a valid image link)" class="profileImage">
+            </a>
             <div class="profileName"><%= user.name %></div>
             <a href="/edit-profile/home" id="editProfileButton">Edit Profile</a>
         </div>
