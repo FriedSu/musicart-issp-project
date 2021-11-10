@@ -23,7 +23,20 @@
     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names">
         <ul id="usr">
             <% for (i in user) { %>
-                <li><a href="/edit-profile/change-password/<%=user[i].name%>"><%=user[i].name%></a>
+                <li><a href="/admin/view/<%=user[i].name%>"><%=user[i].name%></a>
+                <div class = dropdown>
+                  <button class="dropbtn">View Profile</button>
+                  <div class="dropdown-content">
+                    <from action="/admin" method="POST">
+                      <label for "name"><b>Name</b></label>
+                      <input type="name" placeholder="<%=user[i].name%>" id="name">
+                      <lable for="email"><b>Email</b></lable>
+                      <input type="email" placeholder="<%=user[i].email%>" id="email">
+                      <button type="submit">Submit</button>
+
+                    </from>
+                  </div>
+                </div>
             <% } %>
         </ul>
 </body>
