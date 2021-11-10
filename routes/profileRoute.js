@@ -11,21 +11,21 @@ router.get("/home", (req, res) => {
     });
 });
 
-// User.find()
-//     .then(user => {
-//         // let usr = (JSON.parse(user));
-//         for (i in user) {
-//             console.log(`username = ${user[i].name}`)
-//             router.get(`/change-password/${user[i].name}`, (req, res) => {
-//                 res.render("change-pswd");
-//             })
-//         }
-//     });
-// router.get('/edit-profile/change-password:user.name', (req, res) => {
-//     res.render("change-pswd", {
-//         user: req.user,
-//     });
-// });
+User.find()
+    .then(user => {
+        // let usr = (JSON.parse(user));
+        for (i in user) {
+            console.log(`username = ${user[i].name}`)
+            router.get(`/change-password/${user[i].name}`, (req, res) => {
+                res.render("change-pswd");
+            })
+        }
+    });
+router.get('/edit-profile/change-password:user.name', (req, res) => {
+    res.render("change-pswd", {
+        user: req.user,
+    });
+});
 
 
 
