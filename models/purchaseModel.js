@@ -10,6 +10,10 @@ const purchaseSchema = new Schema ({
         type: String,
         required: true,
     },
+    // name: {
+    //     type: String,
+    //     required: true,
+    // },
     amount_received: {
         type: Number,
         required: true,

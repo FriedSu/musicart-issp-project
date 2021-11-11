@@ -123,6 +123,7 @@ app.post('/webhook', express.json({type: 'application/json'}), (request, respons
       const purchase = new Purchase({
         id: paymentIntent.id, 
         email: paymentIntent.receipt_email,
+        //name: req.user.name,
         amount_received: paymentIntent.amount_received,
         currency: paymentIntent.currency,
         timestamp: time 

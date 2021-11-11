@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require("../models/userModel").User;
+//const Purchase = require("../models/purchaseModel").Purchase
 const router = express.Router();
 const { ensureAuthenticated } = require("../middleware/check_auth");
 
@@ -10,12 +11,12 @@ router.get("/home", ensureAuthenticated, (req, res) => {
 });
 router.get("/admin", ensureAuthenticated,(req, res) => {
     User.find()
-    .then(user => {
+    .then(result => {
         res.render("admin", {
-            user: user,
+            user: result,
         });
-
-    })
+        
+    });
 });
 router.post("/admin", (req, res) => {
     // let profile = JSON.parse(req.body.user)
