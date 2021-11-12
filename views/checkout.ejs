@@ -10,6 +10,9 @@
 
 <body>
     <div>
+        <a href="/search" id="editProfileButton">Go back to search</a>
+    </div>
+    <div>
         <% data.music_info.forEach(result => { %>
 
            <p> <h2><%= result[1].artist_name %> - <%= result[1].song_name %> </h2> (<%- result[1].song_type %>) </p>

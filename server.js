@@ -153,7 +153,7 @@ mongoose.connect(databaseURL, { useNewURLParser: true, useUnifiedTopology: true}
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
 
-const token = "BQDlV9A5AWr4bbsXplx2VAXiF6FampV_TqxwEiQ3fWd9nz4mFBwf_Ab-m4kSDxlqfQZ_voKDOEYY0Bygs_2JgFqya_nTgNF0cVszlblPcTt4_JpllnCsuexWUVuG5EAFpmo_6XBC_ERDY4OF10EMUdyjhaOswX1dWGQ0d2lbULoHsC2GWUm-W0qSZmrEu1l3L5sqd_8SeLDjI6qcnb-a3JqHcj25Zk0CW7mrh2MBU5M4yB-hUBFI-kOn_Ou63vGCTCG_wXlGbRMGKLahLXi2FQTJeLs";
+const token = "BQDq6NxGdWmt4ipUe0f-Dc1SVJvRAMqd0mkZYNSyUP8wKBPWh1Uy2ESqdaHXQL2DxVQYveMROO26UqQ8IMOimX1qeqzF6-d7YCEAvcFUeA0NCHEo1UYUd1mR3sinAamdH8vZCeTXdaAOsUKk_8y77C24NKUOMuOa3OEaAUUEPHW-4oNaBL0GzoTZGIq9kBOpXxXWCPNA4pJAynYk-yttAqKePN7MojeygG1UbA9cZ0k2AKwvDTxV7uDSp2ZFh8SZgoVZjvxJ_bVGMJAYYEkzANsGZPY";
 
 const bodyParser = require('body-parser')
 const spotifyApi = new SpotifyWebApi();
@@ -209,7 +209,7 @@ async function getPlaylistTracks(playlistId, playlistName) {
   console.log("---------------+++++++++++++++++++++++++")
   return tracks;
 }
-async function searchTracks(trackName){
+async function searchTracks(trackName, res){
 
   const data = await spotifyApi.searchTracks(trackName, {
     offset: 1,
@@ -225,10 +225,11 @@ async function searchTracks(trackName){
         song_name: result.name,song_type: result.album.album_type, release_date: result.album.release_date,
                    song_url: result.external_urls.spotify}]
       user_music_items.push(music)
-      test_music_items = new Map(user_music_items)
+      
     }
   });
-  console.log(results)
+  test_music_items = new Map(user_music_items)
+  res.redirect('checkout')
 }
 
 function addtoPlaylist(playlistId, trackId){
@@ -256,9 +257,13 @@ app.get('/search', function(req, res) {
 
 app.get('/search_result', (req, res) => {
   let track_name = req.query.search_track
-  // console.log(track_name)
-  searchTracks(track_name)
-  // redirect = `${process.env.SERVER_URL}/checkout`
-  // res.json({url: redirect})
-  res.redirect('checkout')
+
+  searchTracks(track_name, res)
+  // .then(res.redirect('checkout'))
+  // console.log(user_music_items)
+
+  // if (user_music_items.length != 0) {
+  //   res.redirect('checkout')
+  // }
+  // res.redirect('checkout')
 })
