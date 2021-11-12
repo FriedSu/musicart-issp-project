@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "/landing.css">
+    <title>MusicArt</title>
+</head>
+<body>
+    <div class= "container">
+        <div class= "main">
+            <div class= "topnav">
+                <a href= "#home" class= "active">Home</a>
+                <a href= "#story">Login</a>
+                <a href= "#lore">Sign Up</a>
+                <a href= "about">Contact</a>
+            </div>
+            <div class= "sidebar">
+                <ul>
+                    <li><a href="/home"><i class="test-one"></i>Home</a></li>
+                    <li><a href=""><i class="test-three"></i>Buy Spotify Plays</a></li>
+                    <li><a href=""><i class="test-four"></i>Connect Artist Profile</a></li>
+                    <li><a href="https://www.musicart.pl/"><i class="test-five"></i>Musicart</a></li>
+                    <li><a href=""><i class="test-six"></i>Help</a></li>
+                    <li><a href=""><i class="test-seven"></i>Settings</a></li>
+                    <li><a href=""><i class="test-eight"></i></a></li>
+                </ul>
+            </div>
+            <div class= "content">
+                <!-- <h1>Varian</h1> -->
+                <!---Slideshow Box--->
+                <div class= "slide-show-box">
+                    <div class= "slide fade">
+                        <div class= "text-num">1/ 3</div>
+                        <img src= "slide-1.png" style="width:100%">
+                        <div class= "text">placeholder</div>
+                    </div>
+                    <div class= "slide fade">
+                        <div class= "text-num">2/ 3</div>
+                        <img src= "slide-2.png" style= "width:100%">
+                        <div class= "text">placeholder</div>
+                    </div>
+                    <div class= "slide fade">
+                        <div class= "text-num">3/3</div>
+                        <img src= "slide-3.png" style= "width: 100%">
+                        <div class= "text">placeholder</div>
+                    </div>
+                    <!---Next and Previous Buttons--->
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+                <br>
+                <!---Dot/Circle--->
+                <div style="text-align:center">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+           <footer class= "footer">
+                <h3>Reach me @</h3>
+                <div class= "icons">
+
+                </div>
+           </footer>
+        </div>
+    </div>
+</body>
+<!-- <script src= "apps.js"></script> -->
+<script>
+    var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("slide");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 5000); // Change image every 5 seconds
+} 
+</script>
+</html>
