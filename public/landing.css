@@ -10,7 +10,7 @@ body {
     margin: 0px;
     padding: 0px;
     min-height: 100vh;
-    background-image: url("dark_castle.jpg");
+    background-image: url("Vinyl-BG.jpeg");
 }
 h1 {
     text-align: center;
@@ -65,19 +65,57 @@ h1 {
 }
 
 .sidebar {
-    grid-area: sidebar;
-    background-color: var(--light_grey);
-    border-radius: 5px;
+    text-align: left;
+    position: fixed;
+    left: 0;
+    width: 265px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+.sidebar header{
+    font-size: 22px;
+    color: black;
+    text-align: center;
+    line-height: 70px;
+    background: rgb(255, 255, 255);
+    user-select: none;
+}
+
+
+.sidebar ul a{
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 20px;
+    color: black;
+    padding-left: 40px;
+    box-sizing: border-box;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    transition: .4s;
+}
+
+ul li:hover a{
+    padding-left: 50px;
+}
+
+.sidebar ul a i{
+    margin-right: 16px;
 }
 .content {
     grid-area: content;
-    background-image: url("oak-wood.jpeg");
+    background-color: rgba(0,0,0,0.7);
+    /* background-image: url("oak-wood.jpeg"); */
 }
 .footer {
     display: flex;
     justify-content: center;
     grid-area: footer;
-    background-color: rgba(0, 0, 0, 0.5)
+    background-color: rgba(0, 0, 0, 0.7)
 }
 
 /* Slide Show  */
