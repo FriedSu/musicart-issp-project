@@ -34,6 +34,7 @@ input {
     height: 20px;
     border-radius: 25px;
     font-size: 14px;
+    color: black;
 }
 
 button {
@@ -63,14 +64,14 @@ button:hover {
 }
 
 
-ul {
+/* ul {
     align-content: center;
     list-style-type:none;
     margin:0;
     padding:0;
     overflow:hidden;
     background-color:white;
-}
+} */
 
 li {
     align-content: center;
@@ -78,7 +79,7 @@ li {
     text-align: center;
     text-decoration: none;
     padding: 16px;
-    border: 3px solid black;
+    /* border: 3px solid black; */
 }
 
 .block {

@@ -111,6 +111,15 @@ ul li:hover a{
 .sidebar ul a i{
     margin-right: 16px;
 }
+li {
+    align-content: center;
+    display: inline;
+    text-align: center;
+    text-decoration: none;
+    padding: 16px;
+    /* border: 3px solid black; */
+}
+
 .content {
     grid-area: content;
     

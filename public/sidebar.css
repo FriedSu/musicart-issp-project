@@ -8,8 +8,8 @@
     left: 0;
     width: 265px;
     height: 100%;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 3px 8px rgba(255, 255, 255, 0.8);
     overflow-y: auto;
 }
 
@@ -18,7 +18,7 @@
     color: black;
     text-align: center;
     line-height: 70px;
-    background: white;
+    background: rgb(255, 255, 255);
     user-select: none;
 }
 
