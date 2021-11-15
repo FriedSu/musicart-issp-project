@@ -3,7 +3,7 @@ const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
 const mongoose = require('mongoose');
-var port = process.env.PORT || 8080;
+const port = process.env.port || 8080;
 
 const { ensureAuthenticated } = require("./middleware/check_auth");
 
