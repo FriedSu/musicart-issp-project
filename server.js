@@ -143,7 +143,7 @@ app.post('/webhook', express.json({type: 'application/json'}), (request, respons
 // Load the AWS SDK
 var AWS = require('aws-sdk'),
     region = "us-east-1",
-    secretName = "DB2",
+    secretName = "arn:aws:secretsmanager:us-east-1:905552511425:secret:DB2-f6fAr0",
     secret,
     decodedBinarySecret;
 
