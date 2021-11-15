@@ -7,6 +7,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="/buttons.css">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/sidebar.css">
 </head>
 <body>
     <h1 class="title">
@@ -17,25 +18,6 @@
         <button onClick="location.href = '/admin';" id= "adminButton">Admin</button>
   <% } %>
     <a href="search" class="button" style="background-color:#2e70fd">Order</a>
-    
-    <div class="sidebar">
-        <header>Your Profile</header>
-        <div class="profile">
-            <a href="/edit-profile/change-picture">
-                <img src="<%= user.profilePicture %>" alt="Profile Image Not Showing (please enter a valid image link)" class="profileImage">
-            </a>
-            <div class="profileName"><%= user.name %></div>
-            <a href="/edit-profile/home" id="editProfileButton">Edit Profile</a>
-        </div>
-        <ul>
-            <li><a href="/home"><i class="test-one"></i>Home</a></li>
-            <li><a href=""><i class="test-three"></i>Buy Spotify Plays</a></li>
-            <li><a href=""><i class="test-four"></i>Connect Artist Profile</a></li>
-            <li><a href="https://www.musicart.pl/"><i class="test-five"></i>Musicart</a></li>
-            <li><a href=""><i class="test-six"></i>Help</a></li>
-            <li><a href=""><i class="test-seven"></i>Settings</a></li>
-            <li><a href=""><i class="test-eight"></i></a></li>
-        </ul>
-    </div>
+    <%- include('./partials/sidebar'); %>
 </body>
 </html>
