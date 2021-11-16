@@ -142,64 +142,70 @@ app.post('/webhook', express.json({type: 'application/json'}), (request, respons
 
 // connect to mongodb
 // Load the AWS SDK
-var AWS = require('aws-sdk'),
-    region = "us-east-1",
-    secretName = "arn:aws:secretsmanager:us-east-1:905552511425:secret:DB2-f6fAr0",
-    secret,
-    decodedBinarySecret;
+// var AWS = require('aws-sdk'),
+//     region = "us-east-1",
+//     secretName = "arn:aws:secretsmanager:us-east-1:905552511425:secret:DB2-f6fAr0",
+//     secret,
+//     decodedBinarySecret;
 
-// Create a Secrets Manager client
-var client = new AWS.SecretsManager({
-    region: region
-});
+// // Create a Secrets Manager client
+// var client = new AWS.SecretsManager({
+//     region: region
+// });
 
-// In this sample we only handle the specific exceptions for the 'GetSecretValue' API.
-// See https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
-// We rethrow the exception by default.
+// // In this sample we only handle the specific exceptions for the 'GetSecretValue' API.
+// // See https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+// // We rethrow the exception by default.
 
-client.getSecretValue({SecretId: secretName}, function(err, data) {
-    if (err) {
-        if (err.code === 'DecryptionFailureException')
-            // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-        else if (err.code === 'InternalServiceErrorException')
-            // An error occurred on the server side.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-        else if (err.code === 'InvalidParameterException')
-            // You provided an invalid value for a parameter.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-        else if (err.code === 'InvalidRequestException')
-            // You provided a parameter value that is not valid for the current state of the resource.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-        else if (err.code === 'ResourceNotFoundException')
-            // We can't find the resource that you asked for.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-    }
-    else {
-        // Decrypts secret using the associated KMS CMK.
-        // Depending on whether the secret is a string or binary, one of these fields will be populated.
-        if ('SecretString' in data) {
-            secret = data.SecretString;
-        } else {
-            let buff = new Buffer(data.SecretBinary, 'base64');
-            decodedBinarySecret = buff.toString('ascii');
-        }
-    }
+// client.getSecretValue({SecretId: secretName}, function(err, data) {
+//     if (err) {
+//         if (err.code === 'DecryptionFailureException')
+//             // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
+//             // Deal with the exception here, and/or rethrow at your discretion.
+//             throw err;
+//         else if (err.code === 'InternalServiceErrorException')
+//             // An error occurred on the server side.
+//             // Deal with the exception here, and/or rethrow at your discretion.
+//             throw err;
+//         else if (err.code === 'InvalidParameterException')
+//             // You provided an invalid value for a parameter.
+//             // Deal with the exception here, and/or rethrow at your discretion.
+//             throw err;
+//         else if (err.code === 'InvalidRequestException')
+//             // You provided a parameter value that is not valid for the current state of the resource.
+//             // Deal with the exception here, and/or rethrow at your discretion.
+//             throw err;
+//         else if (err.code === 'ResourceNotFoundException')
+//             // We can't find the resource that you asked for.
+//             // Deal with the exception here, and/or rethrow at your discretion.
+//             throw err;
+//     }
+//     else {
+//         // Decrypts secret using the associated KMS CMK.
+//         // Depending on whether the secret is a string or binary, one of these fields will be populated.
+//         if ('SecretString' in data) {
+//             secret = data.SecretString;
+//         } else {
+//             let buff = new Buffer(data.SecretBinary, 'base64');
+//             decodedBinarySecret = buff.toString('ascii');
+//         }
+//     }
     
-    let db  = (JSON.parse(secret));
-    // connect to mongodb
-    mongoose.connect(db.secret, { useNewURLParser: true, useUnifiedTopology: true})
-    .then((result) => console.log('connected to db'))
-    .then(app.listen(port, () => {
-        console.log(`Server started on port ${port}`);
-    }))
-    .catch((err) => console.log(err));
-});
+//     let db  = (JSON.parse(secret));
+//     // connect to mongodb
+//     mongoose.connect(db.secret, { useNewURLParser: true, useUnifiedTopology: true})
+//     .then((result) => console.log('connected to db'))
+//     .then(app.listen(port, () => {
+//         console.log(`Server started on port ${port}`);
+//     }))
+//     .catch((err) => console.log(err));
+// });
+const databaseURL = "mongodb+srv://Admin:111122!Aadmin@musicart.uumip.mongodb.net/MusicartDB?retryWrites=true&w=majority"
+mongoose.connect(databaseURL, {useNewUrlParser: true, useUnifiedTopology: true})
+  .then((result) => {
+    console.log(`Server started on port ${port}`)
+  })
+  .catch((err) => console.log(err))
 
 
 // Search
