@@ -87,6 +87,7 @@ app.post('/create-checkout-session', async (req, res) => {
             mode: 'payment',
             line_items: req.body.items.map(item => {
                 const music_item = test_music_items.get(item.id)
+                addtoPlaylist('5ip8XW3DeB2ozaKDVxEmGN', music_item.track_uri)
                 return {
                     price_data: {
                         currency: 'cad',
@@ -283,7 +284,7 @@ async function searchTracks(trackName, res){
     if(result.name.toUpperCase().includes(trackName.toUpperCase())){
       let music = [result.id, {song_image: result.album.images[1].url,artist_name: result.artists[0].name, 
         song_name: result.name,song_type: result.album.album_type, release_date: result.album.release_date,
-                   song_url: result.external_urls.spotify}]
+                   song_url: result.external_urls.spotify, track_uri: result.uri}]
       user_music_items.push(music)
       
     }
