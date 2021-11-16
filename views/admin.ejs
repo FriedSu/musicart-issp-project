@@ -5,41 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href = "/admin_style.css">
+    <link rel = "stylesheet" href = "/sidebar.css">
     <title>Admin Page</title>
 </head>
 <body>
-    <!-- <h1>Users</h1> -->
-    <!-- <form action="/admin" method="POST">
-        <% for (i in user) { %>
-            <% let usr = user[i] %>
-            <ul>
-
-                <input type="checkbox" id= "<%=usr._id%>" name="user" value="<%=usr._id%>">
-                <label for="name"><%=usr.name%></label>
-            </ul>
-        <% } %>
-        <button type="submit">View Profile</button> -->
-    <!-- </form> -->
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names">
-        <ul id="usr">
-            <% for (i in user) { %>
-                <li><a href="/admin/view/<%=user[i].name%>"><%=user[i].name%></a>
-                <div class = dropdown>
-                  <button class="dropbtn">View Profile</button>
-                  <div class="dropdown-content">
-                    <from action="/admin" method="POST">
-                      <label for "name"><b>Name</b></label>
-                      <input type="name" placeholder="<%=user[i].name%>" id="name">
-                      <lable for="email"><b>Email</b></lable>
-                      <input type="email" placeholder="<%=user[i].email%>" id="email">
-                      <button type="submit">Submit</button>
-
-                    </from>
+  <div class = "main">
+    <div class = "sidebar">
+      <%- include('./partials/sidebar'); %>
+    </div>
+    <div class = "content">
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names">
+          <ul id="usr">
+              <% for (i in user) { %>
+                  <li><a href="/admin/view/<%=user[i].name%>"><%=user[i].name%></a>
+                  <div class = dropdown>
+                    <button class="dropbtn">View Profile</button>
+                    <div class="dropdown-content">
+                      <from action="/admin" method="POST">
+                        <label for "name"><b>Name</b></label>
+                        <input type="name" placeholder="<%=user[i].name%>" id="name">
+                        <lable for="email"><b>Email</b></lable>
+                        <input type="email" placeholder="<%=user[i].email%>" id="email">
+                        <button type="submit">Submit</button>
+    
+                      </from>
+                    </div>
                   </div>
-                </div>
-            <% } %>
-        </ul>
+              <% } %>
+          </ul>
+    </div>
 </body>
+</div>
 </html>
 <script>
     function myFunction() {

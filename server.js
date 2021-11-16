@@ -200,7 +200,7 @@ app.post('/webhook', express.json({type: 'application/json'}), (request, respons
 //     }))
 //     .catch((err) => console.log(err));
 // });
-const databaseURL = '"mongodb+srv://Admin:111122!Aadmin@musicart.uumip.mongodb.net/MusicartDB?retryWrites=true&w=majority"';
+const databaseURL = 'mongodb+srv://Admin:111122!Aadmin@musicart.uumip.mongodb.net/MusicartDB?retryWrites=true&w=majority';
 mongoose.connect(databaseURL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((result) => console.log('connected to db'))
     .then(app.listen(port, () => {
