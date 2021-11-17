@@ -10,26 +10,27 @@
     <script src="https://js.stripe.com/v3/"></script>
 </head>
 
-<main class="search-main">
-    <div class="top-bar">
-        <form class="search-form" action="/search_result" method="GET">
-            <a href="/home" class="back-button">Home</a>
-            <h1 class="track-formatter">Search results for </h1>
-            <h2>
-                <div class="search-back">
-                    <a href="/search" class="back-button" id="editProfileButton">Go back to search</a>
-                    
-                </div>
-            </h2>
-          <!-- <from> -->
-          </form>
-    </div>
-      
-    
-</main>
+
 
 <body>
     
+    <main class="search-main">
+        <div class="top-bar">
+            <form class="search-form" action="/search_result" method="GET">
+                <a href="/home" class="back-button">Home</a>
+                <h1 class="track-formatter">Search results for </h1>
+                <h2>
+                    <div class="search-back">
+                        <a href="/search" class="back-button" id="editProfileButton">Go back to search</a>
+                        
+                    </div>
+                </h2>
+              <!-- <from> -->
+              </form>
+        </div>
+          
+        
+    </main>
 
     <div class="search-results">
         <% data.music_info.forEach(result => { %>

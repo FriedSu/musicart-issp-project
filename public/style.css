@@ -137,9 +137,16 @@ li a {
     margin-top: 5%;
 }
 
-.search-main {
+form.search-main {
     position: sticky;
-    top: -50px;
+    top: 0px;
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.4s;
+    transition: ease-out 0.4s;
+}
+
+form.search-main:hover {
+    box-shadow: inset 900em 0 0 0 rgba(255, 255, 255, 0.219);
 }
 
 
