@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  Spotify API TESTing
+  <link rel="stylesheet" href="/style.css">
 </head>
+
 <body class="container">
 
-<header>
-    Spotify API TESTing
-</header>
-
-<main>
+<title>Search for Track</title>
+<main class="search-main">
   <div class="jumbotron">
-    <h1>Search for Track</h1>
-    <form action="/search_result" method="GET">
+    <form class="search-form" action="/search_result" method="GET">
+      <h1>Search for Track</h1>
     <!-- <from> -->
       <label for="track_name">Enter Track Name: </label>
       <input id="search_track" type="text" name="search_track">
       <input id='button' type="submit" value="OK">
     </form>
-    
   </div>
 </main>
 

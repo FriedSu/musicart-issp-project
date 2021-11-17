@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <!-- <link rel="stylesheet" href="/search.css"> -->
     <title>Musicart: Checkout</title>
     <script src="https://js.stripe.com/v3/"></script>
 </head>
@@ -12,23 +14,30 @@
     <div>
         <a href="/search" id="editProfileButton">Go back to search</a>
     </div>
-    <div>
+
+    <div class="search-results">
         <% data.music_info.forEach(result => { %>
 
-           <p> <h2><%= result[1].artist_name %> - <%= result[1].song_name %> </h2> (<%- result[1].song_type %>) </p>
-        
-            <p>Released on: <%= result[1].release_date %> </p> 
-            <input type="checkbox" name="<%=result[0]%>">
+            <div class="music-tiles">
+                <p class="music-titles"> <h2><%= result[1].artist_name %> - <%= result[1].song_name %> </h2> (<%- result[1].song_type %>) </p>
             
-            <a href= "<%= result[1].song_url %>"> <img src="<%= result[1].song_image %>" width="200",height="200"> 
-            </a>
+                <p class="music-release">Released on: <%= result[1].release_date %> </p> 
+                
+                
+                <a href= "<%= result[1].song_url %>"> 
+                    <img class="music-image" src="<%= result[1].song_image %>" width="200",height="200">
+                </a>
+                
+                <input type="checkbox" name="<%=result[0]%>" id="_checkbox">
+                
+            </div>
        
                 
         <% }) %>
     </div>
    
 
-    <button>Checkout</button>
+    <button class="search-checkout">Checkout</button>
 
 </body>
 
