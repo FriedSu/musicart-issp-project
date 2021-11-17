@@ -11,13 +11,14 @@
 </head>
 
 <main class="search-main">
-    
     <div class="top-bar">
         <form class="search-form" action="/search_result" method="GET">
-            <h1>Search for Track</h1>
+            <a href="/home" class="back-button">Home</a>
+            <h1 class="track-formatter">Search results for </h1>
             <h2>
                 <div class="search-back">
                     <a href="/search" class="back-button" id="editProfileButton">Go back to search</a>
+                    
                 </div>
             </h2>
           <!-- <from> -->
@@ -68,10 +69,9 @@
                 
         <% }) %>
     </div>
-   
 
     <footer class="footer">
-        <button class="back-button" style=""">Checkout</button>
+        <button class="back-button">Checkout</button>
     </footer>
     
 

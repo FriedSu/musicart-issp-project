@@ -267,11 +267,7 @@ mongoose.connect(databaseURL, { useNewUrlParser: true, useUnifiedTopology: true 
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
 
-<<<<<<< HEAD
-const token = "BQDSBLVPXt_VvC-tHXAWEuHxOXFQ-99iRrPF2HzUqhzTK5EvjJRFqz-DkO5pU_9lpxBCiIgX_8UfVXgoVtyQP3c7b2_4Lu9y8Oyf-EM84RzEqf_HxSlDcul9r9nb1W5jGF1oWdpXKzt123cNwT3oKiOXGYeoJ6k7_lfA2khZs-AeuVAEa6Fv6NW7xqT__FqQiyupPeAOM3MOpcUZcOhD3RpErHJZgeUOxhvgxQOM5573ncMsCeGQpfYCZ-V9SlvW-n-oCQwv5D8zY7YU2R5g8QCN";
-=======
-const token = "BQAXR8ck-TjIkYbdUIdJj2UF61zRBO2qbLfB2DoftXvbnpxYNeg2F64-jkkzBmAUw9LHD8nfBQaXnVF7rhSXYDcj4UAIjZkT1utcC03D02w-Il5G1z3x6DZXTgy_pwbB8bwnRR0PBAzCmsIpimluJMvMNt6e1hdYU5a1yzbQHGzdI1AlBtIzryokjPw_DbIIMIozB5COfD9Rjc-EYjC4edTmgC90KYtMehMnn4VD4aGEY2_9krVjbtWeJGH0kNHF0xt7fEwUPInZIPJm9Xi82MPyJOWQAINVDinpkVXstn5dby9uZ09f";
->>>>>>> bed26461c24e682f39b526e21b8acc8ff27058b0
+const token = "BQCw75AmORSZMCGcC4q8sa_f4XdWy4WX7TtxUEXc-zGy64DJ7DlVvWKYK2P3bR0OH8dtMbD6_FLPYqQ-4KAQFBVQQYe4qmMtKaIUYXd1_DD88lb2QHbLkOmAxiO9JUBBq58RLCotdxrPNf3r-JioDVOkmlcK0kTb55qJl7gf2n5tSnq3uYQNs7Aq04Vm7X7lmpWSzS8YJtedo5AulTHHThol4T6ZnljfgFC2NbF_cujZDpEM3-7v1naw48jIa0aVo8iDO3C3v1RtnSQWBUEb7Rmy";
 
 const bodyParser = require('body-parser')
 const spotifyApi = new SpotifyWebApi();
