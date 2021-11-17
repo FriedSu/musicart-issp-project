@@ -118,24 +118,77 @@ app.post('/webhook', express.json({type: 'application/json'}), (request, respons
   const event = request.body;
   let time = Date.now()
 
+  let _id = null
+  let _name = null
+  let _email = null
+  let _amount_received = null
+  let _receipt_url = null
+  let _currency = null
+
   // Handle the event
   switch (event.type) {
     case 'payment_intent.succeeded':
       const paymentIntent = event.data.object;
+        console.log('paymentIntent')
+        console.log(paymentIntent)
+      // const purchase = new Purchase({
+      //   id: paymentIntent.id, 
+      //   email: paymentIntent.receipt_email,
+      //   //name: req.user.name,
+      //   amount_received: paymentIntent.amount_received,
+      //   currency: paymentIntent.currency,
+      //   timestamp: time 
+      //   });
+      // purchase.save()
+      break;
+
+    case 'customer.created':
+      let customer = event.data.object;
+      // console.log('customer')
+      // console.log(customer)
+      break;
+
+    case 'charge.succeeded':
+      let charge = event.data.object;
+      // console.log('charge')
+      // console.log(charge)
+
+      // _id = charge.id
+      // _name = charge.billing_details.name
+      // _email = charge.billing_details.email
+      // _amount_received = charge.amount
+      // _receipt_url = charge.receipt_url
+      // _currency = charge.currency
+
       const purchase = new Purchase({
-        id: paymentIntent.id, 
-        email: paymentIntent.receipt_email,
-        //name: req.user.name,
-        amount_received: paymentIntent.amount_received,
-        currency: paymentIntent.currency,
-        timestamp: time 
+        id: charge.id, 
+        email: charge.billing_details.email,
+        name: charge.billing_details.name,
+        amount_received: charge.amount,
+        currency: charge.currency,
+        receipt_url: charge.receipt_url
         });
       purchase.save()
 
       break;
+
+    case 'checkout.session.completed':
+      let session = event.data.object;
+      // console.log('session')
+      // console.log(session)
+      break;
+
+    case 'payment_intent.created':
+      let payint = event.data.object;
+      // console.log('payint')
+      // console.log(payint)
+      break;
+
     default:
       console.log(`Unhandled event type ${event.type}.`);
   }
+
+
 
   // Return a 200 response to acknowledge receipt of the event
   response.send();
@@ -214,7 +267,11 @@ mongoose.connect(databaseURL, { useNewUrlParser: true, useUnifiedTopology: true 
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
 
+<<<<<<< HEAD
 const token = "BQDSBLVPXt_VvC-tHXAWEuHxOXFQ-99iRrPF2HzUqhzTK5EvjJRFqz-DkO5pU_9lpxBCiIgX_8UfVXgoVtyQP3c7b2_4Lu9y8Oyf-EM84RzEqf_HxSlDcul9r9nb1W5jGF1oWdpXKzt123cNwT3oKiOXGYeoJ6k7_lfA2khZs-AeuVAEa6Fv6NW7xqT__FqQiyupPeAOM3MOpcUZcOhD3RpErHJZgeUOxhvgxQOM5573ncMsCeGQpfYCZ-V9SlvW-n-oCQwv5D8zY7YU2R5g8QCN";
+=======
+const token = "BQAXR8ck-TjIkYbdUIdJj2UF61zRBO2qbLfB2DoftXvbnpxYNeg2F64-jkkzBmAUw9LHD8nfBQaXnVF7rhSXYDcj4UAIjZkT1utcC03D02w-Il5G1z3x6DZXTgy_pwbB8bwnRR0PBAzCmsIpimluJMvMNt6e1hdYU5a1yzbQHGzdI1AlBtIzryokjPw_DbIIMIozB5COfD9Rjc-EYjC4edTmgC90KYtMehMnn4VD4aGEY2_9krVjbtWeJGH0kNHF0xt7fEwUPInZIPJm9Xi82MPyJOWQAINVDinpkVXstn5dby9uZ09f";
+>>>>>>> bed26461c24e682f39b526e21b8acc8ff27058b0
 
 const bodyParser = require('body-parser')
 const spotifyApi = new SpotifyWebApi();
