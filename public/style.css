@@ -8,6 +8,7 @@ body {
     height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     text-align: center;
     overflow-x: hidden;
 }
@@ -222,7 +223,7 @@ form.search-main:hover {
 
 
 .music-tiles {
-    background-color: rgba(42, 75, 165, 0.363);
+    background-color: rgba(0, 0, 0, 0.363);
     text-align: left;
     border-radius: 25px;
     padding: 20px; 
@@ -232,7 +233,7 @@ form.search-main:hover {
 }
 
 .music-tiles:hover {
-    background-color: rgba(94, 112, 160, 0.363);
+    background-color: rgba(0, 0, 0, 0.363);
     border-style: solid;
     border-color: rgb(77, 218, 112);
 }
