@@ -10,10 +10,10 @@ const purchaseSchema = new Schema ({
         type: String,
         required: true,
     },
-    // name: {
-    //     type: String,
-    //     required: true,
-    // },
+    name: {
+        type: String,
+        required: true,
+    },
     amount_received: {
         type: Number,
         required: true,
@@ -21,8 +21,12 @@ const purchaseSchema = new Schema ({
     currency: {
         type: String,
         required: true,
+    },
+    receipt_url: {
+        type: String,
+        required: true,
     }
-}, { timestamps: true });
+});
 
 const Purchase = mongoose.model('Purchase', purchaseSchema)
 
