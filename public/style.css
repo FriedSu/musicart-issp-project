@@ -230,12 +230,16 @@ form.search-main:hover {
     margin: 20px;
     border-style: solid;
     border-color: rgba(240, 248, 255, 0);
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.4s;
+    transition: all 1s;
 }
 
 .music-tiles:hover {
-    background-color: rgba(0, 0, 0, 0.363);
+    background-color: rgba(29, 29, 29, 0.363);
     border-style: solid;
     border-color: rgb(77, 218, 112);
+    box-shadow: inset 900em 0 0 0 #ffffff2c;
 }
 
 .music-tiles input {
@@ -251,7 +255,7 @@ form.search-main:hover {
     margin-bottom: 10px;
     border-radius: 35px;
     border-style: solid;
-    border-color: rgba(240, 248, 255, 0);
+    border-color: rgba(255, 255, 255, 0);
 
 }
 
@@ -262,15 +266,12 @@ form.search-main:hover {
 
 
 .checkbox-container {
-    background-color: rgba(83, 103, 158, 0.363);
+    background-color: rgba(83, 103, 158, 0.205);
     border-radius: 25px;
     padding: 30px;
 }
 
-.checkbox-container input:checked{
-    height: 70px;
-    width: 70px;
-}
+
 
 label {
    font-size: 25px;
