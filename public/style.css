@@ -9,6 +9,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
+    overflow-x: hidden;
 }
 
 *{
@@ -22,35 +23,40 @@ form {
     margin-top: 2%;
     background-color: rgba(0, 0, 0, 0.8);
     /* box-shadow: 2px 5px rgb(255, 255, 255); */
-    border: 2px solid white;
+    border: 2px solid rgba(255, 255, 255, 0);
+    backdrop-filter: blur(60px);
     padding: 16px;
     color: white;
     display: inline-block;
 }
 
 input {
-    background-color: rgb(255, 255, 255);
-    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0);
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     width: 250px;
     height: 20px;
-    border-radius: 25px;
-    font-size: 14px;
-    color: black;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
 }
 
 button {
     border-radius: 25px;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(255, 255, 255);
     width: 100px;
 }
 
 button:hover {
     opacity: 0.8;
     background-color: whitesmoke;
+    color: #000000;
+    cursor: pointer;
 
 }
 
@@ -123,17 +129,70 @@ li a {
 }
 
 .search-main {
-    background-color: aqua;
+    position: sticky;
+    top: -50px;
+}
+
+.footer {
+    position: sticky;
+    height: 60px;
+    bottom: 0px;
+    width: 100%;
+    background-color: burlywood;
+    padding: 10px;
+    text-align: left;
+  }
+
+.search-checkout {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+
+.back-button {
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+}
+
+.back-button:hover {
+    color:#000000;
+    background-color:#FFFFFF;
 }
 
 .search-form {
     width: 100%;
     text-align: left;
+    padding: 20px;
 }
+
 
 .search-results {
     color: white;
 }
+
+.search-back {
+    margin-top: 15px;
+}
+
+.song-type {
+    background-color: rgba(0, 0, 0, 0.582);
+    width: 195px;
+    border-radius: 35px;
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+
 
 .music-tiles {
     background-color: rgba(42, 75, 165, 0.363);
@@ -141,16 +200,62 @@ li a {
     border-radius: 25px;
     padding: 20px; 
     margin: 20px;
+    border-style: solid;
+    border-color: rgba(240, 248, 255, 0);
 }
 
 .music-tiles:hover {
     background-color: rgba(94, 112, 160, 0.363);
+    border-style: solid;
+    border-color: rgb(77, 218, 112);
+}
+
+.music-tiles input {
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
 }
 
 .music-image {
-    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 35px;
+    border-style: solid;
+    border-color: rgba(240, 248, 255, 0);
+
 }
+
+.music-image:hover {
+    border-color: rgb(77, 218, 112);
+    opacity: 0.5;
+}
+
+
+.checkbox-container {
+    background-color: rgba(83, 103, 158, 0.363);
+    border-radius: 25px;
+    padding: 30px;
+}
+
+.checkbox-container input:checked{
+    height: 70px;
+    width: 70px;
+}
+
+label {
+   font-size: 25px;
+   padding-left: 10px;
+}
+
+.checkbox-container input[type="checkbox"]:checked + label {
+    visibility: hidden;
+}
+
+
+
+
 
 
 

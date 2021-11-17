@@ -10,25 +10,58 @@
     <script src="https://js.stripe.com/v3/"></script>
 </head>
 
-<body>
-    <div>
-        <a href="/search" id="editProfileButton">Go back to search</a>
+<main class="search-main">
+    
+    <div class="top-bar">
+        <form class="search-form" action="/search_result" method="GET">
+            <h1>Search for Track</h1>
+            <h2>
+                <div class="search-back">
+                    <a href="/search" class="back-button" id="editProfileButton">Go back to search</a>
+                </div>
+            </h2>
+          <!-- <from> -->
+          </form>
     </div>
+      
+    
+</main>
+
+<body>
+    
 
     <div class="search-results">
         <% data.music_info.forEach(result => { %>
 
             <div class="music-tiles">
-                <p class="music-titles"> <h2><%= result[1].artist_name %> - <%= result[1].song_name %> </h2> (<%- result[1].song_type %>) </p>
+                <p class="music-titles">  <br><h2><%= result[1].artist_name %> - <%= result[1].song_name %> </h2> </p>
             
-                <p class="music-release">Released on: <%= result[1].release_date %> </p> 
+                <p class="music-release">
+                    
+                    
+                    <div class="music-release">
+                        Released on: 
+                        <%= result[1].release_date %>
+                    </div>
+                    
+                    <div class="song-type"><%- result[1].song_type %></div>
+                    
+                </p> 
                 
+                <div class="pic">
+                    <a href= "<%= result[1].song_url %>"> 
+                        <img class="music-image" src="<%= result[1].song_image %>" width="200",height="200">
+                    </a>
+                </div>
+
+                <div class="checkbox-container">
+                    
+                    <input type="checkbox" name="<%=result[0]%>" id="_checkbox">
+                    <label for="_checkbox">
+                        Add for Purchase
+                    </label>
+                </div>
                 
-                <a href= "<%= result[1].song_url %>"> 
-                    <img class="music-image" src="<%= result[1].song_image %>" width="200",height="200">
-                </a>
-                
-                <input type="checkbox" name="<%=result[0]%>" id="_checkbox">
                 
             </div>
        
@@ -37,7 +70,10 @@
     </div>
    
 
-    <button class="search-checkout">Checkout</button>
+    <footer class="footer">
+        <button class="back-button">Checkout</button>
+    </footer>
+    
 
 </body>
 
