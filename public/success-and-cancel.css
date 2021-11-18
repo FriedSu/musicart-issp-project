@@ -1,0 +1,58 @@
+/* global */
+
+body {
+    background-image: url("Vinyl_BG_Blurred.jpg");
+}
+
+.sc-panel {
+    margin: auto;
+    margin-bottom: 30px;
+    border: 2px solid rgba(255, 0, 0, 0);
+    align-content: center;
+    border-radius: 15px;
+    padding: 12px;
+    margin-top: 15px;
+    text-align: left;
+    background-color: rgb(235, 234, 232);
+    width: max-content;
+}
+
+.sc-results {
+    float: inline-end;
+    align-content: right;
+    padding-left: 100px;
+}
+
+
+/* success page */
+.success-bar {
+    background-color: rgba(23, 182, 23, 0.664);
+    color: white;
+}
+
+/* cancel page */
+
+li, h3 {
+    color: white;
+    padding-left: 10px;
+}
+
+.cancel-bar {
+    background-color: rgba(211, 0, 0, 0.562);
+    color: white;
+}
+
+.cancel-order {
+    background-color: rgba(255, 255, 255, 0.418);
+    width: max-content;
+    padding: 5px;
+    align-content: center;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 15px;
+}
+
+#suggestions {
+    padding: 15px;
+    background-color: rgba(168, 168, 255, 0.308);
+}
