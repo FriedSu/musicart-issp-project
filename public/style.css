@@ -8,7 +8,7 @@ body {
     height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: relative;
+    background-attachment: fixed;
     text-align: center;
     overflow-x: hidden;
 }
@@ -38,7 +38,7 @@ input:not("#report") {
     width: 250px;
     height: 20px;
     font-size: 20px;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     border-top-style: hidden;
     border-right-style: hidden;
     border-left-style: hidden;
@@ -238,7 +238,7 @@ form.search-main:hover {
     background-color: rgba(29, 29, 29, 0.363);
     border-style: solid;
     border-color: rgb(77, 218, 112);
-    box-shadow: inset 900em 0 0 0 #ffffff2c;
+    box-shadow: inset 1900px 0 0 0 #ffffff2c;
 }
 
 .music-tiles input {
