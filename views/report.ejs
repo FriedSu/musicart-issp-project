@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report a problem</title>
+    <link rel = "stylesheet" href="/style.css">
+    <style>
+        input {
+            width: 100%;
+            height: 200px;
+            padding: 12px 20px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            resize: both;
+        }
+    </style>
+
+</head>
+<body>
+    <h1 class="title">
+        Report a problem
+    </h1>
+    <div class="container">
+        <form action="/help/report" method="POST">
+            <input type="text" placeholder="Enter your problem" id="report" name="report" required>
+            <button type="submit">Submit</button>
+        </form>
+        <ul>
+            <li><a href="/home"><i class="test-one"></i>Home</a></li>
+        </ul>
+    </div>
+</body>

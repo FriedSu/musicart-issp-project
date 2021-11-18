@@ -40,7 +40,8 @@ const authRoute = require("./routes/authRoute");
 const indexRoute = require("./routes/indexRoute");
 const checkoutRoute = require("./routes/checkoutRoute");
 const profileRoute = require("./routes/profileRoute");
-const adminRoute = require("./routes/adminRoute"); 
+const adminRoute = require("./routes/adminRoute");
+const helpRoute = require("./routes/helpRoute"); 
 const { SecretsManager } = require('aws-sdk');
 
 app.use(express.json());
@@ -57,6 +58,7 @@ app.use("/", indexRoute);
 app.use("/auth", authRoute);
 app.use("/edit-profile", profileRoute);
 app.use("/admin", adminRoute);
+app.use("/help", helpRoute);
 
 
 app.get("/checkout", (req, res) => {

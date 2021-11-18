@@ -22,7 +22,11 @@ const userSchema = new Schema ({
     profilePicture: {
       type: String,
       default: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Logo_musicart_group_logo_cmyk.png/1200px-Logo_musicart_group_logo_cmyk.png',
-  }
+    },
+    reportedProblems: {
+      type: Array,
+      default: [],
+    }
 
 }, { timestamps: true });
 

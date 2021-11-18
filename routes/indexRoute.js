@@ -57,5 +57,10 @@ router.get("/logout", (req, res) => {
     res.redirect("/auth/login");
 });
 
+router.get("/settings", ensureAuthenticated, (req, res) => {
+    res.render("settings", {
+        user: req.user
+    });
+});
 
 module.exports = router;

@@ -15,4 +15,10 @@ User.find()
         )}
     });
 
+router.get("/reported-issues", (req, res) => {
+        res.render("reported-issues", {
+             reports: req.user.reportedProblems
+            });
+    });
+
 module.exports = router;
