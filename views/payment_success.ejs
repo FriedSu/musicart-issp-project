@@ -6,29 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Musicart: Checkout</title>
 
-    <style>
-        .panel {
-            margin: auto;
-            margin-bottom: 30px;
-            border: 2px solid rgba(255, 0, 0, 0);
-            align-content: center;
-            border-radius: 15px;
-            padding: 12px;
-            
-            text-align: left;
-            background-color: rgb(235, 234, 232);
-            width: max-content;
-        }
-
-        .results {
-            float: inline-end;
-            align-content: right;
-            padding-left: 100px;
-        }
-    </style>
-
     <link rel="stylesheet" href="/buttons.css">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/success-and-cancel.css">
 </head>
 
 <body>
@@ -38,13 +18,13 @@
 
     <pre class="json" id="session"></pre> -->
 
-    <h1>Payment Successful</h1>
+    <h1 class="success-bar">Payment Successful</h1>
 
-    <div class="panel">
+    <div class="sc-panel">
         <p>
-            Email: <a class="results" id="email_output"></a>
+            Email: <a class="sc-results" id="email_output"></a>
             <br>
-            Total Payment: <a class="results" id="payment_amount"></a>
+            Total Payment: <a class="sc-results" id="payment_amount"></a>
         </p>
     </div>
     
@@ -53,7 +33,7 @@
         <pre class="json" id="session-data"></pre>
     </div>
     
-    <a href="/home" class="back-button">Close</a>
+    <a href="/home" class="back-button">Return to Home Page</a>
     <!-- <button onClick="location.href = '/home';" id="myButton">Return</button> -->
 
     <script>

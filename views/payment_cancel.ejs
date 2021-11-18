@@ -5,36 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/success-and-cancel.css">
+
     <title>Cancel</title>
 </head>
 <body>
-    <div class="title">
-        <h1>
-            Payment cancelled
-        </h1>
+    <h1 class="cancel-bar">
+        Payment cancelled
+    </h1>
+    
+    
+    <h3 class="cancel-order">
+        Cancelled order
+    </h3>
+    <div class="sc-panel">
+        <p>
+            Items: <a class="sc-results" id='description'></a><br>
+            Total: <a class="sc-results" id='price'></a>
+        </p>
+    
     </div>
-    <div>
-        <h2>
-            Transaction cancelled, please try again.
-        </h2>
-        <h3>
-            Cancelled order
-        </h3>
-    <div class="block">
-        Items: <a id='description'></a><br>
-        Total: <a id='price'></a>
-    </div>
-        <button onclick="location.href = '/home';" style="background-color: blue;">Return to home page</button>
-    </div>
+        
+    <button onclick="location.href = '/home';" class="back-button">Return to <br> Home Page</button>
+
+
     <div class="recc">
         <pre class="json" id="session-data"></pre>
-        <h3>You might like</h3>
-        <!--Placeholder items until I can figure out how to get spotify data-->
-        <ul style="margin: auto;width: auto;">
-            <li>track1<button class="reccbutton" onclick="location.href = '';">Add to cart</button></li>
-            <li>track2<button class="reccbutton" onclick="location.href = '';">Add to cart</button></li>
-            <li>track3<button class="reccbutton" onclick="location.href = '';">Add to cart</button></li>
-        </ul>
+        
+        <div class="sc-panel" id="suggestions">
+            <h3 style="margin-bottom: 10px;">You might like</h3>
+            <!--Placeholder items until I can figure out how to get spotify data-->
+            <ul style="margin: auto;width: auto;">
+                <li>track1<button class="back-button" onclick="location.href = '';">Add to cart</button></li>
+                <li>track2<button class="back-button" onclick="location.href = '';">Add to cart</button></li>
+                <li>track3<button class="back-button" onclick="location.href = '';">Add to cart</button></li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
