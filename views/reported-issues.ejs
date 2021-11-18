@@ -7,8 +7,15 @@
     <link rel = "stylesheet" href="/style.css">
     <title>Reported Issues</title>
     <style>
-        h1 {
-            color: white;
+        li p {
+            border: 2px solid rgb(255, 255, 255); /* Add a border to all links */
+            margin-top: -1px; /* Prevent double borders */
+            background-color: rgba(255, 255, 255, 0.7); /* Grey background color */
+            padding: 12px; /* Add some padding */
+            text-decoration: none; /* Remove default text underline */
+            font-size: 18px; /* Increase the font-size */
+            color: black; /* Add a black text color */
+            display: block; /* Make it into a block element to fill the whole list */
         }
     </style>
 </head>
@@ -16,7 +23,7 @@
 <ul class="reportList">
     <% reports.forEach(function (report) { %>
         <li>
-            <h1><%= report %></h1>
+            <p><%= report %></p>
         </li>
     <% }) %>
     <a href="/admin"><i class="test-one"></i>Admin Dashboard</a>
