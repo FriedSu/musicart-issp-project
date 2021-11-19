@@ -66,7 +66,7 @@ app.get("/checkout", (req, res) => {
     user_music_items = []
     });
 app.get("/payment_success", (req, res) => res.render('payment_success'));
-app.get("/payment_cancel", (req, res) => res.render('payment_cancel', {data:{music_info:user_music_items}}))
+app.get("/payment_cancel", (req, res) => res.render('payment_cancel'));
 app.get('/checkout-session', async (req, res) => {
     const session = await stripe.checkout.sessions.retrieve(req.query.id, {expand:['line_items']});
         res.json({session});
