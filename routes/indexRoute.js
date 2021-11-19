@@ -1,17 +1,35 @@
 const express = require('express');
 const User = require("../models/userModel").User;
-//const Purchase = require("../models/purchaseModel").Purchase
+// const Purchase = require("../models/purchaseModel").Purchase
 const router = express.Router();
 const { ensureAuthenticated } = require("../middleware/check_auth");
+const mongoose = require('mongoose');
+const Purchase = mongoose.model('Purchase')
+// const Purchase = require("../models/purchaseModel").Purchase;
 
 router.get("/", (req, res) => {
     res.render("landing")
 })
 
 router.get("/home", ensureAuthenticated, (req, res) => {
-    res.render("home", {
-        user: req.user
-    });
+    let userName = req.user.name
+    let purchaseHistory = null
+    // Purchase.find({name: userName}, (err, result) => {
+    //     if(err){
+    //         console.log(err)
+    //     }else{
+    //         purchaseHistory.push(result)
+    //     }
+    // })
+    // console.log(purchaseHistory)
+    Purchase.find({name: userName})
+    .then(result => {
+        purchaseHistory = result
+        res.render("home", {
+            user: req.user,
+            data: purchaseHistory
+        });
+    })
 });
 router.get("/admin", ensureAuthenticated,(req, res) => {
     User.find()
