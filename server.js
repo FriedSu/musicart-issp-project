@@ -226,7 +226,7 @@ mongoose.connect(databaseURL, { useNewUrlParser: true, useUnifiedTopology: true 
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
 
-const token = "BQAQYrafUyPsoErRqW55tjSTbRBdIGmudeJdeJrmKt2rcGMTBPBavIOvgC0rw55qhhIrJ7xZ8iw6FMo4RA3dx_lSbnxHOTunYJmum2V4LocAl0bdgf-442AivsAKsDmBj3pvTzdqVV9HGndzBKZIYMeqEf524hnyg0ZxyEFIfZjZmsohme5RRbt9uSzgmXZFpraS8PNce0FGQvcrW-IFDGQVtRXYzruXsdKiBpsaove32KMI-84vrkfzdXSYSoKNSyQeshwHLdGmeQ-AM6-cNl2H";
+const token = "BQDbTjW46drathOVty_aJ63PkkOuV4anFG7MBkuIF0_2PCmf4sYI5WOLhzcHph8-p52JlK6z2NdMmu64n7-mS6QwPdZbFkxQ_fRVPnZxqxoEtjLlkv3j6lmNscpzcvY0GAGg5VXQ2UBfrEgcubH67wNZqGV5th8SG7jf5w3Ye4OkZgCkPewGz2cVr0A7KjEGvBnGdPvTTunvHPbHul4j-oTV4eEBRkjGBqoxZAwTNGCTMoznFw-5C-ocDoJ6AK8G7BQgcq-aFHfGVb7cwFd6Rgv3";
 
 const bodyParser = require('body-parser')
 const spotifyApi = new SpotifyWebApi();

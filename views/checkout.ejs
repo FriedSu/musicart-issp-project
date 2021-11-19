@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/checkout.css">
     <!-- <link rel="stylesheet" href="/search.css"> -->
     <title>Musicart: Checkout</title>
     <script src="https://js.stripe.com/v3/"></script>
@@ -20,6 +21,7 @@
 <body>
     
     <main class="search-main">
+
         <div class="top-bar">
             <form class="search-form" action="/search_result" method="GET">
                 <a href="/home" class="back-button">Home</a>
@@ -30,46 +32,53 @@
                 <h1 class="track-formatter">Search results for </h1>
                 <h2>
                 </h2>
-              <!-- <from> -->
               </form>
         </div>
-          
-        
     </main>
 
-    <div class="search-results">
+    <div class="grid search-results">
         <% data.music_info.forEach(result => { %>
 
             <div class="music-tiles">
-                <p class="music-titles">  <br><h2><%= result[1].artist_name %> - <%= result[1].song_name %> </h2> </p>
-            
-                <p class="music-release">
+                
+                <div class="musicgrid">
                     
-                    
-                    <div class="music-release">
-                        Released on: 
-                        <%= result[1].release_date %>
+                    <div class="music-items">
+                        <div class="music-titles">
+                            <p class="music-titles"><h2><%= result[1].artist_name %> - <%= result[1].song_name %> </h2> </p>
+                        </div>
+    
+                        
                     </div>
-                    
-                    <div class="song-type"><%- result[1].song_type %></div>
-                    
-                </p> 
-                
-                <div class="pic">
-                    <a href= "<%= result[1].song_url %>"> 
-                        <img class="music-image" src="<%= result[1].song_image %>" width="200",height="200">
-                    </a>
-                </div>
 
-                <div class="checkbox-container">
-                    
-                    <input type="checkbox" name="<%=result[0]%>" id="_checkbox">
-                    <label for="_checkbox">
-                        Add for Purchase
-                    </label>
+                    <div class="music-info">
+                        <div class="music-release">
+                            
+                            
+                            <div class="song-type">
+                                <%- result[1].song_type %>
+                            </div>
+                            
+                        </div> 
+                        
+                        <div class="pic">
+                            <a href= "<%= result[1].song_url %>" target="_blank"> 
+                                <img class="music-image" src="<%= result[1].song_image %>" width="200",height="200">
+                            </a>
+                        </div>
+                        <div class="music-release">
+                            Released on: 
+                            <%= result[1].release_date %>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-container">
+                        <input type="checkbox" name="<%=result[0]%>" id="_checkbox">
+                        <label for="_checkbox">
+                            Add for Purchase
+                        </label>
+                    </div>
                 </div>
-                
-                
             </div>
        
                 

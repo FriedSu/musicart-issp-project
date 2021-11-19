@@ -1,0 +1,26 @@
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 1em;
+    grid-column-gap: 1em;
+}
+
+.musicgrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* background: burlywood; */
+}
+
+.music-items {
+    font-size: 12px;
+    min-height: 6em;
+}
+
+.music-info {
+    min-height: 22em;
+    max-height: 30em;
+}
+
+#artist-name {
+    color: rgba(0, 200, 0, 0.65);
+}
