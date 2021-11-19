@@ -3,7 +3,6 @@ body {
 }
 
 .grid {
-    
     display: grid;
     grid-template-columns: 4fr 10fr 5fr;
     grid-row-gap: 1em;
@@ -12,6 +11,12 @@ body {
 
 .grid > div {
     border-radius: 2em;
+}
+
+.success-items {
+    background-color: blue;
+    width: 30px;
+    height: 30px;
 }
 
 .admin-history {
