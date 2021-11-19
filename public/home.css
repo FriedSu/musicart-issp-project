@@ -1,0 +1,27 @@
+body {
+    color: white
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 4fr 10fr 5fr;
+    grid-row-gap: 1em;
+    grid-column-gap: 1em;
+}
+
+.grid > div {
+    border-radius: 2em;
+}
+
+.main-content {
+    background-color: rgba(0, 0, 0, 0.705);
+    padding: 1em;
+    text-align: center;
+    grid-column: 2/3;
+    min-height: 40em;
+    filter: drop-shadow(0 0 0.75rem black);
+}
+
+.possible-content {
+    display: none;
+}

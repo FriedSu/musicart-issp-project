@@ -8,17 +8,39 @@
     <link rel="stylesheet" href="/buttons.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/sidebar.css">
+    <link rel="stylesheet" href="/home.css">
 </head>
 <body>
-    <h1 class="title" style="font-family: Verdana, Geneva, Tahoma, sans-serif;margin: 50px;">
-        Welcome <%=user.name%>!
-        
-    </h1>
-    <% if (user.role === "Admin") { %>
-        <button onClick="location.href = '/admin';" id= "adminButton">Admin</button>
-  <% } %>
     
-    <%- include('./partials/sidebar'); %>
+    
+
+    <div class="grid">
+
+        <div>
+            <% if (user.role === "Admin") { %>
+                <button onClick="location.href = '/admin';" id= "adminButton">Admin</button>
+            <% } %>
+            
+            <%- include('./partials/sidebar'); %>
+        </div>
+
+        <div>
+            
+            <h1 class="title" style="font-family: Verdana, Geneva, Tahoma, sans-serif;margin: 50px;">
+                Welcome <%=user.name%>!
+            </h1>
+        </div>
+
+        <div class="possible-content">
+            other possible content ⛷
+        </div>
+
+        <div class="grid main-content">
+            Main Content 😎
+        </div>
+
+        
+    </div>
 
 </body>
 </html>
