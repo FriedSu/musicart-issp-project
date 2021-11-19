@@ -20,7 +20,8 @@
     <div class="sc-panel">
         <p>
             Status: <a class="sc-results" id='description'></a><br>
-            Total: <a class="sc-results" id='price'></a>
+            Total: <a class="sc-results" id='price'></a><br>
+            Currency: <a class="sc-results" id='currency'></a><br>
         </p>
     
     </div>
@@ -43,7 +44,7 @@
         var total=Number(obj.session.amount_total)/100;
         document.getElementById('price').innerHTML=`$${total.toFixed(2)}`
         document.getElementById('description').innerHTML=obj.session.payment_status;
-        console.log(obj.session.payment_status);
+        document.getElementById('currency').innerHTML=obj.session.currency;
     })
     .catch((error)=>{
         console.error('Error', error);
