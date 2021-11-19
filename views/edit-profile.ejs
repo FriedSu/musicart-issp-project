@@ -11,11 +11,25 @@
     <h1 class="title">
         Edit Profile
     </h1>
-    <button onClick="location.href = '/edit-profile/change-name';" id="editNameButton">Change Name</button>
-    <button onClick="location.href = '/edit-profile/change-email';" id="editEmailButton">Change Email</button>
-    <button onClick="location.href = '/edit-profile/change-password/<%=user.name%>';" id="editPswdButton">Change Password</button>
-    <button onClick="location.href = '/edit-profile/change-picture';" id="editPicButton">Change Profile Picture</button>
-    <button onClick="location.href = '/logout';" id="logoutButton">Logout</button>
+    
+    <div class="profileBox">
+
+        <div class="profileButtons">
+            <button id="profileButton" onClick="location.href = '/edit-profile/change-name';" id="editNameButton">Change Name</button>
+        </div>
+        <div class="profileButtons">
+            <button id="profileButton" onClick="location.href = '/edit-profile/change-email';" id="editEmailButton">Change Email</button>
+        </div class="profileButtons">
+        <div class="profileButtons">
+            <button id="profileButton" onClick="location.href = '/edit-profile/change-password/<%=user.name%>';" id="editPswdButton">Change Password</button>
+        </div>
+        <div class="profileButtons">
+            <button id="profileButton" onClick="location.href = '/edit-profile/change-picture';" id="editPicButton">Change Profile Picture</button>
+        </div>
+        <div class="profileButtons">
+            <button id ="profileButton" onClick="location.href = '/logout';" id="logoutButton">Logout</button>
+        </div>
+    </div>
     <ul>
         <li><a href="/home"><i class="test-one"></i>Home</a></li>
     </ul>
