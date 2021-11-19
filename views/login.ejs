@@ -15,22 +15,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@700&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
     <title>Musicart: Login</title>
 
+</head>
     <style>
         input {
-            background-color: rgba(255, 255, 255, 0);
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            width: 250px;
-            height: 20px;
-            font-size: 20px;
-            color: rgb(255, 255, 255);
-            border-top-style: hidden;
-            border-right-style: hidden;
-            border-left-style: hidden;
-            border-bottom-style: groove;
+        background-color: rgba(255, 255, 255, 0);
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        width: 250px;
+        height: 20px;
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+        border-bottom-style: groove;
+        }
     </style>
-</head>
 <body>
     <div class = "musicart">
         <h1>MusicArt</h1>
@@ -42,11 +43,11 @@
         <form action="/auth/login" method="POST">
             <div style="margin: 15px;">
                 <label for="email"><b></b></label>
-                <input class="login-style" type="email" placeholder="Enter Email" id="email" name="email" required>
+                <input type="email" placeholder="Enter Email" id="email" name="email" required>
             </div>
             <div style="margin: 15px;">
                 <label for="password"><b></b></label>
-                <input class="login-style type="password" placeholder="Enter Password" id="password" name="password" required>
+                <input type="password" placeholder="Enter Password" id="password" name="password" required>
             </div>
             <button class="back-button" type="submit">Login</button>
             <button class="back-button" onClick="location.href = '/auth/register';" id="myButton">Register</button>
