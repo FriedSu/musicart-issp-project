@@ -11,29 +11,6 @@
     <link rel="stylesheet" href="/home.css">
 </head>
 <body>
-<<<<<<< HEAD
-=======
-    <h1 class="title" style="font-family: Verdana, Geneva, Tahoma, sans-serif;margin: 50px;">
-        Welcome <%=user.name%>!
-    </h1>
-
-    <% if (user.role === "Admin") { %>
-        <button onClick="location.href = '/admin';" id= "adminButton">Admin</button>
-  <% } %>
-
-    <div>
-        <h1>Purchase History</h1>
-        <% data.forEach(result => { %>
-            <p>Purchase ID <%=result.id%></p>
-            <p>Email <%=result.email%></p>
-            <p>Paid amount <%=result.amount_received/100%> <%=result.currency%></p>
-            <p>Receipt <%=result.receipt_url%></p>
-        <% }) %>
-    </div>
->>>>>>> a5cb84c59cca5ddd6f3d0f5e1585c2dbc17bae34
-    
-    
-
     <div class="grid">
 
         <div>
@@ -55,8 +32,17 @@
             other possible content ⛷
         </div>
 
-        <div class="grid main-content">
-            Main Content 😎
+        <div class="main-content">
+            
+            <div>
+                <h1>Purchase History</h1>
+                <% data.forEach(result => { %>
+                    <p>Purchase ID <%=result.id%></p>
+                    <p>Email <%=result.email%></p>
+                    <p>Paid amount <%=result.amount_received/100%> <%=result.currency%></p>
+                    <p>Receipt <%=result.receipt_url%></p>
+                <% }) %>
+            </div>
         </div>
 
         
