@@ -14,13 +14,12 @@
         Payment cancelled
     </h1>
     
-    
     <h3 class="cancel-order">
         Cancelled order
     </h3>
     <div class="sc-panel">
         <p>
-            Items: <a class="sc-results" id='description'></a><br>
+            Status: <a class="sc-results" id='description'></a><br>
             Total: <a class="sc-results" id='price'></a>
         </p>
     
@@ -28,41 +27,23 @@
         
     <button onclick="location.href = '/home';" class="back-button">Return to Home Page</button>
 
-
-    <div class="recc">
-        <pre class="json" id="session-data"></pre>
-        
-        <div class="sc-panel" id="suggestions">
-            <h3 style="margin-bottom: 10px;">You might like</h3>
-            <!--Placeholder items until I can figure out how to get spotify data-->
-            <ul style="margin: auto;width: auto;">
-                <li>track1<button class="back-button" onclick="location.href = '';">Add to cart</button></li>
-                <li>track2<button class="back-button" onclick="location.href = '';">Add to cart</button></li>
-                <li>track3<button class="back-button" onclick="location.href = '';">Add to cart</button></li>
-            </ul>
-        </div>
-    </div>
 </body>
 </html>
 
 <script>
-    var sessionData=document.getElementById('session-data');
-    var params=new URLSearchParams(window.location.search);
-    var id=params.get('id');
-    var placeholder=["track1", "track2", "track3"];
+    const sessionData=document.getElementById('session-data');
+    const params=new URLSearchParams(window.location.search);
+    const id=params.get('id');
     fetch('/checkout-session?id='+id)
     .then((response)=>response.json())
     .then((session)=>{
         var output=''
         output=JSON.stringify(session,null,2);
         var obj=JSON.parse(output);
-        document.getElementById('sessiontest').innerHTML=obj.session;
-        document.getElementById('description').innerHTML=obj.session.line_items.data.description;
         var total=Number(obj.session.amount_total)/100;
         document.getElementById('price').innerHTML=`$${total.toFixed(2)}`
-        document.getElementById('genre').innerHTML=obj.session.genre;
-        document.getElementById('language').innerHTML=obj.session.language;
-        sessionData.innerText=JSON.stringify(session.line_items.data, null, 2);
+        document.getElementById('description').innerHTML=obj.session.payment_status;
+        console.log(obj.session.payment_status);
     })
     .catch((error)=>{
         console.error('Error', error);
