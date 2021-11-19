@@ -129,38 +129,8 @@ app.post('/webhook', express.json({type: 'application/json'}), (request, respons
 
   // Handle the event
   switch (event.type) {
-    case 'payment_intent.succeeded':
-      const paymentIntent = event.data.object;
-        console.log('paymentIntent')
-        console.log(paymentIntent)
-      // const purchase = new Purchase({
-      //   id: paymentIntent.id, 
-      //   email: paymentIntent.receipt_email,
-      //   //name: req.user.name,
-      //   amount_received: paymentIntent.amount_received,
-      //   currency: paymentIntent.currency,
-      //   timestamp: time 
-      //   });
-      // purchase.save()
-      break;
-
-    case 'customer.created':
-      let customer = event.data.object;
-      // console.log('customer')
-      // console.log(customer)
-      break;
-
     case 'charge.succeeded':
       let charge = event.data.object;
-      // console.log('charge')
-      // console.log(charge)
-
-      // _id = charge.id
-      // _name = charge.billing_details.name
-      // _email = charge.billing_details.email
-      // _amount_received = charge.amount
-      // _receipt_url = charge.receipt_url
-      // _currency = charge.currency
 
       const purchase = new Purchase({
         id: charge.id, 
@@ -171,19 +141,6 @@ app.post('/webhook', express.json({type: 'application/json'}), (request, respons
         receipt_url: charge.receipt_url
         });
       purchase.save()
-
-      break;
-
-    case 'checkout.session.completed':
-      let session = event.data.object;
-      // console.log('session')
-      // console.log(session)
-      break;
-
-    case 'payment_intent.created':
-      let payint = event.data.object;
-      // console.log('payint')
-      // console.log(payint)
       break;
 
     default:
@@ -269,7 +226,11 @@ mongoose.connect(databaseURL, { useNewUrlParser: true, useUnifiedTopology: true 
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
 
+<<<<<<< HEAD
 const token = "BQBiCwnrSPbSTvSEyVd2_gkcZngOxXTPpgUz5IsDKbNfZdpP6mEDiwyQOPJsrjyMr72tFkXfWKdFCx1_NF2r0v7x9Hllg6avQ9WdGWvQPaMV-lp7jli7KjVC13-uOGbgbWEKMCngy103VzAxqkPp49wYrlc93UnVMLNF3HoUuGXQMzmgrL5G4m8REmPlunPN523-TUx4G2gFa0MFftEuVDHDcg9qTQZoo4HvVngzlX4dfvL68SvJHIQBScQzJ0eLeW_ndjjPDwTEO_FIG6x9zVQB";
+=======
+const token = "BQAR7ltXyWt1SPNaw8KbfHQUNRK2Z4AShpR2S71w2Ztcj7YZXaWboUKoCt7_2zsT3jQleZY_fzitLw8pYFqbrb3xCWtaIMHkuhQnBgRUaJTqBcJEq9npHS_VuTjjTDEpuVLz5AvSN0OfuWUOljoSIaICF36FVyFbe9WfG3dCn-NbPtjIn5jxXMV3wtd-QQ6YXE_7ORNhuaegZ1l5h4bPic6OAgy2HMpg2bNNS7BTFrn8AsaTgpi8YFICvFNfsRUHoRJs784rHUp9UgbsP6nQSY5kO9siffelaBN6yyE6mJMedoDAeQvR";
+>>>>>>> a5cb84c59cca5ddd6f3d0f5e1585c2dbc17bae34
 
 const bodyParser = require('body-parser')
 const spotifyApi = new SpotifyWebApi();
