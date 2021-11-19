@@ -281,8 +281,27 @@ label {
 .checkbox-container input[type="checkbox"]:checked + label {
     visibility: hidden;
 }
+.profileBox {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 50%;
+    align-content: center;
+    display: inline-block;
+    border-radius: 25px;
+}
+.profileButtons {
+    margin-top: 20px;
+}
+#profileButton {
+    background-color: black;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 0%;
+    /* font-size: 16px; */
 
-
+}
 
 
 
