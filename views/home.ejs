@@ -22,9 +22,9 @@
 
             <div class="admin-info">
                 <h1>Purchase History</h1>
-
+                <% data.forEach(result => { %>
                 <div class="admin-history">
-                    <% data.forEach(result => { %>
+                    
                         
                         <div class="admin-placeholder">
                             <p>Purchase ID</p>
@@ -49,9 +49,6 @@
                         <div class="admin-results">
                             <input type="text" value="<%=result.amount_received/100%> <%=result.currency%>" readonly>
                         </div>
-
-                        
-                    
                 </div>
                 <div class="admin-results receipt-results">
                     <a class="back-button" id="receipt-button" href= "<%=result.receipt_url%>" target="_blank">Receipt Link</a>
