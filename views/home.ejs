@@ -13,37 +13,82 @@
 <body>
     <div class="grid">
 
-        <div>
-            <% if (user.role === "Admin") { %>
-                <button onClick="location.href = '/admin';" id= "adminButton">Admin</button>
-            <% } %>
-            
-            <%- include('./partials/sidebar'); %>
+        <div class="side-bar">
+            <div class="sidebar">
+                <header>Your Profile</header>
+                <div class="profile">
+                    <a href="/edit-profile/change-picture">
+                        <img src="<%= user.profilePicture %>" alt="Profile Image Not Showing (please enter a valid image link)" class="profileImage">
+                    </a>
+                    <div class="profileName"><%= user.name %></div>
+                    <a href="/edit-profile/home" id="editProfileButton">Edit Profile</a>
+                </div>
+                <ul>
+                    <li><a href="home"><i class="test-one"></i>Home</a></li>
+                    <li><a href="search"><i class="test-three"></i>Buy Spotify Plays</a></li>
+                    <li><a href=""><i class="test-four"></i>Connect Artist Profile</a></li>
+                    <li><a href="https://www.musicart.pl/"><i class="test-five"></i>Musicart</a></li>
+                    <li><a href="help"><i class="test-six"></i>Help</a></li>
+                    <li><a href="settings"><i class="test-seven"></i>Settings</a></li>
+                </ul>
+            </div>
         </div>
 
-        <div>
-            
-            <h1 class="title" style="font-family: Verdana, Geneva, Tahoma, sans-serif;margin: 50px;">
+        <div class="welcome">
+            <h1 class="welcome-title" style="font-family: Verdana, Geneva, Tahoma, sans-serif;margin: 50px;">
                 Welcome <%=user.name%>!
             </h1>
+
+            <div class="admin-info">
+                <h1>Purchase History</h1>
+
+                <div class="admin-history">
+                    <% data.forEach(result => { %>
+                        
+                        <div class="admin-placeholder">
+                            <p>Purchase ID</p>
+                        </div>
+                        
+                        <div class="admin-results">
+                            <input type="text" value="<%=result.id%>" readonly>
+                        </div>
+
+                        <div class="admin-placeholder">
+                            <p>Email</p>
+                        </div>
+
+                        <div class="admin-results">
+                            <input type="text" value="<%=result.email%>" readonly>
+                        </div>
+                        
+                        <div class="admin-placeholder">
+                            <p>Paid amount</p>
+                        </div>
+
+                        <div class="admin-results">
+                            <input type="text" value="<%=result.amount_received/100%> <%=result.currency%>" readonly>
+                        </div>
+
+                        
+                    
+                </div>
+                <div class="admin-results receipt-results">
+                    <a class="back-button" id="receipt-button" href= "<%=result.receipt_url%>" target="_blank">Receipt Link</a>
+                </div>
+                <% }) %>
+                    <% if (user.role === "Admin") { %>
+                        <button class="back-button" onClick="location.href = '/admin';" id= "adminButton" style="margin-top: 5em;">Admin</button>
+                    <% } %>
+            </div>
+
+
+                
         </div>
 
         <div class="possible-content">
             other possible content ⛷
         </div>
 
-        <div class="main-content">
-            
-            <div>
-                <h1>Purchase History</h1>
-                <% data.forEach(result => { %>
-                    <p>Purchase ID <%=result.id%></p>
-                    <p>Email <%=result.email%></p>
-                    <p>Paid amount <%=result.amount_received/100%> <%=result.currency%></p>
-                    <p>Receipt <%=result.receipt_url%></p>
-                <% }) %>
-            </div>
-        </div>
 
         
     </div>

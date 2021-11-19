@@ -3,6 +3,7 @@ body {
 }
 
 .grid {
+    
     display: grid;
     grid-template-columns: 4fr 10fr 5fr;
     grid-row-gap: 1em;
@@ -11,6 +12,21 @@ body {
 
 .grid > div {
     border-radius: 2em;
+}
+
+.admin-history {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: left;
+}
+
+.admin-history > div:nth-child(odd) {
+    text-align: right;
+}
+
+.admin-history > div {
+    padding: 5px;
+    padding-right: 40px;
 }
 
 .main-content {
@@ -24,4 +40,47 @@ body {
 
 .possible-content {
     display: none;
+}
+
+.side-bar {
+    width: auto;
+}
+
+.welcome-title {
+    grid-row: 0/1;
+    height: max-content;
+    padding-bottom: 3em;
+}
+
+.admin-info {
+    background-color: rgba(0, 0, 0, 0.59);
+    padding: 1em;
+    filter: drop-shadow(0 0 0.75rem black);
+    border-radius: 1em;
+}
+
+.admin-results input {
+    width: 100%;
+    border: none;
+    padding: 5px;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    background-color: rgba(128, 128, 128, 0.042);
+    border-bottom: 3px solid rgba(88, 88, 255, 0.452);
+}
+
+.admin-history {
+    margin-top: 20px;
+    padding: 2em;
+    border-radius: 1em;
+}
+
+#receipt-button {
+    height: 10px;
+    font-size: 12px;
+}
+
+.admin-placeholder p {
+    padding: 3px;
 }
