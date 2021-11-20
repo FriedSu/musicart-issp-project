@@ -27,7 +27,8 @@ router.get("/home", ensureAuthenticated, (req, res) => {
         purchaseHistory = result
         res.render("home", {
             user: req.user,
-            data: purchaseHistory
+            data: purchaseHistory,
+            message: req.flash('message')
         });
     })
 });

@@ -110,3 +110,16 @@ button:hover {
   .dropdown-content a:hover {background-color: #ddd;}
   .dropdown:hover .dropdown-content {display: block;}
   .dropdown:hover .dropbtn {background-color: #FFF8DC;}
+  .musicart {
+    color: white;
+    font-family: 'Merienda', cursive;
+    font-size: 36pt;
+    text-align: center;
+}
+.title {
+    color: white;
+    font-family: 'Roboto', 'sansa-serif';
+    font-size: 18pt;
+    text-align: center;
+    margin-top: 3%;
+}
