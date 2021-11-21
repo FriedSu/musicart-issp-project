@@ -12,7 +12,7 @@ const { ensureAuthenticated } = require("./middleware/check_auth");
 require("dotenv").config()
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
-const Purchase = require("./models/PurchaseModel").Purchase;
+const Purchase = require("./models/purchaseModel").Purchase;
 
 let user_music_items = []
 
