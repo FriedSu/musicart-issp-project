@@ -14,18 +14,27 @@
             padding: 12px; /* Add some padding */
             text-decoration: none; /* Remove default text underline */
             font-size: 18px; /* Increase the font-size */
-            color: black; /* Add a black text color */
             display: block; /* Make it into a block element to fill the whole list */
         }
+        .deleteForm {
+            display: inline-block;
+            }
     </style>
 </head>
 <body>
 <ul class="reportList">
-    <% reports.forEach(function (report) { %>
-        <li>
-            <p><%= report %></p>
-        </li>
+    <% reports.forEach(function (report, index) { %>
+        <div>
+            <li>
+                <p><%= report %></p>
+                <form method="post" id="reportForm" action=<%= "/admin/reported-issues/" + index %>>
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        </div>
     <% }) %>
-    <a href="/admin"><i class="test-one"></i>Admin Dashboard</a>
+    <div>
+        <a href="/admin"><i class="test-one"></i>Admin Dashboard</a>
+    </div>
 </ul>
 </body>

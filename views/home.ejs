@@ -19,6 +19,10 @@
             <h1 class="welcome-title" style="font-family: Verdana, Geneva, Tahoma, sans-serif;margin: 50px;">
                 Welcome <%=user.name%>!
             </h1>
+            <!-- Can display a success message/popup if you want.... -->
+            <!-- <strong id="popupMessage" class="popupMsg">
+                <em><%=message%></em>
+            </strong> -->
 
             <div class="admin-info">
                 <h1>Purchase History</h1>
@@ -56,7 +60,7 @@
                 <% }) %>
                     <% if (user.role === "Admin") { %>
                         <button class="back-button" onClick="location.href = '/admin';" id= "adminButton" style="margin-top: 5em;">Admin</button>
-                    <% } %>
+                <% } %>
             </div>
 
 
@@ -72,4 +76,12 @@
     </div>
 
 </body>
+<!-- <script type="text/javascript">
+    // close the div in 5 secs
+    window.setTimeout("closeHelpDiv();", 5000);
+    
+    function closeHelpDiv(){
+    document.getElementById("popupMessage").style.display=" none";
+    }
+</script> -->
 </html>

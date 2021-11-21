@@ -5,6 +5,7 @@ const passport = require('passport');
 const path = require('path');
 const mongoose = require('mongoose');
 const port = process.env.port || 8080;
+const flash = require('connect-flash');
 
 const { ensureAuthenticated } = require("./middleware/check_auth");
 
@@ -53,7 +54,7 @@ app.use((req, res, next) => {
     console.log(req.session.passport);
     next();
 });
-
+app.use(flash());
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
 app.use("/edit-profile", profileRoute);

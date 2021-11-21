@@ -13,7 +13,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@700&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
-
   <title>Register</title>
 </head>
 <body>
@@ -26,34 +25,33 @@
   <form action="/auth/register" method="POST">
     <div class="form-group">
         <label for="name"><b>Name</b></label>
-        <input type="name" placeholder="Enter Name" id="name" name="name" required>
+        <input type="name" placeholder="Enter Name" id="name" name="name" onkeyup="check(this)" required>
     <div class="form-group">
         <label for="email"><b>Email</b></label>
-        <input type="email" placeholder="Enter Email" id="email" name="email" required>
+        <input type="email" placeholder="Enter Email" id="email" name="email" onkeyup="check(this)" required>
     </div>
     <div class="form-group">
         <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" id="password" name="password" required>
+        <input type="password" placeholder="Enter Password" id="password" name="password" onkeyup="check(this)" required>
     </div>
     <button type="submit">Register</button>
-</form>
-  
+  </form>
+  <div>
+      <strong id="rgstrPopupMessage" class="popupMsg">
+        <em><%=message%></em>
+      </strong>
+  </div>
 </body>
+<script type="text/javascript">
+  // Error Message popup disappears when you enter text in email/password inputs
+
+  function check(elem) {
+      if(elem.value.length > 0){
+          closeHelpDiv()
+      }
+  }
+  function closeHelpDiv(){
+  document.getElementById("rgstrPopupMessage").style.display=" none";
+  }
+</script>
 </html>
-      <!-- additional feature idea -->
-      <!-- <div class="form-group">
-        <form>
-          <label for="genre">Choose your genre:</label>
-          <select name="genre" id="genre">
-            <option value="pop">Pop</option>
-            <option value="disco">Disco</option>
-            <option value="rap">Rap</option>
-            <option value="jazz">Jazz</option>
-            <option value="hip-hop">Hip-Hop</option>
-            <option value="classical">Classical</option>
-            <option value="rock">Rock</option>
-            <option value="other">Other</option>
-          </select>
-        </form>
-      </div> -->
-  
