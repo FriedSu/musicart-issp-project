@@ -226,7 +226,9 @@ mongoose.connect(databaseURL, { useNewUrlParser: true, useUnifiedTopology: true 
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
 
-const token = "BQBdZq00mLPG0iwl1js3_tick5BcNTteWG_aFXmaRZ9LN-htWmSfaa0igBFQLNm2s3CL56H_daKesZRrQkKWqQZkCJtep83Dogwh3B5BAOEyffOcGsfYrv1vqdZ4gig3039dZFGQ3c0VDodXUV9fiTGjQimqrwrusy7Lfe0ySjL7PwvGVehYu5RxwnPAyqLsPdGQIcLf--6gCPAFLamjrdZSM3fz6kw2FD4d_HNFJQkfWljbeOyFY_k2s6P7Pj_0PD01Qldu-Va_o1-UieLMjxaWky4NRSg6CizzM_06-7pmY2p4";
+
+var token = require("fs").readFileSync("token.txt", "utf8");
+
 
 const bodyParser = require('body-parser')
 const spotifyApi = new SpotifyWebApi();
@@ -234,34 +236,34 @@ const spotifyApi = new SpotifyWebApi();
 spotifyApi.setAccessToken(token);
 
 //GET MY PROFILE DATA
-function getMyData() {
-  (async () => {
-    const me = await spotifyApi.getMe();
-    console.log(me.body);
-    getUserPlaylists(me.body.id);
-  })().catch(e => {
-    console.error(e);
-  });
-}
+// function getMyData() {
+//   (async () => {
+//     const me = await spotifyApi.getMe();
+//     console.log(me.body);
+//     getUserPlaylists(me.body.id);
+//   })().catch(e => {
+//     console.error(e);
+//   });
+// }
 
 //GET MY PLAYLISTS
-async function getUserPlaylists(userName) {
-  const data = await spotifyApi.getUserPlaylists(userName)
+// async function getUserPlaylists(userName) {
+//   const data = await spotifyApi.getUserPlaylists(userName)
 
-  console.log("---------------+++++++++++++++++++++++++")
-  let playlists = []
+//   console.log("---------------+++++++++++++++++++++++++")
+//   let playlists = []
 
-  for (let playlist of data.body.items) {
-    console.log(playlist.name + " " + playlist.id)
+//   for (let playlist of data.body.items) {
+//     console.log(playlist.name + " " + playlist.id)
     
-    let tracks = await getPlaylistTracks(playlist.id, playlist.name);
-    console.log(tracks);
+//     let tracks = await getPlaylistTracks(playlist.id, playlist.name);
+//     console.log(tracks);
 
-    const tracksJSON = { tracks }
-    let data = JSON.stringify(tracksJSON);
-    fs.writeFileSync(playlist.name+'.json', data);
-  }
-}
+//     const tracksJSON = { tracks }
+//     let data = JSON.stringify(tracksJSON);
+//     fs.writeFileSync(playlist.name+'.json', data);
+//   }
+// }
 
 async function getPlaylistTracks(playlistId, playlistName) {
 
@@ -340,3 +342,4 @@ app.get('/search_result', (req, res) => {
   // }
   // res.redirect('checkout')
 })
+
