@@ -7,9 +7,23 @@
     <title>Help</title>
     <link rel = "stylesheet" href="/style.css">
 </head>
-<body>
-    <h1 class="title">
-        Help
-    </h1>
-    <button onClick="location.href = '/help/report';" id="reportButton">Report a problem</button>
+<body class="container">
+
+        <title>Search for Track</title>
+        <main class="search-main">
+          <div class="jumbotron">
+            
+            <form class="search-form" action="/search_result" method="GET">
+                <a href="/home" class="back-button">Home</a>
+                <h1 class="track-formatter" style="margin-bottom: 1em;">Help</h1>
+                <div>
+                    <a href="/help/report" class="back-button" id="reportButton">Report a Problem</a>
+
+                </div>
+              
+              
+            </form>
+          </div>
+        </main>
+    
 </body>
