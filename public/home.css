@@ -25,6 +25,11 @@ body {
     text-align: left;
 }
 
+.user-reports {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
 .admin-history > div:nth-child(odd) {
     text-align: right;
 }

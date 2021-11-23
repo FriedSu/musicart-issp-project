@@ -19,6 +19,22 @@
     <link rel="stylesheet" href="/home.css">
     <title>Admin Page</title>
 </head>
+<style>
+  input {
+        background-color: rgba(255, 255, 255, 0);
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        width: 250px;
+        height: 20px;
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+        border-bottom-style: groove;
+        }
+</style>
 
 
 
@@ -54,21 +70,20 @@
     <div class="welcome">
         
         <div class="musicart">MusicArt</div>
-        <h1 class="welcome-title" style="font-family: Verdana, Geneva, Tahoma, sans-serif;margin: 50px;">
-            Admin
+        <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;margin-top: 50px;margin-bottom: 20px;">
+            Admin Panel
         </h1>
 
         <div class="admin-info">
-          <h2>Admin</h2>
-          <button onClick="location.href = '/admin/reported-issues';" id="reportedIssuesBtn">View Reported Issues</button>
+          <h3>Search for a user</h3>
+          <button class="back-button" onClick="location.href = '/admin/reported-issues';" id="reportedIssuesBtn" style="font-size: 15px; margin-top: 20px;">View Reported Issues</button>
       <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names">
       <div>
         
         
 
-          <p>User Info</p>
-          <ul id="usr">
-            pp
+        <ul id="usr">
+            <h2>User Info</h2>
               <div class="admin-history">
 
                 <% for (i in user) { %>

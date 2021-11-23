@@ -5,36 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href="/style.css">
+    <link rel = "stylesheet" href="/admin_style.css">
+    <link rel = "stylesheet" href="/home.css">
     <title>Reported Issues</title>
     <style>
         li p {
-            border: 2px solid rgb(255, 255, 255); /* Add a border to all links */
+            border: 2px solid rgba(255, 255, 255, 0.267); /* Add a border to all links */
             margin-top: -1px; /* Prevent double borders */
-            background-color: rgba(255, 255, 255, 0.7); /* Grey background color */
+            background-color: rgba(255, 255, 255, 0.589); /* Grey background color */
             padding: 12px; /* Add some padding */
             text-decoration: none; /* Remove default text underline */
             font-size: 18px; /* Increase the font-size */
             display: block; /* Make it into a block element to fill the whole list */
         }
+
+        div {
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+
+
         .deleteForm {
             display: inline-block;
             }
     </style>
 </head>
 <body>
-<ul class="reportList">
-    <% reports.forEach(function (report, index) { %>
+    <div style="background-color: rgba(22, 22, 22, 0.288);">
+        <ul >
+            <div class="user-reports">
+                
+                <% reports.forEach(function (report, index) { %>
+                    <div class="user-panel-results">
+                        <li>
+                            <p><%= report %></p>
+                        </li>
+                        <div>
+
+                            <form method="post" id="reportForm" style="margin-top: 0;background-color: rgba(210, 105, 30, 0);" action=<%= "/admin/reported-issues/" + index %>>
+                                <button class="back-button" type="submit" style="background-color: rgba(210, 105, 30, 0); font-size: 15px;">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </ul>
         <div>
-            <li>
-                <p><%= report %></p>
-                <form method="post" id="reportForm" action=<%= "/admin/reported-issues/" + index %>>
-                    <button type="submit">Delete</button>
-                </form>
-            </li>
+            <a href="/admin"><i class="test-one"></i>Admin Dashboard</a>
         </div>
-    <% }) %>
-    <div>
-        <a href="/admin"><i class="test-one"></i>Admin Dashboard</a>
     </div>
-</ul>
 </body>
