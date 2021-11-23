@@ -28,12 +28,15 @@
                     <li><a href=""><i class="test-four"></i>Connect Artist Profile</a></li>
                     <li><a href="https://www.musicart.pl/" target="_blank"><i class="test-five"></i>Musicart</a></li>
                     <li><a href="help"><i class="test-six"></i>Help</a></li>
+                    
                     <li><a href="settings"><i class="test-seven"></i>Settings</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="welcome">
+            
+            <div class="musicart">MusicArt</div>
             <h1 class="welcome-title" style="font-family: Verdana, Geneva, Tahoma, sans-serif;margin: 50px;">
                 Welcome <%=user.name%>!
             </h1>
@@ -43,7 +46,7 @@
             </strong> -->
 
             <div class="admin-info">
-                <h1>Purchase History</h1>
+                <h2>Purchase History</h2>
                 <% data.forEach(result => { %>
                 <div class="admin-history">
                     

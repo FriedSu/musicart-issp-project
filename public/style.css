@@ -131,7 +131,7 @@ li a {
 }
 .title {
     color: white;
-    font-family: 'Roboto', 'sansa-serif';
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 18pt;
     text-align: center;
     margin-top: 3%;
