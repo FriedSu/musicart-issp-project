@@ -82,7 +82,7 @@ button:hover {
     display: block; /* Make it into a block element to fill the whole list */
   }
   #usr li a:hover:not(.header) {
-    background-color: #eee; /* Add a hover effect to all links, except for headers */
+    background-color: rgba(238, 238, 238, 0.459); /* Add a hover effect to all links, except for headers */
   }
 
   .dropbtn {
@@ -99,10 +99,11 @@ button:hover {
   .dropdown-content {
       display: none;
       position: absolute;
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color: rgba(0, 0, 0, 0.884);
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
       z-index: 1;
+      padding: 10px;
   }
   .dropdown-content a:hover {background-color: #ddd;}
   .dropdown:hover .dropdown-content {display: block;}
