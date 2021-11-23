@@ -73,8 +73,7 @@ button:hover {
     margin: 0;
   }
 #usr li a {
-    border: 2px solid rgb(255, 255, 255); /* Add a border to all links */
-    margin-top: -1px; /* Prevent double borders */
+
     background-color: rgba(255, 255, 255, 0.7); /* Grey background color */
     padding: 12px; /* Add some padding */
     text-decoration: none; /* Remove default text underline */
