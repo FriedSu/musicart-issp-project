@@ -9,21 +9,25 @@
     <link rel = "stylesheet" href="/home.css">
     <title>Reported Issues</title>
     <style>
-        li p {
-            border: 2px solid rgba(255, 255, 255, 0.267); /* Add a border to all links */
+        .user-report {
+            border: 2px solid rgba(44, 44, 44, 0.267); /* Add a border to all links */
             margin-top: -1px; /* Prevent double borders */
-            background-color: rgba(255, 255, 255, 0.589); /* Grey background color */
+            background-color: rgba(0, 0, 0, 0.315); /* Grey background color */
             padding: 12px; /* Add some padding */
             text-decoration: none; /* Remove default text underline */
-            font-size: 18px; /* Increase the font-size */
-            display: inline flow-root list-item; /* Make it into a block element to fill the whole list */
-            width: fit-content;
+            font-size: 17px; /* Increase the font-size */
             border-radius: 1em;
             margin-top: 20px;
+            height: 50px;
+            margin: 10px;
+
         }
 
-
-
+        
+        .user-panel-results:hover {
+            background-color: rgba(255, 235, 205, 0.178);
+        }
+        
         form {
             margin-top: 5px;
         }
@@ -56,9 +60,10 @@
                 
                 <% reports.forEach(function (report, index) { %>
                     <div class="user-panel-results">
-                        <li>
-                            <p><%= report %></p>
-                        </li>
+                        <div class="user-report">
+                                <p><%= report %></p>
+                            
+                        </div>
                         <div>
 
                             <form method="post" id="reportForm" style="margin-top: 0;background-color: rgba(210, 105, 30, 0);" action=<%= "/admin/reported-issues/" + index %>>
@@ -66,7 +71,7 @@
                             </form>
                         </div>
                     </div>
-                <% }) %>
+                    <% }) %>
             </div>
         </ul>
     </div>
