@@ -27,7 +27,7 @@ body {
 
 .user-reports {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 .admin-history > div:nth-child(odd) {

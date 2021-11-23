@@ -16,12 +16,19 @@
             padding: 12px; /* Add some padding */
             text-decoration: none; /* Remove default text underline */
             font-size: 18px; /* Increase the font-size */
-            display: block; /* Make it into a block element to fill the whole list */
+            display: inline flow-root list-item; /* Make it into a block element to fill the whole list */
+            width: fit-content;
+            border-radius: 1em;
+            margin-top: 20px;
         }
 
         div {
             margin-left: 50px;
             margin-right: 50px;
+        }
+
+        form {
+            margin-top: 5px;
         }
 
 
@@ -31,6 +38,21 @@
     </style>
 </head>
 <body>
+
+    <main class="search-main">
+        <div style="margin-left: 0; margin-right: 0;margin-top: 0 ;">
+  
+          <form class="search-form" action="/search_result" method="GET" style="background-color: black;">
+              <a href="/home" class="back-button">Home</a>
+              <h1 class="track-formatter" style="margin-bottom: 1em;">User Reports</h1>
+              
+                <a href="/admin" class="back-button" id="reportButton">Admin Dashboard</a>
+  
+  
+          </form>
+        </div>
+    </main>
+
     <div style="background-color: rgba(22, 22, 22, 0.288);">
         <ul >
             <div class="user-reports">
@@ -51,7 +73,7 @@
             </div>
         </ul>
         <div>
-            <a href="/admin"><i class="test-one"></i>Admin Dashboard</a>
+            
         </div>
     </div>
 </body>
