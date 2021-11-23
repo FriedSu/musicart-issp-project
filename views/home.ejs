@@ -38,12 +38,16 @@
             <h1 class="welcome-title" style="font-family: Verdana, Geneva, Tahoma, sans-serif;margin: 50px;">
                 Welcome <%=user.name%>!
             </h1>
+            <!-- Can display a success message/popup if you want.... -->
+            <!-- <strong id="popupMessage" class="popupMsg">
+                <em><%=message%></em>
+            </strong> -->
 
             <div class="admin-info">
                 <h1>Purchase History</h1>
-
+                <% data.forEach(result => { %>
                 <div class="admin-history">
-                    <% data.forEach(result => { %>
+                    
                         
                         <div class="admin-placeholder">
                             <p>Purchase ID</p>
@@ -68,9 +72,6 @@
                         <div class="admin-results">
                             <input type="text" value="<%=result.amount_received/100%> <%=result.currency%>" readonly>
                         </div>
-
-                        
-                    
                 </div>
                 <div class="admin-results receipt-results">
                     <a class="back-button" id="receipt-button" href= "<%=result.receipt_url%>" target="_blank">Receipt Link</a>
@@ -78,7 +79,7 @@
                 <% }) %>
                     <% if (user.role === "Admin") { %>
                         <button class="back-button" onClick="location.href = '/admin';" id= "adminButton" style="margin-top: 5em;">Admin</button>
-                    <% } %>
+                <% } %>
             </div>
 
 
@@ -94,4 +95,12 @@
     </div>
 
 </body>
+<!-- <script type="text/javascript">
+    // close the div in 5 secs
+    window.setTimeout("closeHelpDiv();", 5000);
+    
+    function closeHelpDiv(){
+    document.getElementById("popupMessage").style.display=" none";
+    }
+</script> -->
 </html>

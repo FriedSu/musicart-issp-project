@@ -8,10 +8,8 @@
     <link rel = "stylesheet" href="/style.css">
     <style>
         input {
-            width: 600px;
-            height:200px;
-            border:1px solid black;
-
+            width: 100%;
+            height: 200px;
             padding: 12px 20px;
             box-sizing: border-box;
             border: 2px solid #ccc;
@@ -41,38 +39,32 @@
     </style>
 
 </head>
+<body>
 
-<body class="container">
+
 
     <main class="search-main">
         <div class="jumbotron">
-        
-        <form class="search-form" action="/search_result" method="GET">
-            <a href="/home" class="back-button">Home</a>
-
-            <h1 class="track-formatter" style="margin-bottom: 1em;">Report a problem</h1>
-            
-            <div>
-                <a href="/help/report" class="back-button" id="reportButton">Report a Problem</a>
-            </div>
-
-            <h1 style="text-align: center; padding: 20px;">
-                Enter your problem here
-            </h1>
-            <div>
-                <form action="/help/report" method="POST">
-                    <!-- <input type="text" placeholder="Enter your problem" id="report" name="report" required> -->
-                    <textarea type="text" name="report" placeholder="Enter you problem" id="report" cols="30" rows="10"></textarea>
-                    
-                    <div style="text-align: center;">
-                        <button class="back-button" type="submit" style="margin-top: 2em;">Submit</button>
-                    </div>
-                </form>
-            </div>
-            
-            
-        </form>
+  
+          <form class="search-form" action="/search_result" method="GET">
+              <a href="/home" class="back-button">Home</a>
+              <h1 class="track-formatter" style="margin-bottom: 1em;">Report a problem</h1>
+  
+  
+          </form>
         </div>
-    </main>
+      </main>
 
+    <h1 class="title">
+        Report a problem
+    </h1>
+    <div class="container">
+        <form action="/help/report" method="POST">
+            <textarea type="text" name="report" placeholder="Enter you problem" id="report" cols="30" rows="10" required></textarea>
+            
+            <div style="text-align: center;">
+                <button class="back-button" type="submit" style="margin-top: 2em;">Submit</button>
+            </div>
+        </form>
+    </div>
 </body>

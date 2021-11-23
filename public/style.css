@@ -303,7 +303,6 @@ label {
 
 }
 
-
-
-
-
+.popupMsg {
+    color: red;
+}

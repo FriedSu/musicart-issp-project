@@ -28,7 +28,7 @@ const scopes = [
 var spotifyApi = new SpotifyWebApi({
     clientId: '475065ad09b14f60a13da67ff08de3f0',
     clientSecret: 'c86ce757d0094f08883821a2d57444bd',
-    redirectUri: 'http://localhost:8080/callback'
+    redirectUri: 'http://localhost:8090/callback'
   });
   
   const app = express();
@@ -60,6 +60,14 @@ var spotifyApi = new SpotifyWebApi({
   
         console.log('access_token:', access_token);
         console.log('refresh_token:', refresh_token);
+        
+        const fs = require('fs')
+        fs.writeFile('token.txt', access_token, err => {
+          if (err) {
+            console.error(err)
+            return
+          }
+        })
   
         console.log(
           `Sucessfully retreived access token. Expires in ${expires_in} s.`
@@ -69,10 +77,17 @@ var spotifyApi = new SpotifyWebApi({
         setInterval(async () => {
           const data = await spotifyApi.refreshAccessToken();
           const access_token = data.body['access_token'];
+          
   
           console.log('The access token has been refreshed!');
           console.log('access_token:', access_token);
           spotifyApi.setAccessToken(access_token);
+          fs.writeFile('token.txt', access_token, err => {
+            if (err) {
+              console.error(err)
+              return
+            }
+          })
         }, expires_in / 2 * 1000);
       })
       .catch(error => {
@@ -81,9 +96,9 @@ var spotifyApi = new SpotifyWebApi({
         });
   });
   
-  app.listen(8080, () =>
+  app.listen(8090, () =>
     console.log(
-      'HTTP Server up. Now go to http://localhost:8080/login in your browser.'
+      'HTTP Server up. Now go to http://localhost:8090/login in your browser.'
     )
   );
 

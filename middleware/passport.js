@@ -16,20 +16,25 @@ passport.deserializeUser((id, done) => {
 const localLogin = new LocalStrategy({
     usernameField: "email",
     passwordField: "password",
+    passReqToCallback: true,
 },
-(email, password, done) => {
+(req, email, password, done) => {
     // Find User
     User.findOne({ email: email })
     .then(user => {
+        if (!user) {
+            console.log("User not found.")
+            return done(null, false, req.flash('message', "User not found, please try again."))
+        }
         bcrypt.compare(password, user.password, function(error, isMatch) {
             if (error) {
                 throw error
             } else if (!isMatch) {
                 console.log("Password doesn't match!");
-                return done(null, false, {message: "User not found, please try again!"})
+                return done(null, false, req.flash('message', "Incorrect password."))
             } else {
                 console.log("Passwords match")
-                return done(null, user);
+                return done(null, user, req.flash('message', 'User found.'));
             }
         })
         // if (user.password === password) {
