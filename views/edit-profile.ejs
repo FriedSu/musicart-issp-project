@@ -6,8 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit your profile!</title>
     <link rel = "stylesheet" href="/style.css">
+
 </head>
 <body>
+
+
+    <main class="search-main">
+        <div class="jumbotron">
+  
+          <form class="search-form" action="/search_result" method="GET">
+              <a href="/home" class="back-button">Home</a>
+              <h1 class="track-formatter" style="margin-bottom: 1em;">Edit Profile for <%=user.name %> <br><h2 style="margin-bottom: 15px;">Update:</h2></h1>
+              <div>
+  
+                <a href="/edit-profile/change-picture" class="back-button" id="editPicButton">Profile Picture</a>
+                
+                <a href="/edit-profile/change-name" class="back-button" id="editNameButton">Name</a>
+
+                <a href="/edit-profile/change-email" class="back-button" id="editEmailButton">Email</a>
+
+                <a href="/edit-profile/change-password/<%=user.name%>" class="back-button" id="editPswdButton">Password</a>
+
+                <a href="/logout" class="back-button" id="logoutButton">Logout</a>
+  
+              </div>
+  
+  
+          </form>
+        </div>
+    </main>
+<!-- 
     <div class="title">
         Edit Profile <%=user.name %>
     </div>
@@ -15,23 +43,23 @@
     <div class="profileBox">
 
         <div class="profileButtons">
-            <button id="profileButton" onClick="location.href = '/edit-profile/change-name';" id="editNameButton">Change Name</button>
+            <button class="back-button" id="profileButton" onClick="location.href = '/edit-profile/change-name';" id="editNameButton">Change Name</button>
         </div>
         <div class="profileButtons">
-            <button id="profileButton" onClick="location.href = '/edit-profile/change-email';" id="editEmailButton">Change Email</button>
+            <button class="back-button" id="profileButton" onClick="location.href = '/edit-profile/change-email';" id="editEmailButton">Change Email</button>
         </div class="profileButtons">
         <div class="profileButtons">
-            <button id="profileButton" onClick="location.href = '/edit-profile/change-password/<%=user.name%>';" id="editPswdButton">Change Password</button>
+            <button class="back-button" id="profileButton" onClick="location.href = '/edit-profile/change-password/<%=user.name%>';" id="editPswdButton">Change Password</button>
         </div>
         <div class="profileButtons">
-            <button id="profileButton" onClick="location.href = '/edit-profile/change-picture';" id="editPicButton">Change Profile Picture</button>
+            <button class="back-button" id="profileButton" onClick="location.href = '/edit-profile/change-picture';" id="editPicButton">Change Profile Picture</button>
         </div>
         <div class="profileButtons">
-            <button id ="profileButton" onClick="location.href = '/logout';" id="logoutButton">Logout</button>
+            <button class="back-button" id ="profileButton" onClick="location.href = '/logout';" id="logoutButton">Logout</button>
         </div>
     </div>
     <ul>
         <li><a href="/home"><i class="test-one"></i>Home</a></li>
-    </ul>
+    </ul> -->
 </body>
 </html>

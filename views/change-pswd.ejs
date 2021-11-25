@@ -8,10 +8,53 @@
     <title>Musicart: Change Password</title>
 </head>
 <body>
-    <div class = "title">
+
+
+    <main class="search-main">
+        <div class="jumbotron">
+  
+          <form class="search-form" action="/search_result" method="GET">
+              <a href="/home" class="back-button">Home</a>
+              <h1 class="track-formatter" style="margin-bottom: 1em;">Edit Profile<br><h2 style="margin-bottom: 15px;">Update:</h2></h1>
+              <div>
+  
+                <a href="/edit-profile/change-picture" class="back-button" id="editPicButton">Profile Picture</a>
+                
+                <a href="/edit-profile/change-name" class="back-button" id="editNameButton">Name</a>
+
+                <a href="/edit-profile/change-email" class="back-button" id="editEmailButton">Email</a>
+
+                <a class="back-button-selected" id="editPswdButton">Password</a>
+
+                <a href="/logout" class="back-button" id="logoutButton">Logout</a>
+              </div>
+          </form>
+        </div>
+    </main>
+
+    <div class="container" style="margin-top: 0;">
+        <form action="/edit-profile/change-password" style="width: 100%; margin-top: 0; padding-top: 0;" method="POST" onsubmit="return validate()">
+            <div class = "title" style="text-align: left;">
+                <h4 style="margin-bottom: 1em;">Change Email</h4>
+            </div>
+            <div class="form-group">
+                <input type="password" style="margin-top: 0; display: block;" placeholder="Enter New Password" id="newPassword" name="newPassword" required>
+            </div>
+            <div class="form-group">
+                <input type="password" style="margin-top: 0; display: block;" placeholder="Confirm Password" id="confirmPassword" name="confirmPassword" onkeyup="check(this)" required>
+            </div>
+            <p style="margin-top: 0; text-align: left; color: red;">
+                <error id="alert"></error>
+            </p>
+            <button class="back-button" type="submit" style="margin-top: 5em; display: block;">Submit</button>
+        </form>
+    </div>
+
+
+    <!-- <div class = "title">
         <h1>Change Password</h1>
     </div>
-        <div class = container>
+    <div class = container>
         <form action="/edit-profile/change-password" method="POST" onsubmit="return validate()">
             <div class="form-group">
                 <label for="newPassword"><b>New Password</b></label>
@@ -26,7 +69,7 @@
             <p>
                 <error id="alert"></error>
             </p>
-        </div>
+    </div> -->
 </body>
 <script type="text/javascript">
     let newPassword = document.getElementById('newPassword')

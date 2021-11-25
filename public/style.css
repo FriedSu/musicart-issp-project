@@ -30,6 +30,21 @@ form {
     display: inline-block;
 }
 
+input {
+    background-color: rgba(255, 255, 255, 0);
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    width: 250px;
+    height: 20px;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+    }
+
 input:not("#report") {
     background-color: rgba(255, 255, 255, 0);
     padding: 12px 20px;
@@ -188,11 +203,43 @@ form.search-main:hover {
     -webkit-transition: ease-out 0.4s;
     -moz-transition: ease-out 0.4s;
     transition: all 1s;
+    text-decoration: none;
+}
+
+.back-button-selected {
+    width: max-content;
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#000000;
+    box-shadow: inset 900px 0 0 0 #FFFFFF;
+    text-align:center;
+    text-decoration: none;
+    user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
 .back-button:hover {
     color:#000000;
     box-shadow: inset 900px 0 0 0 #FFFFFF;
+}
+
+#logoutButton:hover {
+    box-shadow: inset 900px 0 0 0 #e00202cc;
+    color: white;
+}
+
+#submitButton:hover {
+    box-shadow: inset 900px 0 0 0 #00b336de;
+    color: white;
 }
 
 .search-form {

@@ -8,11 +8,29 @@
     <link rel = "stylesheet" href="/style.css">
 </head>
 <body>
+    <main class="search-main">
+      <div class="jumbotron">
+
+        <form class="search-form" action="/search_result" method="GET">
+            <a href="/home" class="back-button">Home</a>
+            <h1 class="track-formatter" style="margin-bottom: 1em;">User Settings</h1>
+            <div>
+
+                <a href="/edit-profile/home" class="back-button" id="editNameButton">Update Profile Info</a>
+
+                <a href="/logout" class="back-button" id="logoutButton">Logout</a>
+
+            </div>
+
+
+        </form>
+      </div>
+    </main>
+
     <h1 class="title">
         Settings
     </h1>
-    <button onClick="location.href = '/edit-profile/home';" id="editNameButton">Edit your profile</button>
-    <button onClick="location.href = '/logout';" id="logoutButton">Logout</button>
+    
     <ul>
         <li><a href="/home"><i class="test-one"></i>Home</a></li>
     </ul>

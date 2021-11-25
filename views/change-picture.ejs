@@ -6,16 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href="/style.css">
     <title>Musicart: Change Profile Picture</title>
+    <style>
+        input {
+        background-color: rgba(255, 255, 255, 0);
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        width: 250px;
+        height: 20px;
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+        border-bottom-style: groove;
+        }
+    </style>
 </head>
 <body>
-    <div class = "title">
-        <h1>Change Profile Picture</h1>
-    </div>
-    <div class = container>
-    <form action="/edit-profile/change-picture" method="POST">
-        <input type="name" placeholder="Enter url of a web image" id="picture" name="picture" required>
-        <button type="submit">Submit</button>
-    </form>
+
+    <main class="search-main">
+        <div class="jumbotron">
+  
+          <form class="search-form" action="/search_result" method="GET">
+              <a href="/home" class="back-button">Home</a>
+              <h1 class="track-formatter" style="margin-bottom: 1em;">Edit Profile<br><h2 style="margin-bottom: 15px;">Update:</h2></h1>
+              <div>
+  
+                <a draggable="false" class="back-button-selected" id="editPicButton">Profile Picture</a>
+                
+                <a draggable="false" href="/edit-profile/change-name" class="back-button" id="editNameButton">Name</a>
+
+                <a href="/edit-profile/change-email" class="back-button" id="editEmailButton">Email</a>
+
+                <a href="/edit-profile/change-password/<%=user.name%>" class="back-button" id="editPswdButton">Password</a>
+
+                <a href="/logout" class="back-button" id="logoutButton">Logout</a>
+              </div>
+          </form>
+        </div>
+    </main>
+
+    <div class = container style="margin-top: 0;">
+        <form action="/edit-profile/change-picture" style="width: 100%; margin-top: 0; padding-top: 0;" method="POST">
+            <div class = "title" style="text-align: left;">
+                <h4 style="margin-bottom: 1em;">Change Profile Name</h4>
+            </div>
+
+            <input type="name" placeholder="Enter url of a web image" id="picture" name="picture" style="margin-top: 0; display: block; min-width: 50%;" required>
+            <button class="back-button" type="submit" id="submitButton" style="margin-top: 5em; display: block;">Submit</button>
+        </form>
     </div>
 </body>
 </html>

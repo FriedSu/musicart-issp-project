@@ -46,12 +46,17 @@
     border-radius: 5px;
     margin: 5px;
     border: solid 3px rgba(199, 199, 199, 0.63);
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.4s;
+    transition: ease-out 0.8s;
   }
 
   .user-list:hover {
     background-color: rgba(255, 255, 255, 0.267);
     margin: 2px;
+    box-shadow: inset 1px 0 rgba(226, 15, 15, 0.8);
   }
+
   
 </style>
 
@@ -94,8 +99,8 @@
         </h1>
 
         <div class="admin-info">
+          <button class="back-button" onClick="location.href = '/admin/reported-issues';" id="reportedIssuesBtn" style="font-size: 15px; margin-top: 20px; margin-bottom: 20px;">View Reported Issues</button>
           <h3>Search for a user</h3>
-          <button class="back-button" onClick="location.href = '/admin/reported-issues';" id="reportedIssuesBtn" style="font-size: 15px; margin-top: 20px;">View Reported Issues</button>
       <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names">
       <div>
         
