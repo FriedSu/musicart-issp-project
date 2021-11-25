@@ -115,13 +115,13 @@
                     <li class="user-list"><a href="/admin/view/<%=user[i].name%>" style="text-align: center;"><%=user[i].name%></a>
                     <div class = dropdown>
                       <button class="back-button" style="margin: 0; margin-top: 10px;">View Profile</button>
-                      <div class="dropdown-content">
+                      <div class="dropdown-content" style="padding: 2em; border: solid 2px white; border-radius: 2px;">
                         <from action="/admin" method="POST">
                           <label for "name"><b>Name</b></label>
                           <input type="name" placeholder="<%=user[i].name%>" id="name">
                           <lable for="email"><b>Email</b></lable>
                           <input type="email" placeholder="<%=user[i].email%>" id="email">
-                          <button type="submit">Submit</button>
+                          <button class="back-button" type="submit" style="margin-top: 15px;">Submit</button>
       
                         </from>
                       </div>
