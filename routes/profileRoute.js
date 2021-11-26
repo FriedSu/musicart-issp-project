@@ -43,8 +43,9 @@ router.get("/change-picture", (req, res) => {
 
 router.get("/change-email", (req, res) => {
     res.render("change-email", {
-        user: req.user,
-    });
+    message: req.flash('message'),
+    user: req.user
+    })
 });
 
 router.post("/change-password", (req, res) => {
@@ -103,21 +104,29 @@ router.post("/change-picture", (req, res) => {
 });
 
 router.post("/change-email", (req, res) => {
-    const query  = User.where({ email: req.user.email });
-    query.findOne(function (err, user) {
-        if (err) {
-            console.log(err);
-        } else {
-            user.email = req.body.email
-            user.save()
-                .then((user) => {
-                    res.redirect("/auth/login");
-                })
-                .catch((err) => {
-                    console.log(err);
+    User.findOne({email: req.body.email})
+        .then(user => {
+            if (user) {
+                req.flash('message', `Account with email "${req.body.email}" already exists, please try a new email.`)
+                res.redirect("/edit-profile/change-email")
+            } else {
+                const query  = User.where({ email: req.user.email });
+                query.findOne(function (err, user) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        user.email = req.body.email
+                        user.save()
+                            .then((user) => {
+                                res.redirect("/auth/login");
+                            })
+                            .catch((err) => {
+                                console.log(err);
+                            });
+                    };
                 });
-        };
-    });
+            }
+        })
 });
 
 module.exports = router;

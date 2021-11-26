@@ -37,10 +37,28 @@
                 <h4 style="margin-bottom: 1em;">Change Email</h4>
             </div>
 
-            <input type="email" placeholder="Enter New Email" id="email" name="email" style="margin-top: 0; display: block;" required>
+            <input type="email" placeholder="Enter New Email" id="email" name="email" style="margin-top: 0; display: block;" onkeyup="check(this)" required>
             <button class="back-button" type="submit" id="submitButton" style="margin-top: 5em; display: block;">Submit</button>
         </form>
     </div>
 
+    <div>
+        <strong id="emailPopupMessage" class="popupMsg">
+            <em><%=message%></em>
+        </strong>
+    </div>
+
 </body>
+<script type="text/javascript">
+    // Error Message popup disappears when you enter text in email/password inputs
+  
+    function check(elem) {
+        if(elem.value.length > 0){
+            closeHelpDiv()
+        }
+    }
+    function closeHelpDiv(){
+    document.getElementById("rgstrPopupMessage").style.display=" none";
+    }
+  </script>
 </html>
