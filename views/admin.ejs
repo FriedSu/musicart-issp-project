@@ -70,6 +70,26 @@
   <div class="grid">
 
     <div class="side-bar">
+      <div class="sidebar">
+          <header>Your Profile</header>
+          <div class="profile">
+              <a href="/edit-profile/change-picture">
+                  <img src="<%= user.profilePicture %>" alt="Profile Image Not Showing (please enter a valid image link)" class="profileImage">
+              </a>
+              <div class="profileName"><%= user.name %></div>
+              <a href="/edit-profile/home" id="editProfileButton">Edit Profile</a>
+          </div>
+          <ul>
+              <li><a href="home"><i class="test-two"></i>Home</a></li>
+              <li><a href="search"><i class="test-three"></i>Buy Spotify Plays</a></li>
+              <li><a href="https://www.musicart.pl/" target="_blank"><i class="test-five"></i>Musicart</a></li>
+              <li><a href="help"><i class="test-six"></i>Help</a></li>
+              
+              <li><a href="settings"><i class="test-seven"></i>Settings</a></li>
+          </ul>
+      </div>
+  </div>
+    <!-- <div class="side-bar" style="height: 100%;">
         <div class="sidebar">
             <header>Your Profile</header>
             <div class="profile">
@@ -82,14 +102,13 @@
             <ul>
               <li><a href="home"><i class="test-two"></i>Home</a></li>
                 <li><a href="search"><i class="test-three"></i>Buy Spotify Plays</a></li>
-                <li><a href=""><i class="test-four"></i>Connect Artist Profile</a></li>
                 <li><a href="https://www.musicart.pl/" target="_blank"><i class="test-five"></i>Musicart</a></li>
                 <li><a href="help"><i class="test-six"></i>Help</a></li>
                 
                 <li><a href="settings"><i class="test-seven"></i>Settings</a></li>
             </ul>
         </div>
-    </div>
+    </div> -->
 
     <div class="welcome">
         
@@ -131,10 +150,9 @@
           </ul>
     </div>
 
-
-
-
-    
+    <div class="possible-content">
+      other possible content ⛷
+    </div>
 </div>
 
   
